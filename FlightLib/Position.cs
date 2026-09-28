@@ -26,10 +26,14 @@ namespace FlightLib
         public double GetX()
         // getter del atributo x
         { return x; }
+        public void SetX(double x)
+        { this.x = x; }
 
         public double GetY()
         // getter del atributo y
         { return y; }
+        public void SetY(double y)
+        { this.y = y; }
 
         public double Distancia(Position b)
         // retorna la distancia entre los dos Postion

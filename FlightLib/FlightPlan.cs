@@ -11,15 +11,17 @@ namespace FlightLib
         // Atributos
 
         string id; // identificador
+        Position initialPosition;
         Position currentPosition; // posicion actual
         Position finalPosition; // posicion final
         bool flightCompleted; // indica si el vuelo ha llegado a su destino
         double velocidad;
 
-        // Constructures
+        // Constructores
         public FlightPlan(string id, double cpx, double cpy, double fpx, double fpy, double velocidad)
         {
             this.id = id;
+            this.initialPosition = new Position(cpx, cpy);
             this.currentPosition = new Position(cpx, cpy);
             this.finalPosition = new Position(fpx, fpy);
             this.velocidad = velocidad;
@@ -95,6 +97,12 @@ namespace FlightLib
             if (this.EnDestino())
                 Console.WriteLine("Ha llegado al destino.");
             Console.WriteLine("******************************");
+        }
+
+        public void Restart()
+        {
+            currentPosition.SetX(initialPosition.GetX());
+            currentPosition.SetY(initialPosition.GetY());
         }
     }
 }
