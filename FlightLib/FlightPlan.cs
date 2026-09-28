@@ -104,6 +104,5 @@ namespace FlightLib
             currentPosition.SetX(initialPosition.GetX());
             currentPosition.SetY(initialPosition.GetY());
         }
-        //prueba
     }
 }
