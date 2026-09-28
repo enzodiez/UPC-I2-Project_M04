@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="FlightLib/FlightLib.csproj" Id="2afdc032-0f6c-41f7-b487-a6a53a8b1c1c" />
+  <Project Path="SimulatorConsole/SimulatorConsole.csproj" Id="64a007b7-5d6f-4efc-9cc8-773f9bdce799" />
+  <Project Path="SimulatorInterface/SimulatorInterface.csproj" Id="96bd802e-ced6-474a-8e07-3e29d0ec84b0" />
+</Solution>

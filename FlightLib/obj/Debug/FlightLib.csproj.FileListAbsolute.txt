@@ -1,0 +1,6 @@
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\bin\Debug\FlightLib.dll
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\bin\Debug\FlightLib.pdb
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.AssemblyReference.cache
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.CoreCompileInputs.cache
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.dll
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.pdb
