@@ -40,6 +40,6 @@ namespace FlightLib
         {
             double resultado = Math.Sqrt((x - b.x) * (x - b.x) + (y - b.y) * (y - b.y));
             return resultado;
-        }
+        }        
     }
 }
