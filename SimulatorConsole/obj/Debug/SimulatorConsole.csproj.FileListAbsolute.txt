@@ -8,3 +8,13 @@ C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\Simulato.840E03AB.Up2Date
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.exe
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.pdb
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\SimulatorConsole.exe.config
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\SimulatorConsole.exe
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\SimulatorConsole.pdb
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\FlightLib.dll
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\FlightLib.pdb
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.csproj.AssemblyReference.cache
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.csproj.CoreCompileInputs.cache
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\Simulato.840E03AB.Up2Date
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.exe
+C:\Users\vcres\Desktop\PROYECTOI2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.pdb

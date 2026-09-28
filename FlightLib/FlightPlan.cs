@@ -98,6 +98,8 @@ namespace FlightLib
                 Console.WriteLine("Ha llegado al destino.");
             Console.WriteLine("******************************");
         }
+        public double Distance(FlightPlan plan)
+        { }
 
         public void Restart()
         {
