@@ -98,29 +98,16 @@ namespace FlightLib
                 Console.WriteLine("Ha llegado al destino.");
             Console.WriteLine("******************************");
         }
-<<<<<<< HEAD
-        public double Distance(FlightPlan plan)
-        { }
-=======
         public double Distance() // a que se refiere?
         {
             double distancia = this.initialPosition.Distancia(this.currentPosition);
             return distancia;
         }
 
-
-
-
->>>>>>> dbc1702530cab6631a2c21f92fe39ffdbfd431e5
-
         public void Restart()
         {
             currentPosition.SetX(initialPosition.GetX());
             currentPosition.SetY(initialPosition.GetY());
-<<<<<<< HEAD
-=======
- 
->>>>>>> dbc1702530cab6631a2c21f92fe39ffdbfd431e5
         }
     }
 }
