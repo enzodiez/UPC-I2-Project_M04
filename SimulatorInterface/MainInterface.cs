@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace SimulatorInterface
 {
-    public partial class Form1 : Form
+    public partial class MainInterface : Form
     {
-        public Form1()
+        public MainInterface()
         {
             InitializeComponent();
+        }
+
+        private void addANewFlightPlanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
