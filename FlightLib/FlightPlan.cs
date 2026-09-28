@@ -11,7 +11,7 @@ namespace FlightLib
         // Atributos
 
         string id; // identificador
-        Position initialPosition;
+        Position initialPosition; // posicion final
         Position currentPosition; // posicion actual
         Position finalPosition; // posicion final
         bool flightCompleted; // indica si el vuelo ha llegado a su destino
