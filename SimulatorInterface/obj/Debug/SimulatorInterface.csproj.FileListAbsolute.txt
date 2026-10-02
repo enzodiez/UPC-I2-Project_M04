@@ -12,3 +12,4 @@ C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterf
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\Simulato.39EC8789.Up2Date
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.exe
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.pdb
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.SecurityCiclesInterface.resources
