@@ -63,7 +63,6 @@
             this.IY.Name = "IY";
             this.IY.Size = new System.Drawing.Size(100, 22);
             this.IY.TabIndex = 2;
-            this.IY.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // IX
             // 
@@ -71,7 +70,6 @@
             this.IX.Name = "IX";
             this.IX.Size = new System.Drawing.Size(100, 22);
             this.IX.TabIndex = 3;
-            this.IX.TextChanged += new System.EventHandler(this.IX_TextChanged);
             // 
             // SpeedLbl
             // 
@@ -140,7 +138,6 @@
             this.label2.Size = new System.Drawing.Size(13, 16);
             this.label2.TabIndex = 11;
             this.label2.Text = "x";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Guardar
             // 
@@ -172,7 +169,6 @@
             this.Controls.Add(this.FX);
             this.Name = "NewFlightPlanInterface";
             this.Text = "NewFlightPlanInterface";
-            this.Load += new System.EventHandler(this.NewFlightPlanInterface_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,30 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\",
+  "WorkspaceRootPath": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\dpena\\desktop\\info 2\\upci2projectm04\\upc-i2-project_m04\\simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\simulatorinterface\\airspaceinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\airspaceinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\dpena\\desktop\\info 2\\upci2projectm04\\upc-i2-project_m04\\simulatorinterface\\securityciclesinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\securityciclesinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\simulatorinterface\\airspaceinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\airspaceinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\dpena\\desktop\\info 2\\upci2projectm04\\upc-i2-project_m04\\simulatorinterface\\securityciclesinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\securityciclesinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\dpena\\desktop\\info 2\\upci2projectm04\\upc-i2-project_m04\\simulatorinterface\\newflightplaninterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\newflightplaninterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\simulatorinterface\\newflightplaninterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\newflightplaninterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,82 +30,70 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SecurityCiclesInterface.cs",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\SecurityCiclesInterface.cs",
-              "RelativeDocumentMoniker": "SimulatorInterface\\SecurityCiclesInterface.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\SecurityCiclesInterface.cs",
-              "RelativeToolTip": "SimulatorInterface\\SecurityCiclesInterface.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAASwDAAAAAIAAAAAAAAAA==",
+              "Title": "FlightPlanList.cs",
+              "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\FlightLib\\FlightPlanList.cs",
+              "RelativeDocumentMoniker": "FlightLib\\FlightPlanList.cs",
+              "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\FlightLib\\FlightPlanList.cs",
+              "RelativeToolTip": "FlightLib\\FlightPlanList.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAA0wBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T13:11:59.308Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SecurityCiclesInterface.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\SecurityCiclesInterface.cs",
-              "RelativeDocumentMoniker": "SimulatorInterface\\SecurityCiclesInterface.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\SecurityCiclesInterface.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimulatorInterface\\SecurityCiclesInterface.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T13:03:37.975Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainInterface.cs",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs",
-              "RelativeDocumentMoniker": "SimulatorInterface\\MainInterface.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs",
-              "RelativeToolTip": "SimulatorInterface\\MainInterface.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T13:11:53.115Z",
+              "WhenOpened": "2026-10-03T11:50:55.559Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainInterface.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs",
+              "Title": "MainInterface.cs",
+              "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs",
               "RelativeDocumentMoniker": "SimulatorInterface\\MainInterface.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimulatorInterface\\MainInterface.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs",
+              "RelativeToolTip": "SimulatorInterface\\MainInterface.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T12:11:38.737Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NewFlightPlanInterface.cs",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\NewFlightPlanInterface.cs",
-              "RelativeDocumentMoniker": "SimulatorInterface\\NewFlightPlanInterface.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\NewFlightPlanInterface.cs",
-              "RelativeToolTip": "SimulatorInterface\\NewFlightPlanInterface.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAArwCsAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T13:11:48.832Z",
+              "WhenOpened": "2026-10-03T10:29:39.481Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NewFlightPlanInterface.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\NewFlightPlanInterface.cs",
-              "RelativeDocumentMoniker": "SimulatorInterface\\NewFlightPlanInterface.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\UpcI2ProjectM04\\UPC-I2-Project_M04\\SimulatorInterface\\NewFlightPlanInterface.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimulatorInterface\\NewFlightPlanInterface.cs [Dise\u00F1o]",
+              "DocumentIndex": 4,
+              "Title": "MainInterface.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs",
+              "RelativeDocumentMoniker": "SimulatorInterface\\MainInterface.cs",
+              "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs [Design]",
+              "RelativeToolTip": "SimulatorInterface\\MainInterface.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T12:10:55.158Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-10-03T10:29:19.766Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AirspaceInterface.cs",
+              "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\AirspaceInterface.cs",
+              "RelativeDocumentMoniker": "SimulatorInterface\\AirspaceInterface.cs",
+              "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\AirspaceInterface.cs",
+              "RelativeToolTip": "SimulatorInterface\\AirspaceInterface.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAwwCsAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T11:06:10.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AirspaceInterface.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\AirspaceInterface.cs",
+              "RelativeDocumentMoniker": "SimulatorInterface\\AirspaceInterface.cs",
+              "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\AirspaceInterface.cs [Design]",
+              "RelativeToolTip": "SimulatorInterface\\AirspaceInterface.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T11:06:05.84Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

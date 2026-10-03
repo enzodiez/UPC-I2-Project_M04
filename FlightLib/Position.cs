@@ -8,12 +8,8 @@ namespace FlightLib
 {
     public class Position
     {
-        // Atributos
-
         double x; // coordenada X (2D)
         double y; // coordenada Y (2D)
-
-        // Constructores
 
         public Position(double x, double y)
         {
@@ -21,20 +17,16 @@ namespace FlightLib
             this.y = y;
         }
 
-        // Metodos
-
         public double GetX()
         // getter del atributo x
         { return x; }
         public void SetX(double x)
         { this.x = x; }
-
         public double GetY()
         // getter del atributo y
         { return y; }
         public void SetY(double y)
         { this.y = y; }
-
         public double Distancia(Position b)
         // retorna la distancia entre los dos Postion
         {

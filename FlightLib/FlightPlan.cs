@@ -8,8 +8,6 @@ namespace FlightLib
 {
     public class FlightPlan
     {
-        // Atributos
-
         string id; // identificador
         Position initialPosition; // posicion final
         Position currentPosition; // posicion actual
@@ -17,7 +15,6 @@ namespace FlightLib
         bool flightCompleted; // indica si el vuelo ha llegado a su destino
         double velocidad;
 
-        // Constructores
         public FlightPlan(string id, double cpx, double cpy, double fpx, double fpy, double velocidad)
         {
             this.id = id;
@@ -27,8 +24,6 @@ namespace FlightLib
             this.velocidad = velocidad;
             this.flightCompleted = false;
         }
-
-        // Metodos
 
         public string GetId()
         {
@@ -41,11 +36,14 @@ namespace FlightLib
         {
             return this.flightCompleted;
         }
+        public Position GetCurrentPosition()
+        {
+            return this.currentPosition;
+        }
         public void SetFlightCompleted(bool flightCompleted)
         {
             this.flightCompleted = flightCompleted;
         }
-
         public void Mover(double tiempo)
         // Mueve el vuelo a la posición correspondiente a viajar durante el tiempo que se recibe como parámetro
         {
@@ -75,17 +73,14 @@ namespace FlightLib
             else
                 currentPosition = finalPosition;
         }
-
         public bool EnDestino()
         {
             return currentPosition == finalPosition;
         }
-
         public bool Conflicto(FlightPlan b, double distanciaSeguridad)
         {
             return currentPosition.Distancia(b.currentPosition) < distanciaSeguridad;
         }
-
         public void EscribeConsola()
         // escribe en consola los datos del plan de vuelo
         {
@@ -98,11 +93,10 @@ namespace FlightLib
                 Console.WriteLine("Ha llegado al destino.");
             Console.WriteLine("******************************");
         }
-        public double Distance(FlightPlan plan) // a que se refiere?
+        public double Distance(FlightPlan plan)
         {
             return this.currentPosition.Distancia(plan.currentPosition);
         }
-
         public void Restart()
         {
             currentPosition.SetX(initialPosition.GetX());

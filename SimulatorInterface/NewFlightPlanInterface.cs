@@ -18,27 +18,6 @@ namespace SimulatorInterface
         {
             InitializeComponent();
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void IX_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NewFlightPlanInterface_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void Guardar_Click(object sender, EventArgs e)
         {
             try
