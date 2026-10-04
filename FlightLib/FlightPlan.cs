@@ -32,6 +32,10 @@ namespace FlightLib
         public void SetVelocidad(double velocidad)
         // setter del atributo velocidad
         { this.velocidad = velocidad; }
+        public double GetVelocidad()
+        {
+            return this.velocidad;
+        }
         public bool GetFlightCompleted()
         {
             return this.flightCompleted;
@@ -101,6 +105,10 @@ namespace FlightLib
         {
             currentPosition.SetX(initialPosition.GetX());
             currentPosition.SetY(initialPosition.GetY());
+        }
+        public Position GetDestino()
+        {
+            return this.finalPosition;
         }
     }
 }

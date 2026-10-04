@@ -54,6 +54,12 @@
     <Compile Include="AirspaceInterface.Designer.cs">
       <DependentUpon>AirspaceInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClickedData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClickedData.Designer.cs">
+      <DependentUpon>ClickedData.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainInterface.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </Compile>
     <EmbeddedResource Include="AirspaceInterface.resx">
       <DependentUpon>AirspaceInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClickedData.resx">
+      <DependentUpon>ClickedData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
@@ -112,6 +121,10 @@
     <ProjectReference Include="..\FlightLib\FlightLib.csproj">
       <Project>{2afdc032-0f6c-41f7-b487-a6a53a8b1c1c}</Project>
       <Name>FlightLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimulatorConsole\SimulatorConsole.csproj">
+      <Project>{64a007b7-5d6f-4efc-9cc8-773f9bdce799}</Project>
+      <Name>SimulatorConsole</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,3 +16,9 @@ C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\FlightLib\obj\D
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.CoreCompileInputs.cache
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.dll
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.pdb
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\FlightLib\bin\Debug\FlightLib.dll
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\FlightLib\bin\Debug\FlightLib.pdb
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.AssemblyReference.cache
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.CoreCompileInputs.cache
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.dll
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.pdb

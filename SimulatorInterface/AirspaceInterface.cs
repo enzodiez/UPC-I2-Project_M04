@@ -39,6 +39,7 @@ namespace SimulatorInterface
                 aircraftsPics[i].Location = new Point((int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX(), (int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY());
                 panel1.Controls.Add(aircraftsPics[i]);
                 aircraftsPics[i].BringToFront();
+                aircraftsPics[i].Click += aircraftsPics_Click; //No puede tener el nombre de la variable tras el +=
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -49,5 +50,14 @@ namespace SimulatorInterface
                 aircraftsPics[i].Location = new Point((int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX(), (int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY());
             }
         }
-    }
+        private void aircraftsPics_Click(object sender, EventArgs e)
+        {
+            PictureBox picClicado=(PictureBox)sender; //Para saber en que avion se ha clicado, hacemos cast a PictureBox.
+            int indice = Array.IndexOf(aircraftsPics, picClicado);//para saber que indice clicamos en el array de aviones.
+            var avionSeleccionado = listaPlanes.GetFlightPlan(indice);//cogemos la info del avion seleccionado.
+            ClickedData fpView = new ClickedData();
+            fpView.AvionSeleccionado = avionSeleccionado; //Ahora sale en rojo porque no se ha inicializado la propiedad AvionSeleccionado en ClickedData, hay que hacerlo en el constructor de ClickedData.
+            fpView.ShowDialog();
+        }
+    } 
 }

@@ -29,3 +29,23 @@ C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.exe
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.pdb
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.AirspaceInterface.resources
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorInterface.exe.config
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorInterface.exe
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorInterface.pdb
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\FlightLib.dll
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\FlightLib.pdb
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.csproj.AssemblyReference.cache
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.AirspaceInterface.resources
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.MainInterface.resources
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.NewFlightPlanInterface.resources
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.Properties.Resources.resources
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.SecurityCiclesInterface.resources
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.csproj.GenerateResource.cache
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.csproj.CoreCompileInputs.cache
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\Simulato.39EC8789.Up2Date
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.exe
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.pdb
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorConsole.exe
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorConsole.pdb
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorConsole.exe.config
+C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.ClickedData.resources
