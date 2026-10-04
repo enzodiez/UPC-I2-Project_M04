@@ -98,8 +98,8 @@ namespace SimulatorInterface
             for(int i=0;i<number;i++) // y hacemos que el for los coja todos, y que cree un objeto FP para cada uno de ellos
             {
                 FlightPlan plan = listaPlanes.GetFlightPlan(i);
-                float x = (float)plan.GetCurrentPosition().GetX(); //hay que convertir a float para que la elipse funcione
-                float y = (float)plan.GetCurrentPosition().GetY();
+                float x = (float)plan.GetCurrentPosition().GetX() + 10; //hay que convertir a float para que la elipse funcione
+                float y = (float)plan.GetCurrentPosition().GetY() + 10;
                 float radio = (float)this.securityDistance;
                 //Dibujamos la elipse:
                 e.Graphics.DrawEllipse(Pens.Red, x - radio, y - radio, radio * 2, radio * 2);   
