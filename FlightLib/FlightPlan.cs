@@ -110,5 +110,10 @@ namespace FlightLib
         {
             return this.finalPosition;
         }
+        //Necesitamos también un método para obtener la posición inicial del vuelo
+        public Position GetOrigen()
+        {
+            return this.initialPosition;
+        }
     }
 }

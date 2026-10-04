@@ -28,6 +28,8 @@ namespace SimulatorInterface
         {
             this.WindowState = FormWindowState.Maximized;
 
+            panel1.Paint += panel1_Paint;
+
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
                 aircraftsPics[i] = new PictureBox();
@@ -49,6 +51,33 @@ namespace SimulatorInterface
             {
                 aircraftsPics[i].Location = new Point((int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX(), (int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY());
             }
+        }
+        //Añadimos el código para poder visualizar la trayectoria del avion con una línea
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            System.Drawing.Graphics graphics = e.Graphics;
+
+            // Escogemos un color que en versiones futuras puede ser cambiado
+            Pen myPen = new Pen(Color.Red, 2);
+
+            for (int i = 0; i < listaPlanes.GetIndex(); i++)
+            {
+                FlightPlan plan = listaPlanes.GetFlightPlan(i);
+
+                // Puntos para definir la línea (+10 = centro del icono de 20x20)
+                double Xo = plan.GetOrigen().GetX() + 10;
+                double Yo = plan.GetOrigen().GetY() + 10;
+                double Xd = plan.GetDestino().GetX() + 10;
+                double Yd = plan.GetDestino().GetY() + 10;
+                //Pasamos a enteros truncando los decimales
+                Point origen = new Point((int)Xo, (int)Yo);
+                Point destino = new Point((int)Xd, (int)Yd);
+
+                // Dibujamos la línea entre el origen y el destino del avión
+                graphics.DrawLine(myPen, origen, destino);
+            }
+
+            myPen.Dispose();
         }
         private void aircraftsPics_Click(object sender, EventArgs e)
         {
