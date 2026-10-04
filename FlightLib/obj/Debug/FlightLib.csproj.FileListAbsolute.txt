@@ -28,3 +28,9 @@ C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\UPC-I2-Project_M04\Fli
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.CoreCompileInputs.cache
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.dll
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.pdb
+C:\Users\Victor\Desktop\INDOu\UPC-I2-Project_M04\FlightLib\bin\Debug\FlightLib.dll
+C:\Users\Victor\Desktop\INDOu\UPC-I2-Project_M04\FlightLib\bin\Debug\FlightLib.pdb
+C:\Users\Victor\Desktop\INDOu\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.AssemblyReference.cache
+C:\Users\Victor\Desktop\INDOu\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.CoreCompileInputs.cache
+C:\Users\Victor\Desktop\INDOu\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.dll
+C:\Users\Victor\Desktop\INDOu\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.pdb

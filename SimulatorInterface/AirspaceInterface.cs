@@ -51,6 +51,7 @@ namespace SimulatorInterface
             {
                 aircraftsPics[i].Location = new Point((int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX(), (int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY());
             }
+            panel1.Invalidate();
         }
         //Añadimos el código para poder visualizar la trayectoria del avion con una línea
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -58,7 +59,7 @@ namespace SimulatorInterface
             System.Drawing.Graphics graphics = e.Graphics;
 
             // Escogemos un color que en versiones futuras puede ser cambiado
-            Pen myPen = new Pen(Color.Red, 2);
+            Pen myPen = new Pen(Color.Green, 2);//El color suele ser verde
 
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
@@ -78,6 +79,7 @@ namespace SimulatorInterface
             }
 
             myPen.Dispose();
+            
         }
         private void aircraftsPics_Click(object sender, EventArgs e)
         {
@@ -87,6 +89,23 @@ namespace SimulatorInterface
             ClickedData fpView = new ClickedData();
             fpView.AvionSeleccionado = avionSeleccionado; //Ahora sale en rojo porque no se ha inicializado la propiedad AvionSeleccionado en ClickedData, hay que hacerlo en el constructor de ClickedData.
             fpView.ShowDialog();
+        }
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+            
+            int number = listaPlanes.GetNumero(); //sacamos el numero total de planes de vuelo
+            for(int i=0;i<number;i++) // y hacemos que el for los coja todos, y que cree un objeto FP para cada uno de ellos
+            {
+                FlightPlan plan = listaPlanes.GetFlightPlan(i);
+                float x = (float)plan.GetCurrentPosition().GetX(); //hay que convertir a float para que la elipse funcione
+                float y = (float)plan.GetCurrentPosition().GetY();
+                float radio = (float)this.securityDistance;
+                //Dibujamos la elipse:
+                e.Graphics.DrawEllipse(Pens.Red, x - radio, y - radio, radio * 2, radio * 2);   
+            }
+
+
         }
     } 
 }
