@@ -104,8 +104,6 @@ namespace SimulatorInterface
                 //Dibujamos la elipse:
                 e.Graphics.DrawEllipse(Pens.Red, x - radio, y - radio, radio * 2, radio * 2);   
             }
-
-
         }
     } 
 }

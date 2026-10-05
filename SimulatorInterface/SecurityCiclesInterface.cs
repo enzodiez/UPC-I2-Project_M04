@@ -45,7 +45,7 @@ namespace SimulatorInterface
         }
         public Double DameCycleDuration()
         {
-            return cycleDuration;
+                return cycleDuration;
         }
     }
 }

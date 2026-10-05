@@ -25,8 +25,12 @@ namespace SimulatorInterface
         {
             NewFlightPlanInterface form = new NewFlightPlanInterface();
             form.ShowDialog();
-            listaPlanes.AddFlightPlan(form.DamePlan());
-            MessageBox.Show("Flight plan has been added.");
+            FlightPlan plan = form.DamePlan();
+            if (plan != null)
+            {
+                listaPlanes.AddFlightPlan(plan);
+                MessageBox.Show("Flight plan has been added.");
+            }
         }
         private void addSecurityDistanceAndCycleDurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -34,12 +38,26 @@ namespace SimulatorInterface
             form.ShowDialog();
             securityDistance = form.DameSecurityDistance();
             cycleDuration = form.DameCycleDuration();
-            MessageBox.Show("Data saved successfully.");
+            if (securityDistance != 0 && cycleDuration != 0)
+            {
+                MessageBox.Show("Security distance and cycle duration have been set.");
+            }
         }
         private void startSimulationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AirspaceInterface airspace = new AirspaceInterface(listaPlanes, securityDistance, cycleDuration);
-            airspace.ShowDialog();
+            if (listaPlanes.GetIndex() == 0)
+            {
+                MessageBox.Show("No flight plans have been added.");
+            }
+            else if (securityDistance == 0 || cycleDuration == 0)
+            {
+                MessageBox.Show("Security distance and cycle duration have not been set.");
+            }
+            else
+            {
+                AirspaceInterface airspace = new AirspaceInterface(listaPlanes, securityDistance, cycleDuration);
+                airspace.ShowDialog();
+            }
         }
         private void MainInterface_Load(object sender, EventArgs e)
         {

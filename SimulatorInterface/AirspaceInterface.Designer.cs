@@ -37,26 +37,29 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(101, 63);
+            this.panel1.Location = new System.Drawing.Point(13, 76);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1223, 811);
+            this.panel1.Size = new System.Drawing.Size(1898, 864);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Consolas", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(623, 9);
+            this.label1.Location = new System.Drawing.Point(823, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 40);
+            this.label1.Size = new System.Drawing.Size(287, 62);
             this.label1.TabIndex = 1;
             this.label1.Text = "AIRSPACE";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 440);
+            this.button1.Location = new System.Drawing.Point(685, 950);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 56);
+            this.button1.Size = new System.Drawing.Size(124, 86);
             this.button1.TabIndex = 2;
             this.button1.Text = "Mover";
             this.button1.UseVisualStyleBackColor = true;
@@ -64,12 +67,13 @@
             // 
             // AirspaceInterface
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1426, 886);
+            this.ClientSize = new System.Drawing.Size(1924, 1050);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AirspaceInterface";
             this.Text = "Airspace";
             this.Load += new System.EventHandler(this.Airspace_Load);

@@ -109,3 +109,7 @@ C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorInterface\obj
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\Simulato.39EC8789.Up2Date
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.exe
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.pdb
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorConsole.exe
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorConsole.pdb
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorConsole.exe.config
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.ClickedData.resources
