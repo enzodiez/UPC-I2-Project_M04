@@ -105,5 +105,29 @@ namespace SimulatorInterface
                 e.Graphics.DrawEllipse(Pens.Red, x - radio, y - radio, radio * 2, radio * 2);   
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (button2.Text == "Mover automático")
+            {
+                relojAuto.Start();
+                button2.Text = "Stop";
+            }
+            else if (button2.Text == "Stop")
+            {
+                relojAuto.Stop();
+                button2.Text = "Mover automático";
+            }
+        }
+
+        private void relojAuto_Tick(object sender, EventArgs e)
+        {
+            listaPlanes.Mover(cycleDuration);
+            for (int i = 0; i < listaPlanes.GetIndex(); i++)
+            {
+                aircraftsPics[i].Location = new Point((int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX(), (int)listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY());
+            }
+            panel1.Invalidate();
+        }
     } 
 }
