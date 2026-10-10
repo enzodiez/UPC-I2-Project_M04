@@ -38,7 +38,7 @@ namespace SimulatorInterface
             }
             catch (FormatException)
             {
-                MessageBox.Show("Error de formato.");
+                MessageBox.Show("Format error.");
             }
         }
         public FlightPlan DamePlan()
