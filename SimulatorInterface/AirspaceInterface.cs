@@ -17,6 +17,7 @@ namespace SimulatorInterface
         double securityDistance;
         double cycleDuration;
         PictureBox[] aircraftsPics = new PictureBox[10];
+        
         public AirspaceInterface(FlightPlanList listaPlanes, double securityDistance, double cycleDuration)
         {
             InitializeComponent();
@@ -42,6 +43,7 @@ namespace SimulatorInterface
                 panel1.Controls.Add(aircraftsPics[i]);
                 aircraftsPics[i].BringToFront();
                 aircraftsPics[i].Click += aircraftsPics_Click; //No puede tener el nombre de la variable tras el +=
+                AlarmaConflictos();
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -52,7 +54,9 @@ namespace SimulatorInterface
                 aircraftsPics[i].Location = new Point(Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX()), Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY()));
             }
             panel1.Invalidate();
+            AlarmaConflictos();
         }
+
         //Añadimos el código para poder visualizar la trayectoria del avion con una línea
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -128,6 +132,7 @@ namespace SimulatorInterface
                 aircraftsPics[i].Location = new Point(Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX()), Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY()));
             }
             panel1.Invalidate();
+            AlarmaConflictos();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -140,6 +145,23 @@ namespace SimulatorInterface
             {
                 MessageBox.Show($"Distance between flight {listaPlanes.GetFlightPlan(pos1).GetId()} and {listaPlanes.GetFlightPlan(pos2).GetId()} is: {listaPlanes.GetFlightPlan(pos1).Distance(listaPlanes.GetFlightPlan(pos2))}");
             }
+        }
+        private void AlarmaConflictos()
+        {
+            string mensaje = listaPlanes.ComprobarConflictos(securityDistance);
+
+            if (mensaje != "")
+            {
+                relojAuto.Stop();
+                button2.Text = "Mover automático";
+                MessageBox.Show(mensaje, "Alarm");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string mensaje = listaPlanes.PredecirConflictos(securityDistance, cycleDuration);
+            MessageBox.Show(mensaje, "Predicción de conflictos");
         }
     } 
 }

@@ -58,3 +58,13 @@ C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorConsole\obj\D
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\Simulato.840E03AB.Up2Date
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.exe
 C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.pdb
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\SimulatorConsole.exe.config
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\SimulatorConsole.exe
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\SimulatorConsole.pdb
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\FlightLib.dll
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\FlightLib.pdb
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.csproj.AssemblyReference.cache
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.csproj.CoreCompileInputs.cache
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\Simulato.840E03AB.Up2Date
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.exe
+C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.pdb
