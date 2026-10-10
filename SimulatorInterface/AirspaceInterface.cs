@@ -129,5 +129,17 @@ namespace SimulatorInterface
             }
             panel1.Invalidate();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FlightInformationInterface fii = new FlightInformationInterface(this.listaPlanes);
+            fii.ShowDialog();
+            int pos1 = fii.GetSelectedRow1();
+            int pos2 = fii.GetSelectedRow2();
+            if (pos1 != -1 && pos2 != -1)
+            {
+                MessageBox.Show($"Distance between flight {listaPlanes.GetFlightPlan(pos1).GetId()} and {listaPlanes.GetFlightPlan(pos2).GetId()} is: {listaPlanes.GetFlightPlan(pos1).Distance(listaPlanes.GetFlightPlan(pos2))}");
+            }
+        }
     } 
 }

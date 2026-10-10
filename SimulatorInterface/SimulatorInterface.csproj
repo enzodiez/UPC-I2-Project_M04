@@ -60,6 +60,12 @@
     <Compile Include="ClickedData.Designer.cs">
       <DependentUpon>ClickedData.cs</DependentUpon>
     </Compile>
+    <Compile Include="FlightInformationInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlightInformationInterface.Designer.cs">
+      <DependentUpon>FlightInformationInterface.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainInterface.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClickedData.resx">
       <DependentUpon>ClickedData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlightInformationInterface.resx">
+      <DependentUpon>FlightInformationInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
