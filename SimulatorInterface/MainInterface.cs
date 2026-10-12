@@ -55,6 +55,21 @@ namespace SimulatorInterface
             }
             else
             {
+                if (listaPlanes.CompruebaConflicto(securityDistance, cycleDuration))
+                {
+                    DialogResult respuesta = MessageBox.Show("Se ha detectado un conflicto, ¿Desea resolverlo?", "Conflicto Detectado", MessageBoxButtons.YesNo);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        if (listaPlanes.ResolverConflicto(securityDistance, cycleDuration))
+                        {
+                            MessageBox.Show("Conflicto resuelto. La nueva velocidad de " + listaPlanes.GetFlightPlan(1).GetId() + " es " + listaPlanes.GetFlightPlan(1).GetVelocidad());
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se ha podido resolver el conflicto cambiando la velocidad.");
+                        }
+                    }
+                }
                 AirspaceInterface airspace = new AirspaceInterface(listaPlanes, securityDistance, cycleDuration);
                 airspace.ShowDialog();
             }

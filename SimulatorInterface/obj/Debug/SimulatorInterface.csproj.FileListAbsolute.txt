@@ -120,3 +120,4 @@ C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterf
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.AirspaceInterface.resources
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.ClickedData.resources
 C:\Users\dpena\Desktop\INFO 2\UpcI2ProjectM04\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.FlightInformationInterface.resources
+C:\Users\maike\Desktop\Proyecto_INFO_2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.FlightInformationInterface.resources
