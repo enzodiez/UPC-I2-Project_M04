@@ -54,6 +54,12 @@
     <Compile Include="AirspaceInterface.Designer.cs">
       <DependentUpon>AirspaceInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangeSpeedsInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeSpeedsInterface.Designer.cs">
+      <DependentUpon>ChangeSpeedsInterface.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClickedData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     </Compile>
     <EmbeddedResource Include="AirspaceInterface.resx">
       <DependentUpon>AirspaceInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeSpeedsInterface.resx">
+      <DependentUpon>ChangeSpeedsInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClickedData.resx">
       <DependentUpon>ClickedData.cs</DependentUpon>

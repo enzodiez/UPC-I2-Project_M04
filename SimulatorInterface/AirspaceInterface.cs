@@ -163,5 +163,17 @@ namespace SimulatorInterface
             string mensaje = listaPlanes.PredecirConflictos(securityDistance, cycleDuration);
             MessageBox.Show(mensaje, "Predicción de conflictos");
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ChangeSpeedsInterface csi = new ChangeSpeedsInterface(this.listaPlanes, this.securityDistance, this.cycleDuration);
+            csi.ShowDialog();
+            restart();
+        }
+
+        private void restart()
+        {
+
+        }
     } 
 }
