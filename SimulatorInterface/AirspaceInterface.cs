@@ -17,7 +17,8 @@ namespace SimulatorInterface
         double securityDistance;
         double cycleDuration;
         PictureBox[] aircraftsPics = new PictureBox[10];
-        
+        Image planeImage = Image.FromFile("plane.png");
+
         public AirspaceInterface(FlightPlanList listaPlanes, double securityDistance, double cycleDuration)
         {
             InitializeComponent();
@@ -28,30 +29,63 @@ namespace SimulatorInterface
         private void Airspace_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-
             panel1.Paint += panel1_Paint;
 
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
+                FlightPlan plan = listaPlanes.GetFlightPlan(i);
+
+                // Calculamos la diferencia de coordenadas
+                double dx = plan.GetDestino().GetX() - plan.GetOrigen().GetX();
+                double dy = plan.GetDestino().GetY() - plan.GetOrigen().GetY();
+
+                // Calculamos el ángulo en grados
+                float angulo = (float)(Math.Atan2(dy, dx) * (180.0 / Math.PI)) + 90;
+
                 aircraftsPics[i] = new PictureBox();
-                aircraftsPics[i].Image = Image.FromFile("plane.png");
+
+                // Asignamos la imagen rotada
+                aircraftsPics[i].Image = RotateImage(planeImage, angulo);
+
                 aircraftsPics[i].Size = new Size(20, 20);
                 aircraftsPics[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                // Se hace un cast a int para que no haya problemas con la ubicación de los aviones en el panel
-                // Esto significa que se trucan los valores de las coordenadas X e Y a enteros.
-                aircraftsPics[i].Location = new Point(Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX()), Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY()));
+
+                // Centramos la imagen de 20x20 en la coordenada teórica (-10)
+                int posX = Convert.ToInt32(plan.GetCurrentPosition().GetX()) - 10;
+                int posY = Convert.ToInt32(plan.GetCurrentPosition().GetY()) - 10;
+
+                aircraftsPics[i].Location = new Point(posX, posY);
                 panel1.Controls.Add(aircraftsPics[i]);
                 aircraftsPics[i].BringToFront();
-                aircraftsPics[i].Click += aircraftsPics_Click; //No puede tener el nombre de la variable tras el +=
-                AlarmaConflictos();
+                aircraftsPics[i].Click += aircraftsPics_Click;
             }
+
+            AlarmaConflictos();
+        }
+        private Image RotateImage(Image img, float angle)
+        {
+            // Método para rotar la imagen de los aviones y orientarlos correctamente
+            Bitmap bmp = new Bitmap(img.Width, img.Height);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                // Trasladamos el origen al centro del lienzo para rotar sobre el centro de la imagen
+                g.TranslateTransform(img.Width / 2f, img.Height / 2f);      // Trasladamos al centro
+                g.RotateTransform(angle);                                   // Rotamos el ángulo indicado
+                g.TranslateTransform(-img.Width / 2f, -img.Height / 2f);    // Deshacemos el traslado
+
+                // Dibujamos la imagen original rotada
+                g.DrawImage(img, new Point(0, 0));
+            }
+            return bmp;
         }
         private void button1_Click(object sender, EventArgs e)
         {
             listaPlanes.Mover(cycleDuration);
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
-                aircraftsPics[i].Location = new Point(Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX()), Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY()));
+                int posX = Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX()) - 10;
+                int posY = Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY()) - 10;
+                aircraftsPics[i].Location = new Point(posX, posY);
             }
             panel1.Invalidate();
             AlarmaConflictos();
@@ -60,30 +94,40 @@ namespace SimulatorInterface
         //Añadimos el código para poder visualizar la trayectoria del avion con una línea
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            System.Drawing.Graphics graphics = e.Graphics;
+            Graphics graphics = e.Graphics;
 
-            // Escogemos un color que en versiones futuras puede ser cambiado
-            Pen myPen = new Pen(Color.Green, 2);//El color suele ser verde
-
-            for (int i = 0; i < listaPlanes.GetIndex(); i++)
+            // Uso de 'using' para asegurar que ambos 'Pen' se liberen correctamente al terminar
+            // Escogemos el color verde. Más adelante se podrá cambiar.
+            using (Pen myPen = new Pen(Color.Green, 2))
+            using (Pen myPen2 = new Pen(Color.Green, 2) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dash })
             {
-                FlightPlan plan = listaPlanes.GetFlightPlan(i);
+                for (int i = 0; i < listaPlanes.GetIndex(); i++)
+                {
+                    FlightPlan plan = listaPlanes.GetFlightPlan(i);
 
-                // Puntos para definir la línea (+10 = centro del icono de 20x20)
-                double Xo = plan.GetOrigen().GetX() + 10;
-                double Yo = plan.GetOrigen().GetY() + 10;
-                double Xd = plan.GetDestino().GetX() + 10;
-                double Yd = plan.GetDestino().GetY() + 10;
-                //Pasamos a enteros truncando los decimales
-                Point origen = new Point(Convert.ToInt32(Xo), Convert.ToInt32(Yo));
-                Point destino = new Point(Convert.ToInt32(Xd), Convert.ToInt32(Yd));
+                    // Las tres coordenadas teóricas apuntan al centro exacto del trayecto
+                    Point origen = new Point(
+                        Convert.ToInt32(plan.GetOrigen().GetX()),
+                        Convert.ToInt32(plan.GetOrigen().GetY())
+                    );
 
-                // Dibujamos la línea entre el origen y el destino del avión
-                graphics.DrawLine(myPen, origen, destino);
+                    Point current = new Point(
+                        Convert.ToInt32(plan.GetCurrentPosition().GetX()),
+                        Convert.ToInt32(plan.GetCurrentPosition().GetY())
+                    );
+
+                    Point destino = new Point(
+                        Convert.ToInt32(plan.GetDestino().GetX()),
+                        Convert.ToInt32(plan.GetDestino().GetY())
+                    );
+
+                    // Línea continua: Origen -> Posición actual
+                    graphics.DrawLine(myPen, origen, current);
+
+                    // Línea discontinua: Posición actual -> Destino
+                    graphics.DrawLine(myPen2, current, destino);
+                }
             }
-
-            myPen.Dispose();
-            
         }
         private void aircraftsPics_Click(object sender, EventArgs e)
         {
@@ -99,14 +143,15 @@ namespace SimulatorInterface
         {
             
             int number = listaPlanes.GetNumero(); //sacamos el numero total de planes de vuelo
-            for(int i=0;i<number;i++) // y hacemos que el for los coja todos, y que cree un objeto FP para cada uno de ellos
+            for(int i = 0; i<number; i++) // y hacemos que el for los coja todos, y que cree un objeto FP para cada uno de ellos
             {
                 FlightPlan plan = listaPlanes.GetFlightPlan(i);
-                float x = (float)plan.GetCurrentPosition().GetX() + 10; //hay que convertir a float para que la elipse funcione
-                float y = (float)plan.GetCurrentPosition().GetY() + 10;
+                float x = (float)plan.GetCurrentPosition().GetX(); //hay que convertir a float para que la elipse funcione
+                float y = (float)plan.GetCurrentPosition().GetY();
                 float radio = (float)this.securityDistance;
-                //Dibujamos la elipse:
-                e.Graphics.DrawEllipse(Pens.Red, x - radio, y - radio, radio * 2, radio * 2);   
+
+                //Dibujamos el círculo centrado en (x, y):
+                e.Graphics.DrawEllipse(Pens.Red, x - radio, y - radio, radio * 2, radio * 2);
             }
         }
 
@@ -129,7 +174,9 @@ namespace SimulatorInterface
             listaPlanes.Mover(cycleDuration);
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
-                aircraftsPics[i].Location = new Point(Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX()), Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY()));
+                int posX = Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX()) - 10;
+                int posY = Convert.ToInt32(listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY()) - 10;
+                aircraftsPics[i].Location = new Point(posX, posY);
             }
             panel1.Invalidate();
             AlarmaConflictos();

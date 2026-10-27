@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\simulatorinterface\\changespeedsinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\changespeedsinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\simulatorinterface\\changespeedsinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\changespeedsinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\simulatorinterface\\airspaceinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\airspaceinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,7 +11,19 @@
       "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\airspaceinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\enzod\\documents\\eetac aeroteleco\\asignaturas 3rquat\\inform\u00E1tica 2\\upc-i2-project_m04\\simulatorinterface\\changespeedsinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\changespeedsinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\simulatorinterface\\changespeedsinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\changespeedsinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\maininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,45 +34,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ChangeSpeedsInterface.cs",
               "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\ChangeSpeedsInterface.cs",
               "RelativeDocumentMoniker": "SimulatorInterface\\ChangeSpeedsInterface.cs",
               "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\ChangeSpeedsInterface.cs",
               "RelativeToolTip": "SimulatorInterface\\ChangeSpeedsInterface.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-23T16:36:41.379Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ChangeSpeedsInterface.cs [Design]",
               "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\ChangeSpeedsInterface.cs",
               "RelativeDocumentMoniker": "SimulatorInterface\\ChangeSpeedsInterface.cs",
               "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\ChangeSpeedsInterface.cs [Design]",
               "RelativeToolTip": "SimulatorInterface\\ChangeSpeedsInterface.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T16:35:44.633Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-10-23T16:35:44.633Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "FlightPlanList.cs",
               "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\FlightLib\\FlightPlanList.cs",
               "RelativeDocumentMoniker": "FlightLib\\FlightPlanList.cs",
               "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\FlightLib\\FlightPlanList.cs",
               "RelativeToolTip": "FlightLib\\FlightPlanList.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAYwIUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T08:20:01.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-12T08:20:01.745Z"
             },
             {
               "$type": "Document",
@@ -82,27 +80,26 @@
               "RelativeDocumentMoniker": "SimulatorInterface\\MainInterface.cs",
               "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\MainInterface.cs",
               "RelativeToolTip": "SimulatorInterface\\MainInterface.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAcwEUAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T08:07:35.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-12T08:07:35.781Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "AirspaceInterface.cs",
               "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\AirspaceInterface.cs",
               "RelativeDocumentMoniker": "SimulatorInterface\\AirspaceInterface.cs",
               "ToolTip": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\AirspaceInterface.cs",
               "RelativeToolTip": "SimulatorInterface\\AirspaceInterface.cs",
-              "ViewState": "AgIAAI4AAAAAAAAAAAAhwKgAAAB/AAAAAAAAAA==",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAcwJUAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-10T17:03:32.429Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "AirspaceInterface.cs [Design]",
               "DocumentMoniker": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\SimulatorInterface\\AirspaceInterface.cs",
               "RelativeDocumentMoniker": "SimulatorInterface\\AirspaceInterface.cs",
