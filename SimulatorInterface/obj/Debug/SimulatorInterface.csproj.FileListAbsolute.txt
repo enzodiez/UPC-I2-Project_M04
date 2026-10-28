@@ -28,7 +28,6 @@ C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\Simulato.39EC8789.Up2Date
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.exe
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.pdb
-C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.AirspaceInterface.resources
 C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorInterface.exe.config
 C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorInterface.exe
 C:\Users\Victor\Desktop\ProyectoInfo\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\SimulatorInterface.pdb

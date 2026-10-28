@@ -48,12 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AirspaceInterface.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AirspaceInterface.Designer.cs">
-      <DependentUpon>AirspaceInterface.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChangeSpeedsInterface.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,9 +86,6 @@
     <Compile Include="SecurityCiclesInterface.Designer.cs">
       <DependentUpon>SecurityCiclesInterface.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AirspaceInterface.resx">
-      <DependentUpon>AirspaceInterface.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChangeSpeedsInterface.resx">
       <DependentUpon>ChangeSpeedsInterface.cs</DependentUpon>
     </EmbeddedResource>
