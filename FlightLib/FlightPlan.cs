@@ -48,7 +48,7 @@ namespace FlightLib
         {
             this.flightCompleted = flightCompleted;
         }
-        public void Mover(double tiempo)
+        public void Mover(double tiempo) //cambiado para el restart
         // Mueve el vuelo a la posición correspondiente a viajar durante el tiempo que se recibe como parámetro
         {
             //Calculamos la distancia recorrida en el tiempo dado
@@ -69,13 +69,17 @@ namespace FlightLib
             //Caculamos la nueva posición del vuelo
             double x = currentPosition.GetX() + distancia * coseno;
             double y = currentPosition.GetY() + distancia * seno;
-
-            Position nextPosition = new Position(x, y);
-
-            if (currentPosition.Distancia(nextPosition) < hipotenusa)
-                currentPosition = nextPosition;
-            else
-                currentPosition = finalPosition;
+            //Calcula la hipotenusa cada iteracion y si es menor se pone ya en finalposition
+            if (distancia < hipotenusa)// con esto evitamos crear un objeto Position nuevo, y simplemente cambiamos los atributos de currentPosition. Esto es más eficiente y evita problemas de referencias.
+            {
+                currentPosition.SetX(x);
+                currentPosition.SetY(y);
+            }
+            else //Calcula la hipotenusa cada iteracion y si es menor se pone ya en finalposition
+            {
+                currentPosition.SetX(finalPosition.GetX());
+                currentPosition.SetY(finalPosition.GetY());
+            }
         }
         public bool EnDestino()
         {
@@ -114,6 +118,10 @@ namespace FlightLib
         public Position GetOrigen()
         {
             return this.initialPosition;
+        }
+        public void Reset() //el restart pero para reiniciar el plan de vuelo completo, es decir, reiniciar la posicion actual y la posicion inicial
+        {
+            this.GetCurrentPosition().Restart(); //reiniciamos la posicion actual
         }
     }
 }

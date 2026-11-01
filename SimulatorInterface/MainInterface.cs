@@ -200,6 +200,7 @@ namespace SimulatorInterface
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.Clear(panel1.BackColor);
             Graphics graphics = e.Graphics;
 
             using (Pen myPen = new Pen(Color.Green, 2))
@@ -299,6 +300,15 @@ namespace SimulatorInterface
             ChangeSpeedsInterface csi = new ChangeSpeedsInterface(this.listaPlanes, this.securityDistance, this.cycleDuration);
             csi.ShowDialog();
             panel1.Invalidate();
+            listaPlanes.ResetAll(); // Reiniciamos todos los vuelos para que vuelvan a su origen después de cambiar las velocidades
+            for (int i = 0; i < listaPlanes.GetIndex(); i++)
+            {
+                double xinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialX();
+                double yinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialY();
+                Point screenPos = WorldToScreen(xinicial, yinicial);
+                aircraftsPics[i].Location = new Point(screenPos.X - 10, screenPos.Y - 10); //Centramos el png del avion en la posicion inicial
+            }
+            panel1.Invalidate();
         }
 
         private void aircraftsPics_Click(object sender, EventArgs e)
@@ -330,6 +340,21 @@ namespace SimulatorInterface
             button3.Enabled = estado; // Flight Information
             button4.Enabled = estado; // Conflicts
             button5.Enabled = estado; // Change Speeds
+            restartBtn.Enabled = estado; // Restart
+        }
+
+        private void restartBtn_Click(object sender, EventArgs e)
+        {
+            listaPlanes.ResetAll();//reiniciamos todos los vuelos para que vuelvan a su origen PERO HAY QUE MOVER LOS PICTUREBOX!
+            for(int i = 0; i < listaPlanes.GetIndex(); i++)
+            {
+                double xinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialX();
+                double yinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialY();
+                Point screenPos = WorldToScreen(xinicial, yinicial);
+                aircraftsPics[i].Location = new Point(screenPos.X - 10, screenPos.Y - 10); //Centramos el png del avion en la posicion inicial
+
+            }
+            panel1.Invalidate();
         }
     }
 }
