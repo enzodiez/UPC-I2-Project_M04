@@ -42,6 +42,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.relojAuto = new System.Windows.Forms.Timer(this.components);
             this.panelBotones = new System.Windows.Forms.Panel();
+            this.restartBtn = new System.Windows.Forms.Button();
+            this.testerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +65,8 @@
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addANewFlightPlanToolStripMenuItem,
             this.addSecurityDistanceAndCycleDurationToolStripMenuItem,
-            this.startSimulationToolStripMenuItem});
+            this.startSimulationToolStripMenuItem,
+            this.testerToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -155,6 +158,7 @@
             // 
             // panelBotones
             // 
+            this.panelBotones.Controls.Add(this.restartBtn);
             this.panelBotones.Controls.Add(this.button1);
             this.panelBotones.Controls.Add(this.button5);
             this.panelBotones.Controls.Add(this.button2);
@@ -165,6 +169,22 @@
             this.panelBotones.Name = "panelBotones";
             this.panelBotones.Size = new System.Drawing.Size(180, 745);
             this.panelBotones.TabIndex = 7;
+            // 
+            // restartBtn
+            // 
+            this.restartBtn.Location = new System.Drawing.Point(50, 395);
+            this.restartBtn.Name = "restartBtn";
+            this.restartBtn.Size = new System.Drawing.Size(75, 51);
+            this.restartBtn.TabIndex = 7;
+            this.restartBtn.Text = "Restart Simulation";
+            this.restartBtn.UseVisualStyleBackColor = true;
+            this.restartBtn.Click += new System.EventHandler(this.restartBtn_Click);
+            // 
+            // testerToolStripMenuItem
+            // 
+            this.testerToolStripMenuItem.Name = "testerToolStripMenuItem";
+            this.testerToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
+            this.testerToolStripMenuItem.Text = "Tester";
             // 
             // MainInterface
             // 
@@ -203,6 +223,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer relojAuto;
         private System.Windows.Forms.Panel panelBotones;
+        private System.Windows.Forms.Button restartBtn;
+        private System.Windows.Forms.ToolStripMenuItem testerToolStripMenuItem;
     }
 }
 
