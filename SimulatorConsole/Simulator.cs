@@ -45,7 +45,7 @@ namespace SimulatorConsole
             try
             {
                 Console.WriteLine("Escribe el identificador");
-                string identificador = Console.ReadLine(); ;
+                string identificador = Console.ReadLine();
 
                 Console.WriteLine("Escribe la velocidad");
                 double velocidad = Convert.ToDouble(Console.ReadLine());

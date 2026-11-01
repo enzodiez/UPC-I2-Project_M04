@@ -33,6 +33,7 @@ namespace SimulatorInterface
             SpeedsGrid.Columns[0].HeaderText = "Flight Plan ID";
             SpeedsGrid.Columns[1].HeaderText = "Flight Plan Speed";
             SpeedsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //SpeedsGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
