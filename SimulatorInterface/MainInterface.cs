@@ -21,7 +21,7 @@ namespace SimulatorInterface
         Image planeImage = Image.FromFile("plane.png");
         
         // Tamaño del plano lógico (las coordenadas reales de los aviones irán dentro de este rango)
-        const double VirtualWidth = 1000;
+        const double VirtualWidth = 1500;
         const double VirtualHeight = 1000;
 
         public MainInterface()
@@ -78,6 +78,16 @@ namespace SimulatorInterface
                     CrearIconoAvion(index, plan);
                     panel1.Invalidate();
                     MessageBox.Show("Flight plan has been added.");
+
+                    // Si los parámetros de seguridad ya están definidos, predecimos si este nuevo avión creará un conflicto
+                    if (securityDistance > 0 && cycleDuration > 0)
+                    {
+                        string aviso = listaPlanes.PredecirConflictos(securityDistance, cycleDuration);
+                        if (aviso != "" && !aviso.Contains("No hay conflictos"))
+                        {
+                            MessageBox.Show($"¡Atención! El vuelo añadido generará conflictos:\n{aviso}", "Alerta de Conflicto Futuro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
                 }
                 else
                 {
@@ -205,7 +215,26 @@ namespace SimulatorInterface
 
             using (Pen myPen = new Pen(Color.Green, 2))
             using (Pen myPen2 = new Pen(Color.Green, 2) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dash })
+            using (Font fontLabel = new Font("Consolas", 8, FontStyle.Bold))
+            using (Brush brushText = new SolidBrush(Color.Lime))
+            using (Pen penGrid = new Pen(Color.FromArgb(150, Color.Green), 1) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dot })
             {
+                // Líneas verticales cada 100 unidades del mundo
+                for (double x = 100; x < VirtualWidth; x += 100)
+                {
+                    Point p1 = WorldToScreen(x, 0);
+                    Point p2 = WorldToScreen(x, VirtualHeight);
+                    graphics.DrawLine(penGrid, p1, p2);
+                }
+
+                // Líneas horizontales cada 100 unidades del mundo
+                for (double y = 100; y < VirtualHeight; y += 100)
+                {
+                    Point p1 = WorldToScreen(0, y);
+                    Point p2 = WorldToScreen(VirtualWidth, y);
+                    graphics.DrawLine(penGrid, p1, p2);
+                }
+
                 for (int i = 0; i < listaPlanes.GetIndex(); i++)
                 {
                     FlightPlan plan = listaPlanes.GetFlightPlan(i);
@@ -219,6 +248,10 @@ namespace SimulatorInterface
                     graphics.DrawLine(myPen, origen, current);
                     // Línea discontinua: Posición actual -> Destino
                     graphics.DrawLine(myPen2, current, destino);
+
+                    // Dibujamos el ID y la velocidad al lado del avión (+12 px para no tapar el icono)
+                    string info = $"{plan.GetId()} ({Math.Round(plan.GetVelocidad(), 0)} kts)";
+                    graphics.DrawString(info, fontLabel, brushText, current.X + 12, current.Y - 6);
                 }
             }
         }
@@ -299,16 +332,18 @@ namespace SimulatorInterface
         {
             ChangeSpeedsInterface csi = new ChangeSpeedsInterface(this.listaPlanes, this.securityDistance, this.cycleDuration);
             csi.ShowDialog();
-            panel1.Invalidate();
-            listaPlanes.ResetAll(); // Reiniciamos todos los vuelos para que vuelvan a su origen después de cambiar las velocidades
-            for (int i = 0; i < listaPlanes.GetIndex(); i++)
+            if (csi.Instruction())
             {
-                double xinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialX();
-                double yinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialY();
-                Point screenPos = WorldToScreen(xinicial, yinicial);
-                aircraftsPics[i].Location = new Point(screenPos.X - 10, screenPos.Y - 10); //Centramos el png del avion en la posicion inicial
+                listaPlanes.ResetAll(); // Reiniciamos todos los vuelos para que vuelvan a su origen después de cambiar las velocidades
+                for (int i = 0; i < listaPlanes.GetIndex(); i++)
+                {
+                    double xinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialX();
+                    double yinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialY();
+                    Point screenPos = WorldToScreen(xinicial, yinicial);
+                    aircraftsPics[i].Location = new Point(screenPos.X - 10, screenPos.Y - 10); //Centramos el png del avion en la posicion inicial
+                }
+                panel1.Invalidate();
             }
-            panel1.Invalidate();
         }
 
         private void aircraftsPics_Click(object sender, EventArgs e)

@@ -18,6 +18,7 @@ namespace SimulatorInterface
         double securityDistance;
         double cycleDuration;
         int currentRow = -1;
+        bool reiniciar = false;
         public ChangeSpeedsInterface(FlightPlanList listaPlanes, double securityDistance, double cycleDuration)
         {
             InitializeComponent();
@@ -74,6 +75,8 @@ namespace SimulatorInterface
                         plan.SetVelocidad(Convert.ToDouble(textBox1.Text));
                         SpeedsGrid[1, this.currentRow].Value = plan.GetVelocidad();
                         MessageBox.Show("Speed successfully changed!");
+                        if (!reiniciar)
+                        { reiniciar = true; }
                     }
                     else
                     {
@@ -89,12 +92,31 @@ namespace SimulatorInterface
 
         private int checkConflict()
         {
-            FlightPlan planPrincipal = new FlightPlan(listaPlanes.GetFlightPlan(this.currentRow).GetId(), listaPlanes.GetFlightPlan(this.currentRow).GetCurrentPosition().GetX(), listaPlanes.GetFlightPlan(this.currentRow).GetCurrentPosition().GetY(), listaPlanes.GetFlightPlan(this.currentRow).GetDestino().GetX(), listaPlanes.GetFlightPlan(this.currentRow).GetDestino().GetY(), Convert.ToDouble(textBox1.Text));
+            // Obtenemos el plan actual y creamos una copia desde su ORIGEN con la nueva velocidad
+            FlightPlan origenPrincipal = listaPlanes.GetFlightPlan(this.currentRow);
+            FlightPlan planPrincipal = new FlightPlan(
+                origenPrincipal.GetId(),
+                origenPrincipal.GetOrigen().GetX(),
+                origenPrincipal.GetOrigen().GetY(),
+                origenPrincipal.GetDestino().GetX(),
+                origenPrincipal.GetDestino().GetY(),
+                Convert.ToDouble(textBox1.Text)
+            );
+
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
                 if (this.currentRow != i)
                 {
-                    FlightPlan avion = new FlightPlan(listaPlanes.GetFlightPlan(i).GetId(), listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetX(), listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetY(), listaPlanes.GetFlightPlan(i).GetDestino().GetX(), listaPlanes.GetFlightPlan(i).GetDestino().GetY(), listaPlanes.GetFlightPlan(i).GetVelocidad());
+                    // Creamos copias del resto de aviones partiendo también de sus ORIGENES
+                    FlightPlan origenAvion = listaPlanes.GetFlightPlan(i);
+                    FlightPlan avion = new FlightPlan(
+                        origenAvion.GetId(),
+                        origenAvion.GetOrigen().GetX(),
+                        origenAvion.GetOrigen().GetY(),
+                        origenAvion.GetDestino().GetX(),
+                        origenAvion.GetDestino().GetY(),
+                        origenAvion.GetVelocidad()
+                    );
 
                     bool conflicto = false;
 
@@ -131,5 +153,8 @@ namespace SimulatorInterface
         {
             Close();
         }
+
+        public bool Instruction()
+        { return reiniciar; }
     }
 }
