@@ -98,6 +98,7 @@
             this.testerToolStripMenuItem.Name = "testerToolStripMenuItem";
             this.testerToolStripMenuItem.Size = new System.Drawing.Size(433, 34);
             this.testerToolStripMenuItem.Text = "Tester";
+            this.testerToolStripMenuItem.Click += new System.EventHandler(this.testerToolStripMenuItem_Click);
             // 
             // panel1
             // 

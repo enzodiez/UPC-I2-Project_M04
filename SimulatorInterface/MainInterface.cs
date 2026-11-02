@@ -391,5 +391,54 @@ namespace SimulatorInterface
             }
             panel1.Invalidate();
         }
+
+        private void testerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FlightPlan plane1 = new FlightPlan("TEST1", 100, 100, 900, 900, 100);
+            FlightPlan plane2 = new FlightPlan("TEST2", 100, 900, 900, 100, 100);
+            FlightPlan plane3 = new FlightPlan("TEST3", 700, 900, 700, 100, 100);
+            if (plane1 != null)
+            {
+                int index = listaPlanes.GetIndex();
+                if (listaPlanes.AddFlightPlan(plane1) == 0)
+                {
+                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
+                    CrearIconoAvion(index, plane1);
+                    panel1.Invalidate();
+                }
+                else
+                {
+                    MessageBox.Show("No se pueden añadir más aviones.");
+                }
+            }
+            if (plane2 != null)
+            {
+                int index = listaPlanes.GetIndex();
+                if (listaPlanes.AddFlightPlan(plane2) == 0)
+                {
+                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
+                    CrearIconoAvion(index, plane2);
+                    panel1.Invalidate();
+                }
+                else
+                {
+                    MessageBox.Show("No se pueden añadir más aviones.");
+                }
+            }
+            if (plane3 != null)
+            {
+                int index = listaPlanes.GetIndex();
+                if (listaPlanes.AddFlightPlan(plane3) == 0)
+                {
+                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
+                    CrearIconoAvion(index, plane3);
+                    panel1.Invalidate();
+                }
+                else
+                {
+                    MessageBox.Show("No se pueden añadir más aviones.");
+                }
+            }
+        }
     }
 }
