@@ -92,7 +92,7 @@ namespace SimulatorInterface
 
         private int checkConflict()
         {
-            // Obtenemos el plan actual y creamos una copia desde su ORIGEN con la nueva velocidad
+            //Copiamos desde el origen con su nueva velocidad
             FlightPlan origenPrincipal = listaPlanes.GetFlightPlan(this.currentRow);
             FlightPlan planPrincipal = new FlightPlan(
                 origenPrincipal.GetId(),
@@ -107,39 +107,8 @@ namespace SimulatorInterface
             {
                 if (this.currentRow != i)
                 {
-                    // Creamos copias del resto de aviones partiendo también de sus ORIGENES
-                    FlightPlan origenAvion = listaPlanes.GetFlightPlan(i);
-                    FlightPlan avion = new FlightPlan(
-                        origenAvion.GetId(),
-                        origenAvion.GetOrigen().GetX(),
-                        origenAvion.GetOrigen().GetY(),
-                        origenAvion.GetDestino().GetX(),
-                        origenAvion.GetDestino().GetY(),
-                        origenAvion.GetVelocidad()
-                    );
-
-                    bool conflicto = false;
-                    ///////////// CAMBIAR __________--__-__-_-DERIVADA67
-                    // Simulamos el movimiento de los aviones
-                    for (int k = 0; k < 10000; k++)
-                    {
-                        if (planPrincipal.Conflicto(avion, securityDistance))
-                        {
-                            conflicto = true;
-                            break;
-                        }
-
-                        // Comprobamos si ambos aviones han llegado al destino
-                        if (planPrincipal.GetCurrentPosition().Distancia(planPrincipal.GetDestino()) == 0 && avion.GetCurrentPosition().Distancia(avion.GetDestino()) == 0)
-                        {
-                            break;
-                        }
-
-                        planPrincipal.Mover(cycleDuration);
-                        avion.Mover(cycleDuration);
-                    }
-
-                    if (conflicto)
+                    //Comparamos con el plan original
+                    if (HayConflicto(planPrincipal, listaPlanes.GetFlightPlan(i)))
                     {
                         return -1;
                     }
@@ -147,6 +116,64 @@ namespace SimulatorInterface
             }
 
             return 0;
+        }
+
+        // Posicion de un vuelo en el instante t (solo depende del tiempo)
+        private Position PosicionEnTiempo(FlightPlan plan, double t)
+        {
+            Position o = plan.GetOrigen();
+            Position d = plan.GetDestino();
+            double longitud = o.Distancia(d);
+            if (longitud == 0)
+            {
+                return new Position(o.GetX(), o.GetY());
+            }
+            //Igual que en mover
+            double recorrido = Math.Min(plan.GetVelocidad() * t / 60.0, longitud);
+            double fraccion = recorrido / longitud;
+            return new Position(o.GetX() + fraccion * (d.GetX() - o.GetX()), o.GetY() + fraccion * (d.GetY() - o.GetY()));
+        }
+
+        // Tiempo en llegar
+        private double TiempoDeVuelo(FlightPlan plan)
+        {
+            return plan.GetOrigen().Distancia(plan.GetDestino()) * 60.0 / plan.GetVelocidad();
+        }
+
+        // Devuelve true si en algun instante los dos vuelos estan a distancia <= 2 * securityDistance
+        private bool HayConflicto(FlightPlan a, FlightPlan b)
+        {
+            double tPrimero = Math.Min(TiempoDeVuelo(a), TiempoDeVuelo(b)); 
+            double tUltimo = Math.Max(TiempoDeVuelo(a), TiempoDeVuelo(b));  
+
+            double minima = Math.Min(DistanciaMinima(a, b, 0, tPrimero), DistanciaMinima(a, b, tPrimero, tUltimo));
+
+            return minima <= 2 * securityDistance;
+        }
+
+        // Distancia minima entre los dos vuelos entre los instantes t0 y t1
+        private double DistanciaMinima(FlightPlan a, FlightPlan b, double t0, double t1)
+        {
+            // Vector entre los dos aviones al principio (d0) y al final (d1) del tramo
+            double dx0 = PosicionEnTiempo(a, t0).GetX() - PosicionEnTiempo(b, t0).GetX();
+            double dy0 = PosicionEnTiempo(a, t0).GetY() - PosicionEnTiempo(b, t0).GetY();
+            double dx1 = PosicionEnTiempo(a, t1).GetX() - PosicionEnTiempo(b, t1).GetX();
+            double dy1 = PosicionEnTiempo(a, t1).GetY() - PosicionEnTiempo(b, t1).GetY();
+
+            double ex = dx1 - dx0;
+            double ey = dy1 - dy0;
+            double e2 = ex * ex + ey * ey;
+
+            double s = 0;
+            if (e2 > 0)
+            {
+                s = -(dx0 * ex + dy0 * ey) / e2;
+                s = Math.Max(0, Math.Min(1, s)); // nos quedamos dentro del tramo
+            }
+
+            double mx = dx0 + s * ex;
+            double my = dy0 + s * ey;
+            return Math.Sqrt(mx * mx + my * my);
         }
 
         private void button2_Click(object sender, EventArgs e)
