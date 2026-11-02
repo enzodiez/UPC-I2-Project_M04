@@ -9,7 +9,7 @@ namespace FlightLib
     public class FlightPlan
     {
         string id; // identificador
-        Position initialPosition; // posicion final
+        Position initialPosition; // posicion inicial
         Position currentPosition; // posicion actual
         Position finalPosition; // posicion final
         bool flightCompleted; // indica si el vuelo ha llegado a su destino

@@ -392,7 +392,7 @@ namespace SimulatorInterface
             panel1.Invalidate();
         }
 
-        private void testerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void testerToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             FlightPlan plane1 = new FlightPlan("TEST1", 100, 100, 900, 900, 100);
             FlightPlan plane2 = new FlightPlan("TEST2", 100, 900, 900, 100, 100);

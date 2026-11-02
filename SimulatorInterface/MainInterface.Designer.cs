@@ -50,13 +50,13 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(15, 15);
+            this.menuStrip1.Location = new System.Drawing.Point(13, 12);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1894, 33);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1684, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -68,52 +68,53 @@
             this.startSimulationToolStripMenuItem,
             this.testerToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
             // addANewFlightPlanToolStripMenuItem
             // 
             this.addANewFlightPlanToolStripMenuItem.Name = "addANewFlightPlanToolStripMenuItem";
-            this.addANewFlightPlanToolStripMenuItem.Size = new System.Drawing.Size(433, 34);
+            this.addANewFlightPlanToolStripMenuItem.Size = new System.Drawing.Size(359, 26);
             this.addANewFlightPlanToolStripMenuItem.Text = "Add a new Flight Plan";
             this.addANewFlightPlanToolStripMenuItem.Click += new System.EventHandler(this.addANewFlightPlanToolStripMenuItem_Click);
             // 
             // addSecurityDistanceAndCycleDurationToolStripMenuItem
             // 
             this.addSecurityDistanceAndCycleDurationToolStripMenuItem.Name = "addSecurityDistanceAndCycleDurationToolStripMenuItem";
-            this.addSecurityDistanceAndCycleDurationToolStripMenuItem.Size = new System.Drawing.Size(433, 34);
+            this.addSecurityDistanceAndCycleDurationToolStripMenuItem.Size = new System.Drawing.Size(359, 26);
             this.addSecurityDistanceAndCycleDurationToolStripMenuItem.Text = "Add security distance and cycle duration";
             this.addSecurityDistanceAndCycleDurationToolStripMenuItem.Click += new System.EventHandler(this.addSecurityDistanceAndCycleDurationToolStripMenuItem_Click);
             // 
             // startSimulationToolStripMenuItem
             // 
             this.startSimulationToolStripMenuItem.Name = "startSimulationToolStripMenuItem";
-            this.startSimulationToolStripMenuItem.Size = new System.Drawing.Size(433, 34);
+            this.startSimulationToolStripMenuItem.Size = new System.Drawing.Size(359, 26);
             this.startSimulationToolStripMenuItem.Text = "Start Simulation";
             this.startSimulationToolStripMenuItem.Click += new System.EventHandler(this.startSimulationToolStripMenuItem_Click);
             // 
             // testerToolStripMenuItem
             // 
             this.testerToolStripMenuItem.Name = "testerToolStripMenuItem";
-            this.testerToolStripMenuItem.Size = new System.Drawing.Size(433, 34);
+            this.testerToolStripMenuItem.Size = new System.Drawing.Size(359, 26);
             this.testerToolStripMenuItem.Text = "Tester";
+            this.testerToolStripMenuItem.Click += new System.EventHandler(this.testerToolStripMenuItem_Click_1);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(285, 48);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Location = new System.Drawing.Point(253, 40);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1624, 987);
+            this.panel1.Size = new System.Drawing.Size(1444, 788);
             this.panel1.TabIndex = 1;
             // 
             // moverBtn
             // 
-            this.moverBtn.Location = new System.Drawing.Point(75, 166);
-            this.moverBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.moverBtn.Location = new System.Drawing.Point(67, 133);
+            this.moverBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.moverBtn.Name = "moverBtn";
-            this.moverBtn.Size = new System.Drawing.Size(112, 80);
+            this.moverBtn.Size = new System.Drawing.Size(100, 64);
             this.moverBtn.TabIndex = 2;
             this.moverBtn.Text = "Mover";
             this.moverBtn.UseVisualStyleBackColor = true;
@@ -121,10 +122,10 @@
             // 
             // automoverBtn
             // 
-            this.automoverBtn.Location = new System.Drawing.Point(75, 255);
-            this.automoverBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.automoverBtn.Location = new System.Drawing.Point(67, 204);
+            this.automoverBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.automoverBtn.Name = "automoverBtn";
-            this.automoverBtn.Size = new System.Drawing.Size(112, 79);
+            this.automoverBtn.Size = new System.Drawing.Size(100, 63);
             this.automoverBtn.TabIndex = 3;
             this.automoverBtn.Text = "Automatic simulation";
             this.automoverBtn.UseVisualStyleBackColor = true;
@@ -132,10 +133,10 @@
             // 
             // infoBtn
             // 
-            this.infoBtn.Location = new System.Drawing.Point(75, 342);
-            this.infoBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.infoBtn.Location = new System.Drawing.Point(67, 274);
+            this.infoBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.infoBtn.Name = "infoBtn";
-            this.infoBtn.Size = new System.Drawing.Size(112, 80);
+            this.infoBtn.Size = new System.Drawing.Size(100, 64);
             this.infoBtn.TabIndex = 4;
             this.infoBtn.Text = "Flight Information";
             this.infoBtn.UseVisualStyleBackColor = true;
@@ -143,10 +144,10 @@
             // 
             // conflictsBtn
             // 
-            this.conflictsBtn.Location = new System.Drawing.Point(75, 432);
-            this.conflictsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.conflictsBtn.Location = new System.Drawing.Point(67, 346);
+            this.conflictsBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.conflictsBtn.Name = "conflictsBtn";
-            this.conflictsBtn.Size = new System.Drawing.Size(112, 79);
+            this.conflictsBtn.Size = new System.Drawing.Size(100, 63);
             this.conflictsBtn.TabIndex = 5;
             this.conflictsBtn.Text = "Conflicts";
             this.conflictsBtn.UseVisualStyleBackColor = true;
@@ -154,10 +155,10 @@
             // 
             // changeSpeedBtn
             // 
-            this.changeSpeedBtn.Location = new System.Drawing.Point(75, 520);
-            this.changeSpeedBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.changeSpeedBtn.Location = new System.Drawing.Point(67, 416);
+            this.changeSpeedBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.changeSpeedBtn.Name = "changeSpeedBtn";
-            this.changeSpeedBtn.Size = new System.Drawing.Size(112, 79);
+            this.changeSpeedBtn.Size = new System.Drawing.Size(100, 63);
             this.changeSpeedBtn.TabIndex = 6;
             this.changeSpeedBtn.Text = "Change Speeds";
             this.changeSpeedBtn.UseVisualStyleBackColor = true;
@@ -177,18 +178,18 @@
             this.panelBotones.Controls.Add(this.conflictsBtn);
             this.panelBotones.Controls.Add(this.infoBtn);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelBotones.Location = new System.Drawing.Point(15, 48);
-            this.panelBotones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelBotones.Location = new System.Drawing.Point(13, 40);
+            this.panelBotones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(270, 987);
+            this.panelBotones.Size = new System.Drawing.Size(240, 788);
             this.panelBotones.TabIndex = 7;
             // 
             // restartBtn
             // 
-            this.restartBtn.Location = new System.Drawing.Point(75, 608);
-            this.restartBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.restartBtn.Location = new System.Drawing.Point(67, 486);
+            this.restartBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.restartBtn.Name = "restartBtn";
-            this.restartBtn.Size = new System.Drawing.Size(112, 79);
+            this.restartBtn.Size = new System.Drawing.Size(100, 63);
             this.restartBtn.TabIndex = 7;
             this.restartBtn.Text = "Restart Simulation";
             this.restartBtn.UseVisualStyleBackColor = true;
@@ -196,16 +197,16 @@
             // 
             // MainInterface
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1050);
+            this.ClientSize = new System.Drawing.Size(1710, 840);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelBotones);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainInterface";
-            this.Padding = new System.Windows.Forms.Padding(15);
+            this.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.Text = "Main";
             this.Load += new System.EventHandler(this.MainInterface_Load);
             this.menuStrip1.ResumeLayout(false);

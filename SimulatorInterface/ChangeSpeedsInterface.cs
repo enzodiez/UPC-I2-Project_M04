@@ -119,7 +119,7 @@ namespace SimulatorInterface
                     );
 
                     bool conflicto = false;
-
+                    ///////////// CAMBIAR __________--__-__-_-DERIVADA67
                     // Simulamos el movimiento de los aviones
                     for (int k = 0; k < 10000; k++)
                     {
