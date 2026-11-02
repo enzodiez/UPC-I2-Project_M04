@@ -337,8 +337,8 @@ namespace SimulatorInterface
                 listaPlanes.ResetAll(); // Reiniciamos todos los vuelos para que vuelvan a su origen después de cambiar las velocidades
                 for (int i = 0; i < listaPlanes.GetIndex(); i++)
                 {
-                    double xinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialX();
-                    double yinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialY();
+                    double xinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetX();
+                    double yinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetY();
                     Point screenPos = WorldToScreen(xinicial, yinicial);
                     aircraftsPics[i].Location = new Point(screenPos.X - 10, screenPos.Y - 10); //Centramos el png del avion en la posicion inicial
                 }
@@ -383,8 +383,8 @@ namespace SimulatorInterface
             listaPlanes.ResetAll();//reiniciamos todos los vuelos para que vuelvan a su origen PERO HAY QUE MOVER LOS PICTUREBOX!
             for(int i = 0; i < listaPlanes.GetIndex(); i++)
             {
-                double xinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialX();
-                double yinicial = listaPlanes.GetFlightPlan(i).GetCurrentPosition().GetInicialY();
+                double xinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetX();
+                double yinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetY();
                 Point screenPos = WorldToScreen(xinicial, yinicial);
                 aircraftsPics[i].Location = new Point(screenPos.X - 10, screenPos.Y - 10); //Centramos el png del avion en la posicion inicial
 

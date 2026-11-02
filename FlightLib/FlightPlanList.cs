@@ -213,7 +213,7 @@ namespace FlightLib
         {
             for(int i=0;i< index; i++)
             {
-                this.GetFlightPlan(i).Reset(); //reiniciamos la posicion actual de todos los vuelos
+                this.GetFlightPlan(i).Restart(); //reiniciamos la posicion actual de todos los vuelos
             }//no necesitamos llamar a flightplans. (usamos this porque estamos dentro de la clase)
         }
     }

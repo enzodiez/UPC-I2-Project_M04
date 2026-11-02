@@ -48,46 +48,47 @@ namespace FlightLib
         {
             this.flightCompleted = flightCompleted;
         }
-        public void Mover(double tiempo) //cambiado para el restart
-        // Mueve el vuelo a la posición correspondiente a viajar durante el tiempo que se recibe como parámetro
+        public void Mover(double tiempo)
         {
-            //Calculamos la distancia recorrida en el tiempo dado
-            double distancia = tiempo * this.velocidad / 60;
-
-            //Calculamos las razones trigonométricas
             double hipotenusa = currentPosition.Distancia(finalPosition);
 
+            // Si ya ha llegado al destino, no hay que calcular nada más
             if (hipotenusa == 0)
             {
-                currentPosition = finalPosition;
                 return;
             }
+
+            double distancia = (tiempo * velocidad) / 60.0;
 
             double coseno = (finalPosition.GetX() - currentPosition.GetX()) / hipotenusa;
             double seno = (finalPosition.GetY() - currentPosition.GetY()) / hipotenusa;
 
-            //Caculamos la nueva posición del vuelo
             double x = currentPosition.GetX() + distancia * coseno;
             double y = currentPosition.GetY() + distancia * seno;
-            //Calcula la hipotenusa cada iteracion y si es menor se pone ya en finalposition
-            if (distancia < hipotenusa)// con esto evitamos crear un objeto Position nuevo, y simplemente cambiamos los atributos de currentPosition. Esto es más eficiente y evita problemas de referencias.
+
+            if (distancia < hipotenusa)
             {
                 currentPosition.SetX(x);
                 currentPosition.SetY(y);
             }
-            else //Calcula la hipotenusa cada iteracion y si es menor se pone ya en finalposition
+            else
             {
+                // Ajustamos las coordenadas sin romper la separación de objetos
                 currentPosition.SetX(finalPosition.GetX());
                 currentPosition.SetY(finalPosition.GetY());
             }
         }
         public bool EnDestino()
         {
-            return currentPosition == finalPosition;
+            // Comprobamos la distancia real de coordenadas, no las referencias de objeto
+            return currentPosition.Distancia(finalPosition) == 0;
         }
         public bool Conflicto(FlightPlan b, double distanciaSeguridad)
         {
-            return currentPosition.Distancia(b.currentPosition) < distanciaSeguridad;
+            // Si distanciaSeguridad es el radio del círculo de cada avión:
+            // - Si Distancia < 2 * distanciaSeguridad -> Se solapan (Conflicto = true)
+            // - Si Distancia >= 2 * distanciaSeguridad -> Son tangentes o están separados (Conflicto = false)
+            return currentPosition.Distancia(b.currentPosition) < 2 * distanciaSeguridad;
         }
         public void EscribeConsola()
         // escribe en consola los datos del plan de vuelo
@@ -107,8 +108,9 @@ namespace FlightLib
         }
         public void Restart()
         {
-            currentPosition.SetX(initialPosition.GetX());
-            currentPosition.SetY(initialPosition.GetY());
+            // Creamos una nueva instancia limpia para la posición actual
+            this.currentPosition = new Position(initialPosition.GetX(), initialPosition.GetY());
+            this.flightCompleted = false;
         }
         public Position GetDestino()
         {
@@ -118,10 +120,6 @@ namespace FlightLib
         public Position GetOrigen()
         {
             return this.initialPosition;
-        }
-        public void Reset() //el restart pero para reiniciar el plan de vuelo completo, es decir, reiniciar la posicion actual y la posicion inicial
-        {
-            this.GetCurrentPosition().Restart(); //reiniciamos la posicion actual
         }
     }
 }
