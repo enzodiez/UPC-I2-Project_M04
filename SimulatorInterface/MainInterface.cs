@@ -322,13 +322,13 @@ namespace SimulatorInterface
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void conflictsBtn_Click(object sender, EventArgs e)
         {
             string mensaje = listaPlanes.PredecirConflictos(securityDistance, cycleDuration);
             MessageBox.Show(mensaje, "Predicción de conflictos");
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void changeSpeedBtn_Click(object sender, EventArgs e)
         {
             ChangeSpeedsInterface csi = new ChangeSpeedsInterface(this.listaPlanes, this.securityDistance, this.cycleDuration);
             csi.ShowDialog();
@@ -373,8 +373,8 @@ namespace SimulatorInterface
             button1.Enabled = estado; // Mover
             button2.Enabled = estado; // Mover automático
             button3.Enabled = estado; // Flight Information
-            button4.Enabled = estado; // Conflicts
-            button5.Enabled = estado; // Change Speeds
+            conflictsBtn.Enabled = estado; // Conflicts
+            changeSpeedBtn.Enabled = estado; // Change Speeds
             restartBtn.Enabled = estado; // Restart
         }
 
