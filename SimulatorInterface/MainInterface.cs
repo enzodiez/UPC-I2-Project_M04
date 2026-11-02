@@ -284,23 +284,23 @@ namespace SimulatorInterface
         // BOTONES DE CONTROL DE SIMULACIÓN Y EVENTOS
         // =======================================================
 
-        private void button1_Click(object sender, EventArgs e)
+        private void moverBtn_Click(object sender, EventArgs e)
         {
             listaPlanes.Mover(cycleDuration);
             ActualizarPosicionAviones();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void automoverBtn_Click(object sender, EventArgs e)
         {
-            if (button2.Text == "Mover automático")
+            if (automoverBtn.Text == "Automatic simulation")
             {
                 relojAuto.Start();
-                button2.Text = "Stop";
+                automoverBtn.Text = "Stop";
             }
-            else if (button2.Text == "Stop")
+            else if (automoverBtn.Text == "Stop")
             {
                 relojAuto.Stop();
-                button2.Text = "Mover automático";
+                automoverBtn.Text = "Automatic simulation";
             }
         }
 
@@ -310,7 +310,7 @@ namespace SimulatorInterface
             ActualizarPosicionAviones();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void infoBtn_Click(object sender, EventArgs e)
         {
             FlightInformationInterface fii = new FlightInformationInterface(this.listaPlanes);
             fii.ShowDialog();
@@ -363,16 +363,16 @@ namespace SimulatorInterface
             if (mensaje != "")
             {
                 relojAuto.Stop();
-                button2.Text = "Mover automático";
+                automoverBtn.Text = "Mover automático";
                 MessageBox.Show(mensaje, "Alarm");
             }
         }
 
         private void HabilitarBotonesSimulacion(bool estado)
         {
-            button1.Enabled = estado; // Mover
-            button2.Enabled = estado; // Mover automático
-            button3.Enabled = estado; // Flight Information
+            moverBtn.Enabled = estado; // Mover
+            automoverBtn.Enabled = estado; // Mover automático
+            infoBtn.Enabled = estado; // Flight Information
             conflictsBtn.Enabled = estado; // Conflicts
             changeSpeedBtn.Enabled = estado; // Change Speeds
             restartBtn.Enabled = estado; // Restart

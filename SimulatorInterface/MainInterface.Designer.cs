@@ -36,9 +36,9 @@
             this.startSimulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.moverBtn = new System.Windows.Forms.Button();
+            this.automoverBtn = new System.Windows.Forms.Button();
+            this.infoBtn = new System.Windows.Forms.Button();
             this.conflictsBtn = new System.Windows.Forms.Button();
             this.changeSpeedBtn = new System.Windows.Forms.Button();
             this.relojAuto = new System.Windows.Forms.Timer(this.components);
@@ -56,8 +56,7 @@
             this.optionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(15, 15);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1894, 35);
+            this.menuStrip1.Size = new System.Drawing.Size(1894, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -98,57 +97,56 @@
             this.testerToolStripMenuItem.Name = "testerToolStripMenuItem";
             this.testerToolStripMenuItem.Size = new System.Drawing.Size(433, 34);
             this.testerToolStripMenuItem.Text = "Tester";
-            this.testerToolStripMenuItem.Click += new System.EventHandler(this.testerToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(285, 50);
+            this.panel1.Location = new System.Drawing.Point(285, 48);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1624, 985);
+            this.panel1.Size = new System.Drawing.Size(1624, 987);
             this.panel1.TabIndex = 1;
             // 
-            // button1
+            // moverBtn
             // 
-            this.button1.Location = new System.Drawing.Point(75, 166);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 80);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Mover";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.moverBtn.Location = new System.Drawing.Point(75, 166);
+            this.moverBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.moverBtn.Name = "moverBtn";
+            this.moverBtn.Size = new System.Drawing.Size(112, 80);
+            this.moverBtn.TabIndex = 2;
+            this.moverBtn.Text = "Mover";
+            this.moverBtn.UseVisualStyleBackColor = true;
+            this.moverBtn.Click += new System.EventHandler(this.moverBtn_Click);
             // 
-            // button2
+            // automoverBtn
             // 
-            this.button2.Location = new System.Drawing.Point(75, 255);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 78);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Mover automático";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.automoverBtn.Location = new System.Drawing.Point(75, 255);
+            this.automoverBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.automoverBtn.Name = "automoverBtn";
+            this.automoverBtn.Size = new System.Drawing.Size(112, 79);
+            this.automoverBtn.TabIndex = 3;
+            this.automoverBtn.Text = "Automatic simulation";
+            this.automoverBtn.UseVisualStyleBackColor = true;
+            this.automoverBtn.Click += new System.EventHandler(this.automoverBtn_Click);
             // 
-            // button3
+            // infoBtn
             // 
-            this.button3.Location = new System.Drawing.Point(75, 343);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 80);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Flight Information";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.infoBtn.Location = new System.Drawing.Point(75, 342);
+            this.infoBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.infoBtn.Name = "infoBtn";
+            this.infoBtn.Size = new System.Drawing.Size(112, 80);
+            this.infoBtn.TabIndex = 4;
+            this.infoBtn.Text = "Flight Information";
+            this.infoBtn.UseVisualStyleBackColor = true;
+            this.infoBtn.Click += new System.EventHandler(this.infoBtn_Click);
             // 
             // conflictsBtn
             // 
             this.conflictsBtn.Location = new System.Drawing.Point(75, 432);
             this.conflictsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.conflictsBtn.Name = "conflictsBtn";
-            this.conflictsBtn.Size = new System.Drawing.Size(112, 78);
+            this.conflictsBtn.Size = new System.Drawing.Size(112, 79);
             this.conflictsBtn.TabIndex = 5;
             this.conflictsBtn.Text = "Conflicts";
             this.conflictsBtn.UseVisualStyleBackColor = true;
@@ -159,7 +157,7 @@
             this.changeSpeedBtn.Location = new System.Drawing.Point(75, 520);
             this.changeSpeedBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.changeSpeedBtn.Name = "changeSpeedBtn";
-            this.changeSpeedBtn.Size = new System.Drawing.Size(112, 78);
+            this.changeSpeedBtn.Size = new System.Drawing.Size(112, 79);
             this.changeSpeedBtn.TabIndex = 6;
             this.changeSpeedBtn.Text = "Change Speeds";
             this.changeSpeedBtn.UseVisualStyleBackColor = true;
@@ -173,16 +171,16 @@
             // panelBotones
             // 
             this.panelBotones.Controls.Add(this.restartBtn);
-            this.panelBotones.Controls.Add(this.button1);
+            this.panelBotones.Controls.Add(this.moverBtn);
             this.panelBotones.Controls.Add(this.changeSpeedBtn);
-            this.panelBotones.Controls.Add(this.button2);
+            this.panelBotones.Controls.Add(this.automoverBtn);
             this.panelBotones.Controls.Add(this.conflictsBtn);
-            this.panelBotones.Controls.Add(this.button3);
+            this.panelBotones.Controls.Add(this.infoBtn);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelBotones.Location = new System.Drawing.Point(15, 50);
+            this.panelBotones.Location = new System.Drawing.Point(15, 48);
             this.panelBotones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(270, 985);
+            this.panelBotones.Size = new System.Drawing.Size(270, 987);
             this.panelBotones.TabIndex = 7;
             // 
             // restartBtn
@@ -190,7 +188,7 @@
             this.restartBtn.Location = new System.Drawing.Point(75, 608);
             this.restartBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.restartBtn.Name = "restartBtn";
-            this.restartBtn.Size = new System.Drawing.Size(112, 78);
+            this.restartBtn.Size = new System.Drawing.Size(112, 79);
             this.restartBtn.TabIndex = 7;
             this.restartBtn.Text = "Restart Simulation";
             this.restartBtn.UseVisualStyleBackColor = true;
@@ -205,6 +203,7 @@
             this.Controls.Add(this.panelBotones);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainInterface";
             this.Padding = new System.Windows.Forms.Padding(15);
             this.Text = "Main";
@@ -225,9 +224,9 @@
         private System.Windows.Forms.ToolStripMenuItem addSecurityDistanceAndCycleDurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startSimulationToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button moverBtn;
+        private System.Windows.Forms.Button automoverBtn;
+        private System.Windows.Forms.Button infoBtn;
         private System.Windows.Forms.Button conflictsBtn;
         private System.Windows.Forms.Button changeSpeedBtn;
         private System.Windows.Forms.Timer relojAuto;
@@ -236,4 +235,3 @@
         private System.Windows.Forms.ToolStripMenuItem testerToolStripMenuItem;
     }
 }
-
