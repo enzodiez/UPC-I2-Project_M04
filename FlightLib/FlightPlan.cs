@@ -88,7 +88,7 @@ namespace FlightLib
             // Si distanciaSeguridad es el radio del círculo de cada avión:
             // - Si Distancia < 2 * distanciaSeguridad -> Se solapan (Conflicto = true)
             // - Si Distancia >= 2 * distanciaSeguridad -> Son tangentes o están separados (Conflicto = false)
-            return currentPosition.Distancia(b.currentPosition) < 2 * distanciaSeguridad;
+            return currentPosition.Distancia(b.currentPosition) <= 2 * distanciaSeguridad;
         }
         public void EscribeConsola()
         // escribe en consola los datos del plan de vuelo

@@ -322,13 +322,13 @@ namespace SimulatorInterface
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void conflictsBtn_Click(object sender, EventArgs e)
         {
             string mensaje = listaPlanes.PredecirConflictos(securityDistance, cycleDuration);
             MessageBox.Show(mensaje, "Predicción de conflictos");
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void changeSpeedBtn_Click(object sender, EventArgs e)
         {
             ChangeSpeedsInterface csi = new ChangeSpeedsInterface(this.listaPlanes, this.securityDistance, this.cycleDuration);
             csi.ShowDialog();
@@ -370,11 +370,19 @@ namespace SimulatorInterface
 
         private void HabilitarBotonesSimulacion(bool estado)
         {
+<<<<<<< HEAD
             moverBtn.Enabled = estado; // Mover
             automoverBtn.Enabled = estado; // Mover automático
             infoBtn.Enabled = estado; // Flight Information
             button4.Enabled = estado; // Conflicts
             button5.Enabled = estado; // Change Speeds
+=======
+            button1.Enabled = estado; // Mover
+            button2.Enabled = estado; // Mover automático
+            button3.Enabled = estado; // Flight Information
+            conflictsBtn.Enabled = estado; // Conflicts
+            changeSpeedBtn.Enabled = estado; // Change Speeds
+>>>>>>> bbfa19331f9b5cd585d02f0e3c518661abadb77a
             restartBtn.Enabled = estado; // Restart
         }
 
@@ -390,6 +398,55 @@ namespace SimulatorInterface
 
             }
             panel1.Invalidate();
+        }
+
+        private void testerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FlightPlan plane1 = new FlightPlan("TEST1", 100, 100, 900, 900, 100);
+            FlightPlan plane2 = new FlightPlan("TEST2", 100, 900, 900, 100, 100);
+            FlightPlan plane3 = new FlightPlan("TEST3", 700, 900, 700, 100, 100);
+            if (plane1 != null)
+            {
+                int index = listaPlanes.GetIndex();
+                if (listaPlanes.AddFlightPlan(plane1) == 0)
+                {
+                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
+                    CrearIconoAvion(index, plane1);
+                    panel1.Invalidate();
+                }
+                else
+                {
+                    MessageBox.Show("No se pueden añadir más aviones.");
+                }
+            }
+            if (plane2 != null)
+            {
+                int index = listaPlanes.GetIndex();
+                if (listaPlanes.AddFlightPlan(plane2) == 0)
+                {
+                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
+                    CrearIconoAvion(index, plane2);
+                    panel1.Invalidate();
+                }
+                else
+                {
+                    MessageBox.Show("No se pueden añadir más aviones.");
+                }
+            }
+            if (plane3 != null)
+            {
+                int index = listaPlanes.GetIndex();
+                if (listaPlanes.AddFlightPlan(plane3) == 0)
+                {
+                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
+                    CrearIconoAvion(index, plane3);
+                    panel1.Invalidate();
+                }
+                else
+                {
+                    MessageBox.Show("No se pueden añadir más aviones.");
+                }
+            }
         }
     }
 }
