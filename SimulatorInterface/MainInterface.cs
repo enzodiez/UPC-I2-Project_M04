@@ -132,7 +132,7 @@ namespace SimulatorInterface
                     {
                         if (listaPlanes.ResolverConflicto(securityDistance, cycleDuration))
                         {
-                            MessageBox.Show("Conflicto resuelto. La nueva velocidad de " + listaPlanes.GetFlightPlan(1).GetId() + " es " + listaPlanes.GetFlightPlan(1).GetVelocidad());
+                            MessageBox.Show("Conflicto resuelto. La nueva velocidad de " + listaPlanes.GetFlightPlan(1).GetAirline() + " " + listaPlanes.GetFlightPlan(1).GetId() + " es " + listaPlanes.GetFlightPlan(1).GetVelocidad());
                         }
                         else
                         {
@@ -250,7 +250,7 @@ namespace SimulatorInterface
                     graphics.DrawLine(myPen2, current, destino);
 
                     // Dibujamos el ID y la velocidad al lado del avión (+12 px para no tapar el icono)
-                    string info = $"{plan.GetId()} ({Math.Round(plan.GetVelocidad(), 0)} kts)";
+                    string info = $"{plan.GetAirline()}, {plan.GetId()} ({Math.Round(plan.GetVelocidad(), 0)} kts)";
                     graphics.DrawString(info, fontLabel, brushText, current.X + 12, current.Y - 6);
                 }
             }
@@ -363,7 +363,7 @@ namespace SimulatorInterface
             if (mensaje != "")
             {
                 relojAuto.Stop();
-                automoverBtn.Text = "Mover automático";
+                automoverBtn.Text = "Automatic simulation";
                 MessageBox.Show(mensaje, "Alarm");
             }
         }
@@ -394,9 +394,9 @@ namespace SimulatorInterface
 
         private void testerToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            FlightPlan plane1 = new FlightPlan("TEST1", 100, 100, 900, 900, 100);
-            FlightPlan plane2 = new FlightPlan("TEST2", 100, 900, 900, 100, 100);
-            FlightPlan plane3 = new FlightPlan("TEST3", 700, 900, 700, 100, 100);
+            FlightPlan plane1 = new FlightPlan("TEST1", 7777, 100, 100, 900, 900, 100);
+            FlightPlan plane2 = new FlightPlan("TEST2", 8888, 100, 900, 900, 100, 100);
+            FlightPlan plane3 = new FlightPlan("TEST3", 9999,700, 900, 700, 100, 100);
             if (plane1 != null)
             {
                 int index = listaPlanes.GetIndex();

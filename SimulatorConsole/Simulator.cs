@@ -60,7 +60,7 @@ namespace SimulatorConsole
                 double fx = Convert.ToDouble(trozos[0]);
                 double fy = Convert.ToDouble(trozos[1]);
 
-                return new FlightPlan(identificador, ix, iy, fx, fy, velocidad);
+                return new FlightPlan(identificador, 2, ix, iy, fx, fy, velocidad);
             }
             catch (FormatException ex)
             {

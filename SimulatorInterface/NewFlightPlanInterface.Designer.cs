@@ -41,119 +41,146 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Guardar = new System.Windows.Forms.Button();
+            this.AirlineLbl = new System.Windows.Forms.Label();
+            this.Airline = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // FX
             // 
-            this.FX.Location = new System.Drawing.Point(183, 432);
+            this.FX.Location = new System.Drawing.Point(206, 540);
+            this.FX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FX.Name = "FX";
-            this.FX.Size = new System.Drawing.Size(100, 22);
+            this.FX.Size = new System.Drawing.Size(112, 26);
             this.FX.TabIndex = 0;
             // 
             // Speed
             // 
-            this.Speed.Location = new System.Drawing.Point(105, 213);
+            this.Speed.Location = new System.Drawing.Point(118, 266);
+            this.Speed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Speed.Name = "Speed";
-            this.Speed.Size = new System.Drawing.Size(100, 22);
+            this.Speed.Size = new System.Drawing.Size(112, 26);
             this.Speed.TabIndex = 1;
             // 
             // IY
             // 
-            this.IY.Location = new System.Drawing.Point(368, 315);
+            this.IY.Location = new System.Drawing.Point(414, 394);
+            this.IY.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.IY.Name = "IY";
-            this.IY.Size = new System.Drawing.Size(100, 22);
+            this.IY.Size = new System.Drawing.Size(112, 26);
             this.IY.TabIndex = 2;
             // 
             // IX
             // 
-            this.IX.Location = new System.Drawing.Point(183, 315);
+            this.IX.Location = new System.Drawing.Point(206, 394);
+            this.IX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.IX.Name = "IX";
-            this.IX.Size = new System.Drawing.Size(100, 22);
+            this.IX.Size = new System.Drawing.Size(112, 26);
             this.IX.TabIndex = 3;
             // 
             // SpeedLbl
             // 
             this.SpeedLbl.AutoSize = true;
-            this.SpeedLbl.Location = new System.Drawing.Point(102, 173);
+            this.SpeedLbl.Location = new System.Drawing.Point(115, 216);
             this.SpeedLbl.Name = "SpeedLbl";
-            this.SpeedLbl.Size = new System.Drawing.Size(48, 16);
+            this.SpeedLbl.Size = new System.Drawing.Size(56, 20);
             this.SpeedLbl.TabIndex = 4;
             this.SpeedLbl.Text = "Speed";
             // 
             // InitialPositionLbl
             // 
             this.InitialPositionLbl.AutoSize = true;
-            this.InitialPositionLbl.Location = new System.Drawing.Point(102, 272);
+            this.InitialPositionLbl.Location = new System.Drawing.Point(115, 340);
             this.InitialPositionLbl.Name = "InitialPositionLbl";
-            this.InitialPositionLbl.Size = new System.Drawing.Size(88, 16);
+            this.InitialPositionLbl.Size = new System.Drawing.Size(106, 20);
             this.InitialPositionLbl.TabIndex = 5;
             this.InitialPositionLbl.Text = "Initial Position";
             // 
             // CallSignLbl
             // 
             this.CallSignLbl.AutoSize = true;
-            this.CallSignLbl.Location = new System.Drawing.Point(102, 68);
+            this.CallSignLbl.Location = new System.Drawing.Point(408, 85);
             this.CallSignLbl.Name = "CallSignLbl";
-            this.CallSignLbl.Size = new System.Drawing.Size(60, 16);
+            this.CallSignLbl.Size = new System.Drawing.Size(71, 20);
             this.CallSignLbl.TabIndex = 6;
             this.CallSignLbl.Text = "Call Sign";
             // 
             // FinalPositionLbl
             // 
             this.FinalPositionLbl.AutoSize = true;
-            this.FinalPositionLbl.Location = new System.Drawing.Point(102, 373);
+            this.FinalPositionLbl.Location = new System.Drawing.Point(115, 466);
             this.FinalPositionLbl.Name = "FinalPositionLbl";
-            this.FinalPositionLbl.Size = new System.Drawing.Size(87, 16);
+            this.FinalPositionLbl.Size = new System.Drawing.Size(103, 20);
             this.FinalPositionLbl.TabIndex = 7;
             this.FinalPositionLbl.Text = "Final Position";
             // 
             // CallSign
             // 
-            this.CallSign.Location = new System.Drawing.Point(105, 109);
+            this.CallSign.Location = new System.Drawing.Point(411, 136);
+            this.CallSign.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CallSign.Name = "CallSign";
-            this.CallSign.Size = new System.Drawing.Size(100, 22);
+            this.CallSign.Size = new System.Drawing.Size(112, 26);
             this.CallSign.TabIndex = 8;
             // 
             // FY
             // 
-            this.FY.Location = new System.Drawing.Point(368, 432);
+            this.FY.Location = new System.Drawing.Point(414, 540);
+            this.FY.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FY.Name = "FY";
-            this.FY.Size = new System.Drawing.Size(100, 22);
+            this.FY.Size = new System.Drawing.Size(112, 26);
             this.FY.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(399, 281);
+            this.label1.Location = new System.Drawing.Point(449, 351);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 16);
+            this.label1.Size = new System.Drawing.Size(16, 20);
             this.label1.TabIndex = 10;
             this.label1.Text = "y";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(213, 281);
+            this.label2.Location = new System.Drawing.Point(240, 351);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 16);
+            this.label2.Size = new System.Drawing.Size(16, 20);
             this.label2.TabIndex = 11;
             this.label2.Text = "x";
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(237, 529);
+            this.Guardar.Location = new System.Drawing.Point(267, 661);
+            this.Guardar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(75, 23);
+            this.Guardar.Size = new System.Drawing.Size(84, 29);
             this.Guardar.TabIndex = 12;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
             this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
+            // AirlineLbl
+            // 
+            this.AirlineLbl.AutoSize = true;
+            this.AirlineLbl.Location = new System.Drawing.Point(119, 84);
+            this.AirlineLbl.Name = "AirlineLbl";
+            this.AirlineLbl.Size = new System.Drawing.Size(52, 20);
+            this.AirlineLbl.TabIndex = 13;
+            this.AirlineLbl.Text = "Airline";
+            // 
+            // Airline
+            // 
+            this.Airline.Location = new System.Drawing.Point(118, 136);
+            this.Airline.Name = "Airline";
+            this.Airline.Size = new System.Drawing.Size(100, 26);
+            this.Airline.TabIndex = 14;
+            // 
             // NewFlightPlanInterface
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 594);
+            this.ClientSize = new System.Drawing.Size(627, 742);
+            this.Controls.Add(this.Airline);
+            this.Controls.Add(this.AirlineLbl);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -167,6 +194,7 @@
             this.Controls.Add(this.IY);
             this.Controls.Add(this.Speed);
             this.Controls.Add(this.FX);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "NewFlightPlanInterface";
             this.Text = "NewFlightPlanInterface";
             this.ResumeLayout(false);
@@ -189,5 +217,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Guardar;
+        private System.Windows.Forms.Label AirlineLbl;
+        private System.Windows.Forms.TextBox Airline;
     }
 }

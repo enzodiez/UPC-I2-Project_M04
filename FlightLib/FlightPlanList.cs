@@ -92,7 +92,7 @@ namespace FlightLib
                     }
                     else if (flightsPlans[i].Conflicto(flightsPlans[j], distanciaSeguridad))
                     {
-                        message= $"¡Conflicto detectado entre {flightsPlans[i].GetId()} y {flightsPlans[j].GetId()}!\n";
+                        message= $"¡Conflicto detectado entre {flightsPlans[i].GetId()} de {flightsPlans[i].GetAirline()} y {flightsPlans[j].GetId()} de {flightsPlans[j].GetAirline()}!\n";
                     }
                 }
             }
@@ -108,8 +108,8 @@ namespace FlightLib
                 for (int j = i + 1; j < index; j++)
                 {
                     // Creamos copias de los dos aviones.
-                    FlightPlan avion1 = new FlightPlan(flightsPlans[i].GetId(),flightsPlans[i].GetCurrentPosition().GetX(),flightsPlans[i].GetCurrentPosition().GetY(),flightsPlans[i].GetDestino().GetX(),flightsPlans[i].GetDestino().GetY(),flightsPlans[i].GetVelocidad());
-                    FlightPlan avion2 = new FlightPlan(flightsPlans[j].GetId(),flightsPlans[j].GetCurrentPosition().GetX(),flightsPlans[j].GetCurrentPosition().GetY(),flightsPlans[j].GetDestino().GetX(),flightsPlans[j].GetDestino().GetY(),flightsPlans[j].GetVelocidad());
+                    FlightPlan avion1 = new FlightPlan(flightsPlans[i].GetAirline(), flightsPlans[i].GetId(),flightsPlans[i].GetCurrentPosition().GetX(),flightsPlans[i].GetCurrentPosition().GetY(),flightsPlans[i].GetDestino().GetX(),flightsPlans[i].GetDestino().GetY(),flightsPlans[i].GetVelocidad());
+                    FlightPlan avion2 = new FlightPlan(flightsPlans[j].GetAirline(), flightsPlans[j].GetId(),flightsPlans[j].GetCurrentPosition().GetX(),flightsPlans[j].GetCurrentPosition().GetY(),flightsPlans[j].GetDestino().GetX(),flightsPlans[j].GetDestino().GetY(),flightsPlans[j].GetVelocidad());
 
                     bool conflicto = false;
 
@@ -134,7 +134,7 @@ namespace FlightLib
 
                     if (conflicto)
                     {
-                        mensaje += $"Conflicto previsto entre {avion1.GetId()} y {avion2.GetId()}\n";
+                        mensaje += $"Conflicto previsto entre {avion1.GetAirline()} {avion1.GetId()} y {avion2.GetAirline()} {avion2.GetId()}\n";
                     }
                 }
             }
@@ -155,8 +155,8 @@ namespace FlightLib
                 for (int j = i + 1; j < index; j++)
                 {
                     // Creamos copias de los dos aviones.
-                    FlightPlan avion1 = new FlightPlan(flightsPlans[i].GetId(), flightsPlans[i].GetCurrentPosition().GetX(), flightsPlans[i].GetCurrentPosition().GetY(), flightsPlans[i].GetDestino().GetX(), flightsPlans[i].GetDestino().GetY(), flightsPlans[i].GetVelocidad());
-                    FlightPlan avion2 = new FlightPlan(flightsPlans[j].GetId(), flightsPlans[j].GetCurrentPosition().GetX(), flightsPlans[j].GetCurrentPosition().GetY(), flightsPlans[j].GetDestino().GetX(), flightsPlans[j].GetDestino().GetY(), flightsPlans[j].GetVelocidad());
+                    FlightPlan avion1 = new FlightPlan(flightsPlans[i].GetAirline(), flightsPlans[i].GetId(), flightsPlans[i].GetCurrentPosition().GetX(), flightsPlans[i].GetCurrentPosition().GetY(), flightsPlans[i].GetDestino().GetX(), flightsPlans[i].GetDestino().GetY(), flightsPlans[i].GetVelocidad());
+                    FlightPlan avion2 = new FlightPlan(flightsPlans[j].GetAirline(), flightsPlans[j].GetId(), flightsPlans[j].GetCurrentPosition().GetX(), flightsPlans[j].GetCurrentPosition().GetY(), flightsPlans[j].GetDestino().GetX(), flightsPlans[j].GetDestino().GetY(), flightsPlans[j].GetVelocidad());
 
                     // Simulamos el movimiento de los aviones
                     for (int k = 0; k < 10000; k++)

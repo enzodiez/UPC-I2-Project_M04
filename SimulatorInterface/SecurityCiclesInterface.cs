@@ -12,8 +12,8 @@ namespace SimulatorInterface
 {
     public partial class SecurityCiclesInterface : Form
     {
-        Double cycleDuration;
-        Double securityDistance;
+        double cycleDuration;
+        double securityDistance;
         public SecurityCiclesInterface()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace SimulatorInterface
         {
             try
             {
-                if (Convert.ToDouble(textBox1.Text) < 0 || Convert.ToDouble(textBox2.Text) < 0)
+                if (Convert.ToDouble(textBox1.Text) <= 0 || Convert.ToDouble(textBox2.Text) <= 0)
                 {
                     MessageBox.Show("Please enter valid positive numeric values for security distance and cycle duration.");
                 }
@@ -39,13 +39,13 @@ namespace SimulatorInterface
                 MessageBox.Show("Please enter valid numeric values for security distance and cycle duration.");
             }
         }
-        public Double DameSecurityDistance()
+        public double DameSecurityDistance()
         {
             return securityDistance;
         }
-        public Double DameCycleDuration()
+        public double DameCycleDuration()
         {
-                return cycleDuration;
+            return cycleDuration;
         }
     }
 }

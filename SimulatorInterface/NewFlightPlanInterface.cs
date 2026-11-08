@@ -22,9 +22,13 @@ namespace SimulatorInterface
         {
             try
             {
-                if (Convert.ToDouble(IX.Text) < 0 || Convert.ToDouble(IY.Text) < 0 || Convert.ToDouble(FX.Text) < 0 || Convert.ToDouble(FY.Text) < 0 || Convert.ToDouble(Speed.Text) < 0)
+                if (Convert.ToDouble(IX.Text) < 0 || Convert.ToDouble(IY.Text) < 0 || Convert.ToDouble(FX.Text) < 0 || Convert.ToDouble(FY.Text) < 0 || Convert.ToDouble(Speed.Text) <= 0)
                 {
                     MessageBox.Show("The values cannot be negative.");
+                }
+                else if (Airline.Text == "")
+                {
+                    MessageBox.Show("The airline cannot be empty.");
                 }
                 else if (CallSign.Text == "")
                 {
@@ -32,7 +36,7 @@ namespace SimulatorInterface
                 }
                 else
                 {
-                    flightPlan = new FlightPlan(CallSign.Text, Convert.ToDouble(IX.Text), Convert.ToDouble(IY.Text), Convert.ToDouble(FX.Text), Convert.ToDouble(FY.Text), Convert.ToDouble(Speed.Text));
+                    flightPlan = new FlightPlan(Airline.Text, Convert.ToInt32(CallSign.Text), Convert.ToDouble(IX.Text), Convert.ToDouble(IY.Text), Convert.ToDouble(FX.Text), Convert.ToDouble(FY.Text), Convert.ToDouble(Speed.Text));
                     this.Close();
                 }
             }
