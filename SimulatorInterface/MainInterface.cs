@@ -67,7 +67,7 @@ namespace SimulatorInterface
         {
             NewFlightPlanInterface form = new NewFlightPlanInterface();
             form.ShowDialog();
-
+            
             FlightPlan plan = form.DamePlan();
             if (plan != null)
             {
@@ -94,7 +94,35 @@ namespace SimulatorInterface
                     MessageBox.Show("No se pueden añadir más aviones.");
                 }
             }
+            if (form.listacargadosfile!=null&&form.listacargadosfile.GetNumero()>0)
+            {
+                int avionesañadidos = 0; //usamos la variable publica creada antes en el creador de planes de vuelo
+                for(int i=0;i<form.listacargadosfile.GetNumero();i++)
+                {
+                    
+                    FlightPlan planarchivo = form.listacargadosfile.GetFlightPlan(i);
+                    int index = listaPlanes.GetIndex();
+
+                    if (listaPlanes.AddFlightPlan(planarchivo) == 0) // y rehacemos la simulacion entera con lo nuevo
+                    {
+                        CrearIconoAvion(index, planarchivo);
+                        avionesañadidos++;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Límite de aviones alcanzado.");
+                        break;
+                    }
+                }
+
+                if (avionesañadidos > 0)
+                {
+                    panel1.Invalidate();
+                    MessageBox.Show("You successfully added {avionesañadidos} flights from the file.");
+                }
+            }
         }
+        
         private void addSecurityDistanceAndCycleDurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SecurityCiclesInterface form = new SecurityCiclesInterface();

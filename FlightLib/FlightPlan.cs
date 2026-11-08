@@ -9,15 +9,27 @@ namespace FlightLib
     public class FlightPlan
     {
         string id; // identificador
+        string company; // compañia
         Position initialPosition; // posicion inicial
         Position currentPosition; // posicion actual
         Position finalPosition; // posicion final
         bool flightCompleted; // indica si el vuelo ha llegado a su destino
         double velocidad;
-
-        public FlightPlan(string id, double cpx, double cpy, double fpx, double fpy, double velocidad)
+        public FlightPlan(string id,double cpx, double cpy, double fpx, double fpy, double velocidad)
         {
             this.id = id;
+            this.company = "unknown";
+            this.initialPosition = new Position(cpx, cpy);
+            this.currentPosition = new Position(cpx, cpy);
+            this.finalPosition = new Position(fpx, fpy);
+            this.velocidad = velocidad;
+            this.flightCompleted = false;
+        }
+
+        public FlightPlan(string id, string company, double cpx, double cpy, double fpx, double fpy, double velocidad)
+        {
+            this.id = id;
+            this.company = company;
             this.initialPosition = new Position(cpx, cpy);
             this.currentPosition = new Position(cpx, cpy);
             this.finalPosition = new Position(fpx, fpy);
@@ -43,6 +55,10 @@ namespace FlightLib
         public Position GetCurrentPosition()
         {
             return this.currentPosition;
+        }
+        public string GetCompany()
+        {
+            return this.company;
         }
         public void SetFlightCompleted(bool flightCompleted)
         {

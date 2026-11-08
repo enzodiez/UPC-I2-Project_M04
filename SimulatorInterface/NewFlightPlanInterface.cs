@@ -8,12 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightLib;
+using System.IO;
 
 namespace SimulatorInterface
 {
     public partial class NewFlightPlanInterface : Form
     {
         FlightPlan flightPlan;
+        public FlightPlanList listacargadosfile= new FlightPlanList(); //la hacemos publica para usarla luego!
+        int contadornormal = 0;
+        int contadortotal = 0;
+        int contadorfile = 0;
+
         public NewFlightPlanInterface()
         {
             InitializeComponent();
@@ -34,6 +40,8 @@ namespace SimulatorInterface
                 {
                     flightPlan = new FlightPlan(CallSign.Text, Convert.ToDouble(IX.Text), Convert.ToDouble(IY.Text), Convert.ToDouble(FX.Text), Convert.ToDouble(FY.Text), Convert.ToDouble(Speed.Text));
                     this.Close();
+                    contadornormal += 1;
+                    contadortotal += 1;
                 }
             }
             catch (FormatException)
@@ -44,6 +52,51 @@ namespace SimulatorInterface
         public FlightPlan DamePlan()
         {
             return flightPlan;
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            //Nothing to do here
+        }
+
+        private void fileselectorBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openfile = new OpenFileDialog();
+            openfile.Title = "Select a flight plan file";
+            openfile.Filter = "Text files (*.txt)|*.txt";
+
+            if (openfile.ShowDialog() == DialogResult.OK)
+            {
+                routeBox.Text = openfile.FileName;
+                string[] lineas = File.ReadAllLines(openfile.FileName);
+                progressBarLoad.Visible = true;
+                progressBarLoad.Maximum = lineas.Length;
+                progressBarLoad.Minimum = 0;
+                progressBarLoad.Value = 0;
+
+                foreach(string linea in lineas)
+                {
+                    if (linea != "")
+                    {
+                        string[] datos = linea.Split(',');
+                        string id = datos[0];
+                        string company = datos[1];
+                        double Xi = Convert.ToDouble(datos[2]);
+                        double Yi = Convert.ToDouble(datos[3]);
+                        double Xf = Convert.ToDouble(datos[4]);
+                        double Yf = Convert.ToDouble(datos[5]);
+                        double vel = Convert.ToDouble(datos[6]); //Creamos un constructor nuevo para no tener que modificar todo!
+                        listacargadosfile.AddFlightPlan(new FlightPlan(id, company, Xi, Yi, Xf, Yf, vel));
+                        contadorfile++;
+                        contadortotal++;
+                    }
+                }
+                progressBarLoad.Value++;
+                Application.DoEvents(); //Para hacer que la barra se dibuje con el tiempo.
+                System.Threading.Thread.Sleep(50);//mini pausa de50ms para cada avion (quede más molón)
+            }
+            progressBarLoad.Visible = false;
+            MessageBox.Show("You successfully loaded" + contadorfile + "flights from the file you selected! You now have:" + contadortotal + "flights in total");
         }
     }
 }
