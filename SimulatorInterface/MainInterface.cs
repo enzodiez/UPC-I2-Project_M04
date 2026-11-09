@@ -346,7 +346,7 @@ namespace SimulatorInterface
             int pos2 = fii.GetSelectedRow2();
             if (pos1 != -1 && pos2 != -1)
             {
-                MessageBox.Show($"Distance between flight {listaPlanes.GetFlightPlan(pos1).GetId()} and {listaPlanes.GetFlightPlan(pos2).GetId()} is: {listaPlanes.GetFlightPlan(pos1).Distance(listaPlanes.GetFlightPlan(pos2))}");
+                MessageBox.Show($"Distance between flight {listaPlanes.GetFlightPlan(pos1).GetCompany()} {listaPlanes.GetFlightPlan(pos1).GetId()} and {listaPlanes.GetFlightPlan(pos2).GetCompany()} {listaPlanes.GetFlightPlan(pos2).GetId()} is: {listaPlanes.GetFlightPlan(pos1).Distance(listaPlanes.GetFlightPlan(pos2))}");
             }
         }
 
@@ -391,7 +391,7 @@ namespace SimulatorInterface
             if (mensaje != "")
             {
                 relojAuto.Stop();
-                automoverBtn.Text = "Mover automático";
+                automoverBtn.Text = "Automatic simulation";
                 MessageBox.Show(mensaje, "Alarm");
             }
         }
@@ -422,9 +422,9 @@ namespace SimulatorInterface
 
         private void testerToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            FlightPlan plane1 = new FlightPlan("TEST1", 100, 100, 900, 900, 100);
-            FlightPlan plane2 = new FlightPlan("TEST2", 100, 900, 900, 100, 100);
-            FlightPlan plane3 = new FlightPlan("TEST3", 700, 900, 700, 100, 100);
+            FlightPlan plane1 = new FlightPlan("TEST1", "AIRLINE1", 100, 100, 900, 900, 100);
+            FlightPlan plane2 = new FlightPlan("TEST2", "AIRLINE2",100, 900, 900, 100, 100);
+            FlightPlan plane3 = new FlightPlan("TEST3", "AIRLINE3",700, 900, 700, 100, 100);
             if (plane1 != null)
             {
                 int index = listaPlanes.GetIndex();

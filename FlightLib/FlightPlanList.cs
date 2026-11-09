@@ -92,7 +92,7 @@ namespace FlightLib
                     }
                     else if (flightsPlans[i].Conflicto(flightsPlans[j], distanciaSeguridad))
                     {
-                        message= $"¡Conflicto detectado entre {flightsPlans[i].GetId()} y {flightsPlans[j].GetId()}!\n";
+                        message= $"¡Conflicto detectado entre {flightsPlans[i].GetCompany()} {flightsPlans[i].GetId()} y {flightsPlans[j].GetCompany()} {flightsPlans[j].GetId()}!\n";
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace FlightLib
 
                     if (conflicto)
                     {
-                        mensaje += $"Conflicto previsto entre {avion1.GetId()} y {avion2.GetId()}\n";
+                        mensaje += $"Conflicto previsto entre {avion1.GetCompany()} {avion1.GetId()} y {avion2.GetCompany()} {avion2.GetId()}\n";
                     }
                 }
             }

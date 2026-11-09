@@ -28,7 +28,7 @@ namespace SimulatorInterface
         {
             try
             {
-                if (Convert.ToDouble(IX.Text) < 0 || Convert.ToDouble(IY.Text) < 0 || Convert.ToDouble(FX.Text) < 0 || Convert.ToDouble(FY.Text) < 0 || Convert.ToDouble(Speed.Text) < 0)
+                if (Convert.ToDouble(IX.Text) < 0 || Convert.ToDouble(IY.Text) < 0 || Convert.ToDouble(FX.Text) < 0 || Convert.ToDouble(FY.Text) < 0 || Convert.ToDouble(Speed.Text) <= 0)
                 {
                     MessageBox.Show("The values cannot be negative.");
                 }
@@ -38,7 +38,7 @@ namespace SimulatorInterface
                 }
                 else
                 {
-                    flightPlan = new FlightPlan(CallSign.Text, Convert.ToDouble(IX.Text), Convert.ToDouble(IY.Text), Convert.ToDouble(FX.Text), Convert.ToDouble(FY.Text), Convert.ToDouble(Speed.Text));
+                    flightPlan = new FlightPlan(CallSign.Text, airline.Text, Convert.ToDouble(IX.Text), Convert.ToDouble(IY.Text), Convert.ToDouble(FX.Text), Convert.ToDouble(FY.Text), Convert.ToDouble(Speed.Text));
                     this.Close();
                     contadornormal += 1;
                     contadortotal += 1;
@@ -52,11 +52,6 @@ namespace SimulatorInterface
         public FlightPlan DamePlan()
         {
             return flightPlan;
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-            //Nothing to do here
         }
 
         private void fileselectorBtn_Click(object sender, EventArgs e)
@@ -93,10 +88,11 @@ namespace SimulatorInterface
                 }
                 progressBarLoad.Value++;
                 Application.DoEvents(); //Para hacer que la barra se dibuje con el tiempo.
-                System.Threading.Thread.Sleep(50);//mini pausa de50ms para cada avion (quede más molón)
+                System.Threading.Thread.Sleep(250);//mini pausa de 500 ms para cada avion (queda más molón)
+
+                progressBarLoad.Visible = false;
+                MessageBox.Show($"You successfully loaded {contadorfile} flights from the file you selected! You now have: {contadortotal} flights in total");
             }
-            progressBarLoad.Visible = false;
-            MessageBox.Show("You successfully loaded" + contadorfile + "flights from the file you selected! You now have:" + contadortotal + "flights in total");
         }
     }
 }
