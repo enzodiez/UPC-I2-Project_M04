@@ -118,7 +118,7 @@ namespace SimulatorInterface
                 if (avionesañadidos > 0)
                 {
                     panel1.Invalidate();
-                    MessageBox.Show("You successfully added {avionesañadidos} flights from the file.");
+                    MessageBox.Show($"You successfully added {avionesañadidos} flights from the file.");
                 }
             }
         }
@@ -160,7 +160,7 @@ namespace SimulatorInterface
                     {
                         if (listaPlanes.ResolverConflicto(securityDistance, cycleDuration))
                         {
-                            MessageBox.Show("Conflicto resuelto. La nueva velocidad de " + listaPlanes.GetFlightPlan(1).GetId() + " es " + listaPlanes.GetFlightPlan(1).GetVelocidad());
+                            MessageBox.Show("Conflicto resuelto. La nueva velocidad de " + listaPlanes.GetFlightPlan(1).GetCompany() + " " + listaPlanes.GetFlightPlan(1).GetId() + " es " + listaPlanes.GetFlightPlan(1).GetVelocidad());
                         }
                         else
                         {
@@ -278,7 +278,7 @@ namespace SimulatorInterface
                     graphics.DrawLine(myPen2, current, destino);
 
                     // Dibujamos el ID y la velocidad al lado del avión (+12 px para no tapar el icono)
-                    string info = $"{plan.GetId()} ({Math.Round(plan.GetVelocidad(), 0)} kts)";
+                    string info = $"{plan.GetCompany()} {plan.GetId()} ({Math.Round(plan.GetVelocidad(), 0)} kts)";
                     graphics.DrawString(info, fontLabel, brushText, current.X + 12, current.Y - 6);
                 }
             }

@@ -30,6 +30,7 @@ namespace SimulatorInterface
             //rellenamos la segunda fila con los datos del avion seleccionado:
             if (AvionSeleccionado != null)
             {
+                fpView.Rows[1].Cells[0].Value = AvionSeleccionado.GetCompany();
                 fpView.Rows[1].Cells[0].Value = AvionSeleccionado.GetId();
                 fpView.Rows[1].Cells[1].Value = AvionSeleccionado.GetVelocidad();
                 fpView.Rows[1].Cells[2].Value = String.Format("X: {0},Y: {1}", Math.Round(AvionSeleccionado.GetCurrentPosition().GetX(), 2), Math.Round(AvionSeleccionado.GetCurrentPosition().GetY(), 2)); //redondeamos a 2 Con,2 en vez de F2

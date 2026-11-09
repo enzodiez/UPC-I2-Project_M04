@@ -16,7 +16,6 @@ namespace SimulatorInterface
     {
         FlightPlanList listaPlanes;
         double securityDistance;
-        double cycleDuration;
         int currentRow = -1;
         bool reiniciar = false;
         public ChangeSpeedsInterface(FlightPlanList listaPlanes, double securityDistance, double cycleDuration)
@@ -24,24 +23,31 @@ namespace SimulatorInterface
             InitializeComponent();
             this.listaPlanes = listaPlanes;
             this.securityDistance = securityDistance;
-            this.cycleDuration = cycleDuration;
         }
 
         private void ChangeSpeedsInterface_Load(object sender, EventArgs e)
         {
-            SpeedsGrid.ColumnCount = 2;
+            // Deshabilita la edición de celdas pare permite hacer click y seleccionar
+            SpeedsGrid.ReadOnly = true;
+
+            // Hace que al hacer click en cualquier casilla se selecciona la fila entera
+            SpeedsGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            SpeedsGrid.ColumnCount = 3;
             SpeedsGrid.RowCount = this.listaPlanes.GetIndex();
-            SpeedsGrid.Columns[0].HeaderText = "Flight Plan ID";
-            SpeedsGrid.Columns[1].HeaderText = "Flight Plan Speed";
+            SpeedsGrid.Columns[0].HeaderText = "Flight Plan Airline";
+            SpeedsGrid.Columns[1].HeaderText = "Flight Plan ID";
+            SpeedsGrid.Columns[2].HeaderText = "Flight Plan Speed";
             SpeedsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            //SpeedsGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            SpeedsGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
                 FlightPlan plan = listaPlanes.GetFlightPlan(i);
                 SpeedsGrid.Rows[i].HeaderCell.Value = $"Flight Plan {i}";
-                SpeedsGrid[0, i].Value = plan.GetId();
-                SpeedsGrid[1, i].Value = plan.GetVelocidad();
+                SpeedsGrid[0, i].Value = plan.GetCompany();
+                SpeedsGrid[1, i].Value = plan.GetId();
+                SpeedsGrid[2, i].Value = plan.GetVelocidad();
             }
         }
 

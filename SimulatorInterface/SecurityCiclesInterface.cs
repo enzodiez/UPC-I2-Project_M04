@@ -23,7 +23,7 @@ namespace SimulatorInterface
         {
             try
             {
-                if (Convert.ToDouble(textBox1.Text) < 0 || Convert.ToDouble(textBox2.Text) < 0)
+                if (Convert.ToDouble(textBox1.Text) <= 0 || Convert.ToDouble(textBox2.Text) <= 0)
                 {
                     MessageBox.Show("Please enter valid positive numeric values for security distance and cycle duration.");
                 }
