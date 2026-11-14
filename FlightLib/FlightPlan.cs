@@ -66,32 +66,19 @@ namespace FlightLib
         }
         public void Mover(double tiempo)
         {
-            double hipotenusa = currentPosition.Distancia(finalPosition);
-
-            // Si ya ha llegado al destino, no hay que calcular nada más
-            if (hipotenusa == 0)
+            if (EnDestino())
             {
+                this.flightCompleted = true;
                 return;
             }
 
-            double distancia = (tiempo * velocidad) / 60.0;
+            Position siguiente = PosicionDesdeEnTiempo(currentPosition, tiempo);
+            currentPosition.SetX(siguiente.GetX());
+            currentPosition.SetY(siguiente.GetY());
 
-            double coseno = (finalPosition.GetX() - currentPosition.GetX()) / hipotenusa;
-            double seno = (finalPosition.GetY() - currentPosition.GetY()) / hipotenusa;
-
-            double x = currentPosition.GetX() + distancia * coseno;
-            double y = currentPosition.GetY() + distancia * seno;
-
-            if (distancia < hipotenusa)
+            if (EnDestino())
             {
-                currentPosition.SetX(x);
-                currentPosition.SetY(y);
-            }
-            else
-            {
-                // Ajustamos las coordenadas sin romper la separación de objetos
-                currentPosition.SetX(finalPosition.GetX());
-                currentPosition.SetY(finalPosition.GetY());
+                this.flightCompleted = true;
             }
         }
         public bool EnDestino()
@@ -104,7 +91,7 @@ namespace FlightLib
             // Si distanciaSeguridad es el radio del círculo de cada avión:
             // - Si Distancia < 2 * distanciaSeguridad -> Se solapan (Conflicto = true)
             // - Si Distancia >= 2 * distanciaSeguridad -> Son tangentes o están separados (Conflicto = false)
-            return currentPosition.Distancia(b.currentPosition) <= 2 * distanciaSeguridad;
+            return currentPosition.Distancia(b.currentPosition) < 2 * distanciaSeguridad;
         }
         public void EscribeConsola()
         // escribe en consola los datos del plan de vuelo
@@ -136,6 +123,87 @@ namespace FlightLib
         public Position GetOrigen()
         {
             return this.initialPosition;
+        }
+
+        // Tiempo en minutos desde un punto de partida cualquiera hasta el destino
+        private double TiempoDesde(Position inicio)
+        {
+            return inicio.Distancia(finalPosition) * 60.0 / velocidad;
+        }
+
+        // Posición exacta tras t minutos partiendo desde 'inicio'
+        private Position PosicionDesdeEnTiempo(Position inicio, double t)
+        {
+            double longitud = inicio.Distancia(finalPosition);
+            double recorrido = velocidad * t / 60.0;
+
+            if (longitud == 0 || recorrido >= longitud)
+            {
+                return new Position(finalPosition.GetX(), finalPosition.GetY());
+            }
+
+            double fraccion = recorrido / longitud;
+            return new Position(
+                inicio.GetX() + fraccion * (finalPosition.GetX() - inicio.GetX()),
+                inicio.GetY() + fraccion * (finalPosition.GetY() - inicio.GetY())
+            );
+        }
+
+        // Distancia mínima entre este vuelo (desde inicioA) y el vuelo b (desde inicioB) en [t0, t1]
+        private double DistanciaMinima(Position inicioA, FlightPlan b, Position inicioB, double t0, double t1)
+        {
+            Position a0 = this.PosicionDesdeEnTiempo(inicioA, t0);
+            Position b0 = b.PosicionDesdeEnTiempo(inicioB, t0);
+            Position a1 = this.PosicionDesdeEnTiempo(inicioA, t1);
+            Position b1 = b.PosicionDesdeEnTiempo(inicioB, t1);
+
+            double dx0 = a0.GetX() - b0.GetX();
+            double dy0 = a0.GetY() - b0.GetY();
+            double dx1 = a1.GetX() - b1.GetX();
+            double dy1 = a1.GetY() - b1.GetY();
+
+            double ex = dx1 - dx0;
+            double ey = dy1 - dy0;
+            double e2 = ex * ex + ey * ey;
+
+            double s = 0;
+            if (e2 > 0)
+            {
+                s = -(dx0 * ex + dy0 * ey) / e2;
+                s = Math.Max(0, Math.Min(1, s));
+            }
+
+            double mx = dx0 + s * ex;
+            double my = dy0 + s * ey;
+            return Math.Sqrt(mx * mx + my * my);
+        }
+
+        private bool HayConflictoEntreTrayectorias(Position inicioA, FlightPlan b, Position inicioB, double distanciaSeguridad)
+        {
+            double tA = this.TiempoDesde(inicioA);
+            double tB = b.TiempoDesde(inicioB);
+
+            double tPrimero = Math.Min(tA, tB);
+            double tUltimo = Math.Max(tA, tB);
+
+            double minima = Math.Min(
+                this.DistanciaMinima(inicioA, b, inicioB, 0, tPrimero),
+                this.DistanciaMinima(inicioA, b, inicioB, tPrimero, tUltimo)
+            );
+
+            return minima < 2 * distanciaSeguridad;
+        }
+
+        // Comprueba todo el plan de vuelo desde el ORIGEN (usado al cambiar velocidades)
+        public bool HayConflictoTrayectoria(FlightPlan b, double distanciaSeguridad)
+        {
+            return HayConflictoEntreTrayectorias(this.initialPosition, b, b.initialPosition, distanciaSeguridad);
+        }
+
+        // Comprueba el trayecto restante desde la POSICIÓN ACTUAL (usado en predicción en curso)
+        public bool HayConflictoFuturo(FlightPlan b, double distanciaSeguridad)
+        {
+            return HayConflictoEntreTrayectorias(this.currentPosition, b, b.currentPosition, distanciaSeguridad);
         }
     }
 }

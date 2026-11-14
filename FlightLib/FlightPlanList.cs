@@ -9,27 +9,18 @@ namespace FlightLib
 {
     public class FlightPlanList
     {
-        FlightPlan[] flightsPlans = new FlightPlan[10];
-        int index = 0;
-
+        List<FlightPlan> flightsPlans = new List<FlightPlan>();
         public int GetIndex()
         {
-            return index;
+            return flightsPlans.Count;
         }
-        public int AddFlightPlan(FlightPlan p)
+        public void AddFlightPlan(FlightPlan p)
         {
-            if (index == 10)
-            {
-                return -1;
-            }
-
-            flightsPlans[index] = p;
-            index++;
-            return 0;
+            flightsPlans.Add(p);
         }
         public FlightPlan GetFlightPlan(int i)
         {
-            if (i < 0 || i >= index)
+            if (i < 0 || i >= flightsPlans.Count)
             {
                 return null;
             }
@@ -38,7 +29,7 @@ namespace FlightLib
         }
         public bool HayVuelosEnCurso()
         {
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < flightsPlans.Count; i++)
             {
                 if (!flightsPlans[i].GetFlightCompleted())
                 {
@@ -49,17 +40,21 @@ namespace FlightLib
         }
         public void Mover(double tiempo)
         {
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < flightsPlans.Count; i++)
             {
                 if (!flightsPlans[i].GetFlightCompleted())
                 {
                     flightsPlans[i].Mover(tiempo);
+                    if (flightsPlans[i].EnDestino())
+                    {
+                        flightsPlans[i].SetFlightCompleted(true);
+                    }
                 }
             }
         }
         public void EscribeConsola()
         {
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < flightsPlans.Count; i++)
             {
                 // Procesa solo los vuelos que no se han archivado previamente
                 if (!flightsPlans[i].GetFlightCompleted())
@@ -77,14 +72,14 @@ namespace FlightLib
         public string ComprobarConflictos(double distanciaSeguridad)
         {
             string message = "";
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < flightsPlans.Count; i++)
             {
                 if (flightsPlans[i].EnDestino())
                 {
                     continue;
                 }
 
-                for (int j = i + 1; j < index; j++)
+                for (int j = i + 1; j < flightsPlans.Count; j++)
                 {
                     if (flightsPlans[j].EnDestino())
                     {
@@ -92,49 +87,24 @@ namespace FlightLib
                     }
                     else if (flightsPlans[i].Conflicto(flightsPlans[j], distanciaSeguridad))
                     {
-                        message= $"¡Conflicto detectado entre {flightsPlans[i].GetCompany()} {flightsPlans[i].GetId()} y {flightsPlans[j].GetCompany()} {flightsPlans[j].GetId()}!\n";
+                        message += $"¡Conflicto detectado entre {flightsPlans[i].GetCompany()} {flightsPlans[i].GetId()} y {flightsPlans[j].GetCompany()} {flightsPlans[j].GetId()}!\n";
                     }
                 }
             }
             return message;
         }
 
-        public string PredecirConflictos(double distanciaSeguridad, double tiempo)
+        public string PredecirConflictos(double distanciaSeguridad)
         {
             string mensaje = "";
 
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < flightsPlans.Count; i++)
             {
-                for (int j = i + 1; j < index; j++)
+                for (int j = i + 1; j < flightsPlans.Count; j++)
                 {
-                    // Creamos copias de los dos aviones.
-                    FlightPlan avion1 = new FlightPlan(flightsPlans[i].GetId(),flightsPlans[i].GetCurrentPosition().GetX(),flightsPlans[i].GetCurrentPosition().GetY(),flightsPlans[i].GetDestino().GetX(),flightsPlans[i].GetDestino().GetY(),flightsPlans[i].GetVelocidad());
-                    FlightPlan avion2 = new FlightPlan(flightsPlans[j].GetId(),flightsPlans[j].GetCurrentPosition().GetX(),flightsPlans[j].GetCurrentPosition().GetY(),flightsPlans[j].GetDestino().GetX(),flightsPlans[j].GetDestino().GetY(),flightsPlans[j].GetVelocidad());
-
-                    bool conflicto = false;
-
-                    // Simulamos el movimiento de los aviones
-                    for (int k = 0; k < 10000; k++)
+                    if (flightsPlans[i].HayConflictoFuturo(flightsPlans[j], distanciaSeguridad))
                     {
-                        if (avion1.Conflicto(avion2, distanciaSeguridad))
-                        {
-                            conflicto = true;
-                            break;
-                        }
-
-                        // Comprobamos si ambos aviones han llegado al destino
-                        if (avion1.GetCurrentPosition().Distancia(avion1.GetDestino()) == 0 && avion2.GetCurrentPosition().Distancia(avion2.GetDestino()) == 0)
-                        {
-                            break;
-                        }
-
-                        avion1.Mover(tiempo);
-                        avion2.Mover(tiempo);
-                    }
-
-                    if (conflicto)
-                    {
-                        mensaje += $"Conflicto previsto entre {avion1.GetCompany()} {avion1.GetId()} y {avion2.GetCompany()} {avion2.GetId()}\n";
+                        mensaje += $"Conflicto previsto entre {flightsPlans[i].GetCompany()} {flightsPlans[i].GetId()} y {flightsPlans[j].GetCompany()} {flightsPlans[j].GetId()}\n";
                     }
                 }
             }
@@ -146,56 +116,37 @@ namespace FlightLib
 
             return mensaje;
         }
-        //Necesitamos un detector de conflictos pero que en vez de mensajes, devuelva un booleano
-        public bool CompruebaConflicto(double distanciaSeguridad, double tiempo)
+
+        public bool CompruebaConflicto(double distanciaSeguridad)
         {
-            bool conflicto = false;
-            for (int i = 0; i < index; i++) //Aquí no podría ser index-1 porque queremos que el último avión también se compare con los demás
+            for (int i = 0; i < flightsPlans.Count; i++)
             {
-                for (int j = i + 1; j < index; j++)
+                for (int j = i + 1; j < flightsPlans.Count; j++)
                 {
-                    // Creamos copias de los dos aviones.
-                    FlightPlan avion1 = new FlightPlan(flightsPlans[i].GetId(), flightsPlans[i].GetCurrentPosition().GetX(), flightsPlans[i].GetCurrentPosition().GetY(), flightsPlans[i].GetDestino().GetX(), flightsPlans[i].GetDestino().GetY(), flightsPlans[i].GetVelocidad());
-                    FlightPlan avion2 = new FlightPlan(flightsPlans[j].GetId(), flightsPlans[j].GetCurrentPosition().GetX(), flightsPlans[j].GetCurrentPosition().GetY(), flightsPlans[j].GetDestino().GetX(), flightsPlans[j].GetDestino().GetY(), flightsPlans[j].GetVelocidad());
-
-                    // Simulamos el movimiento de los aviones
-                    for (int k = 0; k < 10000; k++)
+                    if (flightsPlans[i].HayConflictoFuturo(flightsPlans[j], distanciaSeguridad))
                     {
-                        if (avion1.Conflicto(avion2, distanciaSeguridad))
-                        {
-                            conflicto = true;
-                            break;
-                        }
-
-                        // Comprobamos si ambos aviones han llegado al destino
-                        if (avion1.GetCurrentPosition().Distancia(avion1.GetDestino()) == 0 && avion2.GetCurrentPosition().Distancia(avion2.GetDestino()) == 0)
-                        {
-                            break;
-                        }
-
-                        avion1.Mover(tiempo);
-                        avion2.Mover(tiempo);
+                        return true; // Salida inmediata al encontrar el primer conflicto
                     }
-
                 }
             }
-            return conflicto;
+            return false;
         }
+
         //Cambia la velocidad del segundo vuelo hasta que ya no haya conflicto
-        public bool ResolverConflicto(double distanciaSeguridad, double tiempo)
+        public bool ResolverConflicto(double distanciaSeguridad)
         {
             FlightPlan avion = flightsPlans[1];
             double velocidadOriginal = avion.GetVelocidad();
             double velocidad = velocidadOriginal;
 
-            bool conflicto = CompruebaConflicto(distanciaSeguridad, tiempo);
+            bool conflicto = CompruebaConflicto(distanciaSeguridad);
 
             //Reducimos un 5% de la velocidad original cada vez, sin bajar del 10%
             while (conflicto && velocidad > velocidadOriginal * 0.1)
             {
                 velocidad = velocidad - velocidadOriginal * 0.05;
                 avion.SetVelocidad(velocidad);
-                conflicto = CompruebaConflicto(distanciaSeguridad, tiempo);
+                conflicto = CompruebaConflicto(distanciaSeguridad);
             }
 
             if (conflicto)
@@ -205,16 +156,38 @@ namespace FlightLib
             }
             return !conflicto;
         }
-        public int GetNumero()
-        {
-            return this.index;
-        }
         public void ResetAll()
         {
-            for(int i=0;i< index; i++)
+            for(int i=0;i< flightsPlans.Count; i++)
             {
                 this.GetFlightPlan(i).Restart(); //reiniciamos la posicion actual de todos los vuelos
             }//no necesitamos llamar a flightplans. (usamos this porque estamos dentro de la clase)
+        }
+        public bool HayConflictoConNuevaVelocidad(int indiceAvion, double nuevaVelocidad, double distanciaSeguridad)
+        {
+            FlightPlan original = flightsPlans[indiceAvion];
+            FlightPlan planSimulado = new FlightPlan(
+                original.GetId(),
+                original.GetCompany(),
+                original.GetOrigen().GetX(),
+                original.GetOrigen().GetY(),
+                original.GetDestino().GetX(),
+                original.GetDestino().GetY(),
+                nuevaVelocidad
+            );
+
+            for (int i = 0; i < flightsPlans.Count; i++)
+            {
+                if (i != indiceAvion)
+                {
+                    if (planSimulado.HayConflictoTrayectoria(flightsPlans[i], distanciaSeguridad))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

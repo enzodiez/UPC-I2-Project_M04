@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightLib;
 using System.IO;
+using System.Globalization;
 
 namespace SimulatorInterface
 {
     public partial class NewFlightPlanInterface : Form
     {
         FlightPlan flightPlan;
-        public FlightPlanList listacargadosfile= new FlightPlanList(); //la hacemos publica para usarla luego!
-        int contadornormal = 0;
+        public FlightPlanList listacargadosfile = new FlightPlanList(); //la hacemos publica para usarla luego!
         int contadortotal = 0;
         int contadorfile = 0;
 
@@ -40,7 +40,6 @@ namespace SimulatorInterface
                 {
                     flightPlan = new FlightPlan(CallSign.Text, airline.Text, Convert.ToDouble(IX.Text), Convert.ToDouble(IY.Text), Convert.ToDouble(FX.Text), Convert.ToDouble(FY.Text), Convert.ToDouble(Speed.Text));
                     this.Close();
-                    contadornormal += 1;
                     contadortotal += 1;
                 }
             }
@@ -68,30 +67,48 @@ namespace SimulatorInterface
                 progressBarLoad.Maximum = lineas.Length;
                 progressBarLoad.Minimum = 0;
                 progressBarLoad.Value = 0;
+                contadorfile = 0;
 
-                foreach(string linea in lineas)
+                try
                 {
-                    if (linea != "")
+                    foreach (string linea in lineas)
                     {
-                        string[] datos = linea.Split(',');
-                        string id = datos[0];
-                        string company = datos[1];
-                        double Xi = Convert.ToDouble(datos[2]);
-                        double Yi = Convert.ToDouble(datos[3]);
-                        double Xf = Convert.ToDouble(datos[4]);
-                        double Yf = Convert.ToDouble(datos[5]);
-                        double vel = Convert.ToDouble(datos[6]); //Creamos un constructor nuevo para no tener que modificar todo!
-                        listacargadosfile.AddFlightPlan(new FlightPlan(id, company, Xi, Yi, Xf, Yf, vel));
-                        contadorfile++;
-                        contadortotal++;
-                    }
-                }
-                progressBarLoad.Value++;
-                Application.DoEvents(); //Para hacer que la barra se dibuje con el tiempo.
-                System.Threading.Thread.Sleep(250);//mini pausa de 500 ms para cada avion (queda más molón)
+                        if (!string.IsNullOrWhiteSpace(linea))
+                        {
+                            string[] datos = linea.Split(',');
+                            if (datos.Length < 7) throw new FormatException();
 
-                progressBarLoad.Visible = false;
-                MessageBox.Show($"You successfully loaded {contadorfile} flights from the file you selected! You now have: {contadortotal} flights in total");
+                            string id = datos[0].Trim();
+                            string company = string.IsNullOrWhiteSpace(datos[1]) ? "unknown" : datos[1].Trim();
+                            double Xi = double.Parse(datos[2], CultureInfo.InvariantCulture);
+                            double Yi = double.Parse(datos[3], CultureInfo.InvariantCulture);
+                            double Xf = double.Parse(datos[4], CultureInfo.InvariantCulture);
+                            double Yf = double.Parse(datos[5], CultureInfo.InvariantCulture);
+                            double vel = double.Parse(datos[6], CultureInfo.InvariantCulture);
+
+                            if (Xi < 0 || Yi < 0 || Xf < 0 || Yf < 0 || vel <= 0 || id == "")
+                            {
+                                throw new FormatException();
+                            }
+
+                            listacargadosfile.AddFlightPlan(new FlightPlan(id, company, Xi, Yi, Xf, Yf, vel));
+                            contadorfile++;
+                            contadortotal++;
+                        }
+                        progressBarLoad.Value++;
+                        Application.DoEvents();
+                        System.Threading.Thread.Sleep(250);
+                    }
+                    MessageBox.Show($"You successfully loaded {contadorfile} flights from the file you selected! You now have: {contadortotal} flights in total");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Error de formato o valores inválidos en el fichero.");
+                }
+                finally
+                {
+                    progressBarLoad.Visible = false;
+                }
             }
         }
     }

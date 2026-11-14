@@ -17,7 +17,7 @@ namespace SimulatorInterface
         FlightPlanList listaPlanes = new FlightPlanList();
         double securityDistance;
         double cycleDuration;
-        PictureBox[] aircraftsPics = new PictureBox[10];
+        List<PictureBox> aircraftsPics = new List<PictureBox>();
         Image planeImage = Image.FromFile("plane.png");
         
         // Tamaño del plano lógico (las coordenadas reales de los aviones irán dentro de este rango)
@@ -37,7 +37,6 @@ namespace SimulatorInterface
             HabilitarBotonesSimulacion(false);
 
             panel1.Paint += panel1_Paint;
-            panel1.Paint += panel1_Paint_1;
             panel1.Resize += panel1_Resize; // Evento de redimensionado
         }
 
@@ -67,62 +66,34 @@ namespace SimulatorInterface
         {
             NewFlightPlanInterface form = new NewFlightPlanInterface();
             form.ShowDialog();
-            
+
+            bool algunAnadido = false;
+
             FlightPlan plan = form.DamePlan();
             if (plan != null)
             {
-                int index = listaPlanes.GetIndex();
-                if (listaPlanes.AddFlightPlan(plan) == 0)
-                {
-                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
-                    CrearIconoAvion(index, plan);
-                    panel1.Invalidate();
-                    MessageBox.Show("Flight plan has been added.");
-
-                    // Si los parámetros de seguridad ya están definidos, predecimos si este nuevo avión creará un conflicto
-                    if (securityDistance > 0 && cycleDuration > 0)
-                    {
-                        string aviso = listaPlanes.PredecirConflictos(securityDistance, cycleDuration);
-                        if (aviso != "" && !aviso.Contains("No hay conflictos"))
-                        {
-                            MessageBox.Show($"¡Atención! El vuelo añadido generará conflictos:\n{aviso}", "Alerta de Conflicto Futuro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No se pueden añadir más aviones.");
-                }
+                AgregarVueloAlMapa(plan);
+                MessageBox.Show("Flight plan has been added.");
+                algunAnadido = true;
             }
-            if (form.listacargadosfile!=null&&form.listacargadosfile.GetNumero()>0)
+
+            if (form.listacargadosfile != null && form.listacargadosfile.GetIndex() > 0)
             {
-                int avionesañadidos = 0; //usamos la variable publica creada antes en el creador de planes de vuelo
-                for(int i=0;i<form.listacargadosfile.GetNumero();i++)
+                for (int i = 0; i < form.listacargadosfile.GetIndex(); i++)
                 {
-                    
-                    FlightPlan planarchivo = form.listacargadosfile.GetFlightPlan(i);
-                    int index = listaPlanes.GetIndex();
-
-                    if (listaPlanes.AddFlightPlan(planarchivo) == 0) // y rehacemos la simulacion entera con lo nuevo
-                    {
-                        CrearIconoAvion(index, planarchivo);
-                        avionesañadidos++;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Límite de aviones alcanzado.");
-                        break;
-                    }
+                    AgregarVueloAlMapa(form.listacargadosfile.GetFlightPlan(i));
                 }
+                MessageBox.Show($"You successfully added {form.listacargadosfile.GetIndex()} flights from the file.");
+                algunAnadido = true;
+            }
 
-                if (avionesañadidos > 0)
-                {
-                    panel1.Invalidate();
-                    MessageBox.Show($"You successfully added {avionesañadidos} flights from the file.");
-                }
+            if (algunAnadido)
+            {
+                panel1.Invalidate();
+                VerificarConflictosFuturos();
             }
         }
-        
+
         private void addSecurityDistanceAndCycleDurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SecurityCiclesInterface form = new SecurityCiclesInterface();
@@ -132,12 +103,9 @@ namespace SimulatorInterface
             {
                 securityDistance = form.DameSecurityDistance();
                 cycleDuration = form.DameCycleDuration();
-
-                if (securityDistance != 0 && cycleDuration != 0)
-                {
-                    panel1.Invalidate();
-                    MessageBox.Show("Security distance and cycle duration have been set.");
-                }
+                panel1.Invalidate();
+                MessageBox.Show("Security distance and cycle duration have been set.");
+                VerificarConflictosFuturos();
             }
         }
         private void startSimulationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,12 +121,12 @@ namespace SimulatorInterface
             else
             {
                 // Comprobar conflictos antes de empezar
-                if (listaPlanes.CompruebaConflicto(securityDistance, cycleDuration))
+                if (listaPlanes.CompruebaConflicto(securityDistance))
                 {
                     DialogResult respuesta = MessageBox.Show("Se ha detectado un conflicto, ¿Desea resolverlo?", "Conflicto Detectado", MessageBoxButtons.YesNo);
                     if (respuesta == DialogResult.Yes)
                     {
-                        if (listaPlanes.ResolverConflicto(securityDistance, cycleDuration))
+                        if (listaPlanes.ResolverConflicto(securityDistance))
                         {
                             MessageBox.Show("Conflicto resuelto. La nueva velocidad de " + listaPlanes.GetFlightPlan(1).GetCompany() + " " + listaPlanes.GetFlightPlan(1).GetId() + " es " + listaPlanes.GetFlightPlan(1).GetVelocidad());
                         }
@@ -176,6 +144,15 @@ namespace SimulatorInterface
             }
         }
 
+        private void testerToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AgregarVueloAlMapa(new FlightPlan("TEST1", "AIRLINE1", 100, 100, 900, 900, 100));
+            AgregarVueloAlMapa(new FlightPlan("TEST2", "AIRLINE2", 100, 900, 900, 100, 100));
+            AgregarVueloAlMapa(new FlightPlan("TEST3", "AIRLINE3", 700, 900, 700, 100, 100));
+            panel1.Invalidate();
+            VerificarConflictosFuturos();
+        }
+
         // =======================================================
         // GESTIÓN Y CREACIÓN DE AVIONES
         // =======================================================
@@ -187,7 +164,7 @@ namespace SimulatorInterface
             double dy = plan.GetDestino().GetY() - plan.GetOrigen().GetY();
             float angulo = (float)(Math.Atan2(dy, dx) * (180.0 / Math.PI)) + 90;
 
-            aircraftsPics[i] = new PictureBox();
+            aircraftsPics.Add(new PictureBox());
             aircraftsPics[i].Image = RotateImage(planeImage, angulo);
             aircraftsPics[i].Size = new Size(20, 20);
             aircraftsPics[i].SizeMode = PictureBoxSizeMode.StretchImage;
@@ -263,6 +240,9 @@ namespace SimulatorInterface
                     graphics.DrawLine(penGrid, p1, p2);
                 }
 
+                // Calculamos el radio en píxeles una sola vez antes del bucle
+                float radioPx = ScaleDistance(this.securityDistance);
+
                 for (int i = 0; i < listaPlanes.GetIndex(); i++)
                 {
                     FlightPlan plan = listaPlanes.GetFlightPlan(i);
@@ -280,22 +260,10 @@ namespace SimulatorInterface
                     // Dibujamos el ID y la velocidad al lado del avión (+12 px para no tapar el icono)
                     string info = $"{plan.GetCompany()} {plan.GetId()} ({Math.Round(plan.GetVelocidad(), 0)} kts)";
                     graphics.DrawString(info, fontLabel, brushText, current.X + 12, current.Y - 6);
+
+                    // Dibujamos la esfera de seguridad reutilizando 'current'
+                    graphics.DrawEllipse(Pens.Red, current.X - radioPx, current.Y - radioPx, radioPx * 2, radioPx * 2);
                 }
-            }
-        }
-
-        private void panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-            int number = listaPlanes.GetNumero();
-            for (int i = 0; i < number; i++)
-            {
-                FlightPlan plan = listaPlanes.GetFlightPlan(i);
-
-                // Mapeamos el centro y escalamos el radio
-                Point center = WorldToScreen(plan.GetCurrentPosition().GetX(), plan.GetCurrentPosition().GetY());
-                float radioPx = ScaleDistance(this.securityDistance);
-
-                e.Graphics.DrawEllipse(Pens.Red, center.X - radioPx, center.Y - radioPx, radioPx * 2, radioPx * 2);
             }
         }
 
@@ -320,7 +288,12 @@ namespace SimulatorInterface
 
         private void automoverBtn_Click(object sender, EventArgs e)
         {
-            if (automoverBtn.Text == "Automatic simulation")
+            if (!listaPlanes.HayVuelosEnCurso())
+            {
+                relojAuto.Stop();
+                MessageBox.Show("Todos los vuelos han finalizado!");
+            }
+            else if (automoverBtn.Text == "Automatic simulation")
             {
                 relojAuto.Start();
                 automoverBtn.Text = "Stop";
@@ -336,6 +309,13 @@ namespace SimulatorInterface
         {
             listaPlanes.Mover(cycleDuration);
             ActualizarPosicionAviones();
+
+            if (!listaPlanes.HayVuelosEnCurso())
+            {
+                relojAuto.Stop();
+                automoverBtn.Text = "Automatic simulation";
+                MessageBox.Show("Todos los vuelos han finalizado!");
+            }
         }
 
         private void infoBtn_Click(object sender, EventArgs e)
@@ -352,35 +332,25 @@ namespace SimulatorInterface
 
         private void conflictsBtn_Click(object sender, EventArgs e)
         {
-            string mensaje = listaPlanes.PredecirConflictos(securityDistance, cycleDuration);
+            string mensaje = listaPlanes.PredecirConflictos(securityDistance);
             MessageBox.Show(mensaje, "Predicción de conflictos");
         }
 
         private void changeSpeedBtn_Click(object sender, EventArgs e)
         {
-            ChangeSpeedsInterface csi = new ChangeSpeedsInterface(this.listaPlanes, this.securityDistance, this.cycleDuration);
+            ChangeSpeedsInterface csi = new ChangeSpeedsInterface(this.listaPlanes, this.securityDistance);
             csi.ShowDialog();
             if (csi.Instruction())
             {
-                listaPlanes.ResetAll(); // Reiniciamos todos los vuelos para que vuelvan a su origen después de cambiar las velocidades
-                for (int i = 0; i < listaPlanes.GetIndex(); i++)
-                {
-                    double xinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetX();
-                    double yinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetY();
-                    Point screenPos = WorldToScreen(xinicial, yinicial);
-                    aircraftsPics[i].Location = new Point(screenPos.X - 10, screenPos.Y - 10); //Centramos el png del avion en la posicion inicial
-                }
-                panel1.Invalidate();
+                ReiniciarSimulacion();
             }
         }
 
         private void aircraftsPics_Click(object sender, EventArgs e)
         {
             PictureBox picClicado = (PictureBox)sender;
-            int indice = Array.IndexOf(aircraftsPics, picClicado);
-            var avionSeleccionado = listaPlanes.GetFlightPlan(indice);
-            ClickedData fpView = new ClickedData();
-            fpView.AvionSeleccionado = avionSeleccionado;
+            int indice = aircraftsPics.IndexOf(picClicado);
+            ClickedData fpView = new ClickedData(listaPlanes.GetFlightPlan(indice));
             fpView.ShowDialog();
         }
 
@@ -408,65 +378,42 @@ namespace SimulatorInterface
 
         private void restartBtn_Click(object sender, EventArgs e)
         {
-            listaPlanes.ResetAll();//reiniciamos todos los vuelos para que vuelvan a su origen PERO HAY QUE MOVER LOS PICTUREBOX!
-            for(int i = 0; i < listaPlanes.GetIndex(); i++)
-            {
-                double xinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetX();
-                double yinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetY();
-                Point screenPos = WorldToScreen(xinicial, yinicial);
-                aircraftsPics[i].Location = new Point(screenPos.X - 10, screenPos.Y - 10); //Centramos el png del avion en la posicion inicial
-
-            }
-            panel1.Invalidate();
+            ReiniciarSimulacion();
         }
 
-        private void testerToolStripMenuItem_Click_1(object sender, EventArgs e)
+        // =======================================================
+        // MÉTODOS AUXILIARES
+        // =======================================================
+
+        private void AgregarVueloAlMapa(FlightPlan plan)
         {
-            FlightPlan plane1 = new FlightPlan("TEST1", "AIRLINE1", 100, 100, 900, 900, 100);
-            FlightPlan plane2 = new FlightPlan("TEST2", "AIRLINE2",100, 900, 900, 100, 100);
-            FlightPlan plane3 = new FlightPlan("TEST3", "AIRLINE3",700, 900, 700, 100, 100);
-            if (plane1 != null)
+            int index = listaPlanes.GetIndex();
+            listaPlanes.AddFlightPlan(plan);
+            CrearIconoAvion(index, plan);
+        }
+
+        private void VerificarConflictosFuturos()
+        {
+            if (securityDistance > 0 && cycleDuration > 0)
             {
-                int index = listaPlanes.GetIndex();
-                if (listaPlanes.AddFlightPlan(plane1) == 0)
+                string aviso = listaPlanes.PredecirConflictos(securityDistance);
+                if (aviso != "" && !aviso.Contains("No se han detectado conflictos futuros."))
                 {
-                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
-                    CrearIconoAvion(index, plane1);
-                    panel1.Invalidate();
-                }
-                else
-                {
-                    MessageBox.Show("No se pueden añadir más aviones.");
+                    MessageBox.Show($"¡Atención! El vuelo añadido generará conflictos:\n{aviso}", "Alerta de Conflicto Futuro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            if (plane2 != null)
+        }
+
+        private void ReiniciarSimulacion()
+        {
+            if (relojAuto.Enabled)
             {
-                int index = listaPlanes.GetIndex();
-                if (listaPlanes.AddFlightPlan(plane2) == 0)
-                {
-                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
-                    CrearIconoAvion(index, plane2);
-                    panel1.Invalidate();
-                }
-                else
-                {
-                    MessageBox.Show("No se pueden añadir más aviones.");
-                }
+                relojAuto.Stop();
+                automoverBtn.Text = "Automatic simulation";
             }
-            if (plane3 != null)
-            {
-                int index = listaPlanes.GetIndex();
-                if (listaPlanes.AddFlightPlan(plane3) == 0)
-                {
-                    // Dibujamos el PictureBox del nuevo avión inmediatamente en el panel
-                    CrearIconoAvion(index, plane3);
-                    panel1.Invalidate();
-                }
-                else
-                {
-                    MessageBox.Show("No se pueden añadir más aviones.");
-                }
-            }
+
+            listaPlanes.ResetAll();
+            ActualizarPosicionAviones();
         }
     }
 }

@@ -26,6 +26,9 @@ namespace SimulatorInterface
         { return f2; }
         private void FlightInformationInterface_Load(object sender, EventArgs e)
         {
+            flightsGrid.ReadOnly = true;
+            flightsGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             flightsGrid.ColumnCount = 9;
             flightsGrid.RowCount = this.listaPlanes.GetIndex();
             flightsGrid.Columns[0].HeaderText = "Aircraft Airline";
@@ -45,11 +48,11 @@ namespace SimulatorInterface
                 flightsGrid.Rows[i].HeaderCell.Value = $"Flight Plan {i}";
                 flightsGrid[0, i].Value = plan.GetCompany();
                 flightsGrid[1, i].Value = plan.GetId();
-                flightsGrid[2, i].Value = plan.GetVelocidad();
+                flightsGrid[2, i].Value = Math.Round(plan.GetVelocidad(), 2);
                 flightsGrid[3, i].Value = plan.GetOrigen().GetX();
                 flightsGrid[4, i].Value = plan.GetOrigen().GetY();
-                flightsGrid[5, i].Value = plan.GetCurrentPosition().GetX();
-                flightsGrid[6, i].Value = plan.GetCurrentPosition().GetY();
+                flightsGrid[5, i].Value = Math.Round(plan.GetCurrentPosition().GetX(), 2);
+                flightsGrid[6, i].Value = Math.Round(plan.GetCurrentPosition().GetY(), 2);
                 flightsGrid[7, i].Value = plan.GetDestino().GetX();
                 flightsGrid[8, i].Value = plan.GetDestino().GetY();
             }

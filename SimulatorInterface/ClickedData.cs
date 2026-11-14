@@ -14,27 +14,31 @@ namespace SimulatorInterface
     public partial class ClickedData : Form
     {
         public FlightPlan AvionSeleccionado { get;set; } //Propiedad para almacenar el avión seleccionado que antes se ponia en rojo
-        public ClickedData()
+        public ClickedData(FlightPlan avionSel)
         {
             InitializeComponent();
+            AvionSeleccionado = avionSel;
         }
 
         private void ClickedData_Load(object sender, EventArgs e)
         {
+            fpView.ReadOnly = true;
+
             fpView.RowCount = 2;
-            fpView.ColumnCount = 4;
-            fpView.Rows[0].Cells[0].Value = "Aircraft Call Sign";
-            fpView.Rows[0].Cells[1].Value = "Aircraft Speed";
-            fpView.Rows[0].Cells[2].Value = "Current Position";
-            fpView.Rows[0].Cells[3].Value = "Destination"; //Aquí podriamos añadir distancia con otros planes de vuelo
+            fpView.ColumnCount = 5;
+            fpView.Rows[0].Cells[0].Value = "Aircraft Airline";
+            fpView.Rows[0].Cells[1].Value = "Aircraft Call Sign";
+            fpView.Rows[0].Cells[2].Value = "Aircraft Speed";
+            fpView.Rows[0].Cells[3].Value = "Current Position";
+            fpView.Rows[0].Cells[4].Value = "Destination"; //Aquí podriamos añadir distancia con otros planes de vuelo
             //rellenamos la segunda fila con los datos del avion seleccionado:
             if (AvionSeleccionado != null)
             {
                 fpView.Rows[1].Cells[0].Value = AvionSeleccionado.GetCompany();
-                fpView.Rows[1].Cells[0].Value = AvionSeleccionado.GetId();
-                fpView.Rows[1].Cells[1].Value = AvionSeleccionado.GetVelocidad();
-                fpView.Rows[1].Cells[2].Value = String.Format("X: {0},Y: {1}", Math.Round(AvionSeleccionado.GetCurrentPosition().GetX(), 2), Math.Round(AvionSeleccionado.GetCurrentPosition().GetY(), 2)); //redondeamos a 2 Con,2 en vez de F2
-                fpView.Rows[1].Cells[3].Value = String.Format("X: {0},Y: {1}", Math.Round(AvionSeleccionado.GetDestino().GetX(), 2), Math.Round(AvionSeleccionado.GetDestino().GetY(), 2));
+                fpView.Rows[1].Cells[1].Value = AvionSeleccionado.GetId();
+                fpView.Rows[1].Cells[2].Value = AvionSeleccionado.GetVelocidad();
+                fpView.Rows[1].Cells[3].Value = String.Format("X: {0},Y: {1}", Math.Round(AvionSeleccionado.GetCurrentPosition().GetX(), 2), Math.Round(AvionSeleccionado.GetCurrentPosition().GetY(), 2)); //redondeamos a 2 Con,2 en vez de F2
+                fpView.Rows[1].Cells[4].Value = String.Format("X: {0},Y: {1}", Math.Round(AvionSeleccionado.GetDestino().GetX(), 2), Math.Round(AvionSeleccionado.GetDestino().GetY(), 2));
             }
         }
 
