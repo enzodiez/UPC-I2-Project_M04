@@ -100,8 +100,12 @@ namespace FlightLib
 
             for (int i = 0; i < flightsPlans.Count; i++)
             {
+                if (flightsPlans[i].EnDestino()) continue;
+
                 for (int j = i + 1; j < flightsPlans.Count; j++)
                 {
+                    if (flightsPlans[j].EnDestino()) continue;
+
                     if (flightsPlans[i].HayConflictoFuturo(flightsPlans[j], distanciaSeguridad))
                     {
                         mensaje += $"Conflicto previsto entre {flightsPlans[i].GetCompany()} {flightsPlans[i].GetId()} y {flightsPlans[j].GetCompany()} {flightsPlans[j].GetId()}\n";
@@ -121,8 +125,12 @@ namespace FlightLib
         {
             for (int i = 0; i < flightsPlans.Count; i++)
             {
+                if (flightsPlans[i].EnDestino()) continue;
+
                 for (int j = i + 1; j < flightsPlans.Count; j++)
                 {
+                    if (flightsPlans[j].EnDestino()) continue;
+
                     if (flightsPlans[i].HayConflictoFuturo(flightsPlans[j], distanciaSeguridad))
                     {
                         return true; // Salida inmediata al encontrar el primer conflicto
@@ -135,6 +143,9 @@ namespace FlightLib
         //Cambia la velocidad del segundo vuelo hasta que ya no haya conflicto
         public bool ResolverConflicto(double distanciaSeguridad)
         {
+            // Por si acaso comprobamos que hayan mínimo dos planes de vuelo para evitar errores de índice (nunca debería suceder)
+            if (flightsPlans.Count < 2) return false;
+
             FlightPlan avion = flightsPlans[1];
             double velocidadOriginal = avion.GetVelocidad();
             double velocidad = velocidadOriginal;
@@ -156,6 +167,7 @@ namespace FlightLib
             }
             return !conflicto;
         }
+
         public void ResetAll()
         {
             for(int i=0;i< flightsPlans.Count; i++)
@@ -163,30 +175,38 @@ namespace FlightLib
                 this.GetFlightPlan(i).Restart(); //reiniciamos la posicion actual de todos los vuelos
             }//no necesitamos llamar a flightplans. (usamos this porque estamos dentro de la clase)
         }
+
+        // Comprueba si asignar 'nuevaVelocidad' al avión indicado provoca conflictos desde el inicio de la simulación
         public bool HayConflictoConNuevaVelocidad(int indiceAvion, double nuevaVelocidad, double distanciaSeguridad)
         {
-            FlightPlan original = flightsPlans[indiceAvion];
-            FlightPlan planSimulado = new FlightPlan(
-                original.GetId(),
-                original.GetCompany(),
-                original.GetOrigen().GetX(),
-                original.GetOrigen().GetY(),
-                original.GetDestino().GetX(),
-                original.GetDestino().GetY(),
-                nuevaVelocidad
-            );
+            FlightPlan planModificado = flightsPlans[indiceAvion].ClonarEnOrigen(nuevaVelocidad);
 
             for (int i = 0; i < flightsPlans.Count; i++)
             {
                 if (i != indiceAvion)
                 {
-                    if (planSimulado.HayConflictoTrayectoria(flightsPlans[i], distanciaSeguridad))
+                    FlightPlan otroPlan = flightsPlans[i].ClonarEnOrigen(flightsPlans[i].GetVelocidad());
+                    if (planModificado.HayConflictoFuturo(otroPlan, distanciaSeguridad))
                     {
                         return true;
                     }
                 }
             }
 
+            return false;
+        }
+
+        // Comprueba si ya existe un plan de vuelo con la misma aerolínea e identificador
+        public bool ExisteVuelo(string id, string company)
+        {
+            for (int i = 0; i < flightsPlans.Count; i++)
+            {
+                if (flightsPlans[i].GetId().ToUpper() == id.Trim().ToUpper() &&
+                    flightsPlans[i].GetCompany().ToUpper() == company.Trim().ToUpper())
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }

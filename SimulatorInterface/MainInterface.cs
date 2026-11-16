@@ -64,31 +64,20 @@ namespace SimulatorInterface
 
         private void addANewFlightPlanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewFlightPlanInterface form = new NewFlightPlanInterface();
+            int vuelosAntes = listaPlanes.GetIndex();
+
+            NewFlightPlanInterface form = new NewFlightPlanInterface(listaPlanes);
             form.ShowDialog();
 
-            bool algunAnadido = false;
+            int vuelosDespues = listaPlanes.GetIndex();
 
-            FlightPlan plan = form.DamePlan();
-            if (plan != null)
+            if (vuelosDespues > vuelosAntes)
             {
-                AgregarVueloAlMapa(plan);
-                MessageBox.Show("Flight plan has been added.");
-                algunAnadido = true;
-            }
-
-            if (form.listacargadosfile != null && form.listacargadosfile.GetIndex() > 0)
-            {
-                for (int i = 0; i < form.listacargadosfile.GetIndex(); i++)
+                for (int i = vuelosAntes; i < vuelosDespues; i++)
                 {
-                    AgregarVueloAlMapa(form.listacargadosfile.GetFlightPlan(i));
+                    CrearIconoAvion(i, listaPlanes.GetFlightPlan(i));
                 }
-                MessageBox.Show($"You successfully added {form.listacargadosfile.GetIndex()} flights from the file.");
-                algunAnadido = true;
-            }
 
-            if (algunAnadido)
-            {
                 panel1.Invalidate();
                 VerificarConflictosFuturos();
             }

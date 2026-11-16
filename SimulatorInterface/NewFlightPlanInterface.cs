@@ -1,28 +1,26 @@
-﻿using System;
+﻿using FlightLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FlightLib;
-using System.IO;
-using System.Globalization;
 
 namespace SimulatorInterface
 {
     public partial class NewFlightPlanInterface : Form
     {
-        FlightPlan flightPlan;
-        public FlightPlanList listacargadosfile = new FlightPlanList(); //la hacemos publica para usarla luego!
-        int contadortotal = 0;
         int contadorfile = 0;
+        FlightPlanList listaPlanes;
 
-        public NewFlightPlanInterface()
+        public NewFlightPlanInterface(FlightPlanList listaPlanes)
         {
             InitializeComponent();
+            this.listaPlanes = listaPlanes;
         }
         private void Guardar_Click(object sender, EventArgs e)
         {
@@ -30,27 +28,36 @@ namespace SimulatorInterface
             {
                 if (Convert.ToDouble(IX.Text) < 0 || Convert.ToDouble(IY.Text) < 0 || Convert.ToDouble(FX.Text) < 0 || Convert.ToDouble(FY.Text) < 0 || Convert.ToDouble(Speed.Text) <= 0)
                 {
-                    MessageBox.Show("The values cannot be negative.");
+                    MessageBox.Show("The values cannot be negative (and speed must be greater than 0).");
                 }
-                else if (CallSign.Text == "")
+                else if (CallSign.Text.Trim() == "" || airline.Text.Trim() == "")
                 {
-                    MessageBox.Show("The call sign cannot be empty.");
+                    MessageBox.Show("The call sign nor the airline cannot be empty.");
+                }
+                else if (listaPlanes.ExisteVuelo(CallSign.Text, airline.Text))
+                {
+                    MessageBox.Show("This flight plan already exists.");
                 }
                 else
                 {
-                    flightPlan = new FlightPlan(CallSign.Text, airline.Text, Convert.ToDouble(IX.Text), Convert.ToDouble(IY.Text), Convert.ToDouble(FX.Text), Convert.ToDouble(FY.Text), Convert.ToDouble(Speed.Text));
-                    this.Close();
-                    contadortotal += 1;
+                    FlightPlan flightPlan = new FlightPlan(CallSign.Text.Trim(), airline.Text.Trim(), Convert.ToDouble(IX.Text), Convert.ToDouble(IY.Text), Convert.ToDouble(FX.Text), Convert.ToDouble(FY.Text), Convert.ToDouble(Speed.Text));
+                    listaPlanes.AddFlightPlan(flightPlan);
+                    MessageBox.Show($"You successfully loaded this flight plan! You now have: {listaPlanes.GetIndex()} flights in total");
+
+                    // Limpiamos los campos para poder introducir otro vuelo cómodamente
+                    CallSign.Clear();
+                    airline.Clear();
+                    IX.Clear();
+                    IY.Clear();
+                    FX.Clear();
+                    FY.Clear();
+                    Speed.Clear();
                 }
             }
             catch (FormatException)
             {
                 MessageBox.Show("Format error.");
             }
-        }
-        public FlightPlan DamePlan()
-        {
-            return flightPlan;
         }
 
         private void fileselectorBtn_Click(object sender, EventArgs e)
@@ -69,47 +76,50 @@ namespace SimulatorInterface
                 progressBarLoad.Value = 0;
                 contadorfile = 0;
 
-                try
+                foreach (string linea in lineas)
                 {
-                    foreach (string linea in lineas)
+                    progressBarLoad.Value++;
+                    Application.DoEvents();
+                    System.Threading.Thread.Sleep(250);
+
+                    if (!string.IsNullOrWhiteSpace(linea))
                     {
-                        if (!string.IsNullOrWhiteSpace(linea))
+                        try
                         {
                             string[] datos = linea.Split(',');
-                            if (datos.Length < 7) throw new FormatException();
+                            if (datos.Length != 7) continue;
 
                             string id = datos[0].Trim();
-                            string company = string.IsNullOrWhiteSpace(datos[1]) ? "unknown" : datos[1].Trim();
-                            double Xi = double.Parse(datos[2], CultureInfo.InvariantCulture);
-                            double Yi = double.Parse(datos[3], CultureInfo.InvariantCulture);
-                            double Xf = double.Parse(datos[4], CultureInfo.InvariantCulture);
-                            double Yf = double.Parse(datos[5], CultureInfo.InvariantCulture);
-                            double vel = double.Parse(datos[6], CultureInfo.InvariantCulture);
+                            string company = datos[1].Trim();
+                            double Xi = Convert.ToDouble(datos[2].Trim());
+                            double Yi = Convert.ToDouble(datos[3].Trim());
+                            double Xf = Convert.ToDouble(datos[4].Trim());
+                            double Yf = Convert.ToDouble(datos[5].Trim());
+                            double vel = Convert.ToDouble(datos[6].Trim());
 
-                            if (Xi < 0 || Yi < 0 || Xf < 0 || Yf < 0 || vel <= 0 || id == "")
+                            if (Xi < 0 || Yi < 0 || Xf < 0 || Yf < 0 || vel <= 0 || id == "" || company == "" || listaPlanes.ExisteVuelo(id, company))
                             {
-                                throw new FormatException();
+                                continue;
                             }
 
-                            listacargadosfile.AddFlightPlan(new FlightPlan(id, company, Xi, Yi, Xf, Yf, vel));
+                            listaPlanes.AddFlightPlan(new FlightPlan(id, company, Xi, Yi, Xf, Yf, vel));
                             contadorfile++;
-                            contadortotal++;
                         }
-                        progressBarLoad.Value++;
-                        Application.DoEvents();
-                        System.Threading.Thread.Sleep(250);
+                        catch (FormatException)
+                        {
+                            // Si una línea tiene texto inválido en un número, la saltamos y seguimos con la siguiente
+                            continue;
+                        }
                     }
-                    MessageBox.Show($"You successfully loaded {contadorfile} flights from the file you selected! You now have: {contadortotal} flights in total");
                 }
-                catch (FormatException)
-                {
-                    MessageBox.Show("Error de formato o valores inválidos en el fichero.");
-                }
-                finally
-                {
-                    progressBarLoad.Visible = false;
-                }
+                progressBarLoad.Visible = false;
+                MessageBox.Show($"You successfully loaded {contadorfile} flights from the file you selected! You now have: {listaPlanes.GetIndex()} flights in total");
             }
+        }
+
+        private void CloseBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

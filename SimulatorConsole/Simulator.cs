@@ -59,8 +59,8 @@ namespace SimulatorConsole
                 trozos = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 double fx = Convert.ToDouble(trozos[0]);
                 double fy = Convert.ToDouble(trozos[1]);
-
-                return new FlightPlan(identificador, ix, iy, fx, fy, velocidad);
+                
+                return new FlightPlan(identificador, "company", ix, iy, fx, fy, velocidad);
             }
             catch (FormatException ex)
             {

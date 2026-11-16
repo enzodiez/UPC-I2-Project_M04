@@ -55,6 +55,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.progressBarLoad = new System.Windows.Forms.ProgressBar();
+            this.CloseBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FX
@@ -169,7 +170,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(58, 31);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(540, 37);
+            this.label3.Size = new System.Drawing.Size(361, 25);
             this.label3.TabIndex = 13;
             this.label3.Text = "FLIGHT PLAN CREATION PANEL";
             // 
@@ -229,7 +230,7 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(27, 98);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(197, 25);
+            this.label8.Size = new System.Drawing.Size(133, 16);
             this.label8.TabIndex = 20;
             this.label8.Text = "Enter Flight Plan data";
             // 
@@ -239,7 +240,7 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(30, 628);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(171, 25);
+            this.label9.Size = new System.Drawing.Size(117, 16);
             this.label9.TabIndex = 21;
             this.label9.Text = "Load data from file";
             // 
@@ -289,11 +290,22 @@
             this.progressBarLoad.TabIndex = 26;
             this.progressBarLoad.Visible = false;
             // 
+            // CloseBtn
+            // 
+            this.CloseBtn.Location = new System.Drawing.Point(234, 872);
+            this.CloseBtn.Name = "CloseBtn";
+            this.CloseBtn.Size = new System.Drawing.Size(130, 41);
+            this.CloseBtn.TabIndex = 27;
+            this.CloseBtn.Text = "Close";
+            this.CloseBtn.UseVisualStyleBackColor = true;
+            this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
+            // 
             // NewFlightPlanInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 938);
+            this.ClientSize = new System.Drawing.Size(616, 948);
+            this.Controls.Add(this.CloseBtn);
             this.Controls.Add(this.progressBarLoad);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -357,5 +369,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ProgressBar progressBarLoad;
+        private System.Windows.Forms.Button CloseBtn;
     }
 }
