@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Globalization;
 
 namespace FlightLib
 {
@@ -12,6 +14,150 @@ namespace FlightLib
         FlightPlan[] flightsPlans = new FlightPlan[10];
         int index = 0;
 
+//Creo una clase para deshacer el paso y uso un stack.
+        private class EstadoVuelo
+        {
+            public double X;
+            public double Y;
+            public double Velocidad;
+            public bool Completado;
+        }
+
+        private Stack<EstadoVuelo[]> historial = new Stack<EstadoVuelo[]>();
+        //Método para guardar el estado del vuelo:
+        private void GuardarEstado()
+        {
+            EstadoVuelo[] estado = new EstadoVuelo[index];
+            for (int i = 0; i < index; i++)
+            {
+                FlightPlan avion = flightsPlans[i];
+
+                estado[i] = new EstadoVuelo();
+                estado[i].X = avion.GetCurrentPosition().GetX();
+                estado[i].Y = avion.GetCurrentPosition().GetY();
+                estado[i].Velocidad = avion.GetVelocidad();
+                estado[i].Completado = avion.GetFlightCompleted();
+            }
+            historial.Push(estado);
+        }
+
+        // Métodos para deshacer un paso y retirarlo del stack, así puedo deshacer tantos como quiera.
+        public bool PuedeDeshacer()
+        {
+            return historial.Count > 0;
+        }
+
+        public bool DeshacerUltimoPaso()
+        {
+            if (!PuedeDeshacer())
+                return false;
+            EstadoVuelo[] estado = historial.Pop();
+            for (int i = 0; i < estado.Length; i++)
+            {
+                FlightPlan avion = flightsPlans[i];
+                avion.GetCurrentPosition().SetX(estado[i].X);
+                avion.GetCurrentPosition().SetY(estado[i].Y);
+                avion.SetVelocidad(estado[i].Velocidad);
+                avion.SetFlightCompleted(estado[i].Completado);
+            }
+            return true;
+        }
+        //Guardar archivo con los FP.
+
+        public void GuardarEnArchivo(string ruta, double securityDistance, double cycleDuration)
+        {
+            //El using nos permite cerrar el archivo automaticamente.
+            using (StreamWriter writer = new StreamWriter(ruta))
+            {
+                writer.WriteLine("SIMULACION_V2");
+
+                // Parámetros. Lo de culture es por cuestiones de decimales: . o ,. El . se convierte siempre en el separador decimal.
+                writer.WriteLine(securityDistance.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine(cycleDuration.ToString(CultureInfo.InvariantCulture));
+
+                // Número de aviones
+                writer.WriteLine(index);
+
+                // Información
+                for (int i = 0; i < index; i++)
+                {
+                    FlightPlan avion = flightsPlans[i];
+                    //Uri.EscapeDataString nos permite unir caracteres de texto para que no interfieran con el formato escogido. Separación por ";". Si no se usa, cada elemento será una línea del archivo de salida, que es peor visualmente.
+                    string linea = string.Join(";",Uri.EscapeDataString(avion.GetAirline()),avion.GetId().ToString(),avion.GetOrigen().GetX().ToString(CultureInfo.InvariantCulture),avion.GetOrigen().GetY().ToString(CultureInfo.InvariantCulture),avion.GetCurrentPosition().GetX().ToString(CultureInfo.InvariantCulture),avion.GetCurrentPosition().GetY().ToString(CultureInfo.InvariantCulture),avion.GetDestino().GetX().ToString(CultureInfo.InvariantCulture),avion.GetDestino().GetY().ToString(CultureInfo.InvariantCulture),avion.GetVelocidad().ToString(CultureInfo.InvariantCulture),avion.GetFlightCompleted().ToString());
+                    writer.WriteLine(linea);
+                }
+            }
+        }
+        // Cargar archivos:
+
+
+        public static FlightPlanList CargarDesdeArchivo(string ruta, out double securityDistance, out double cycleDuration)
+        {
+            using (StreamReader reader = new StreamReader(ruta))
+            {
+                string formato = reader.ReadLine();
+                //Genera error si el formato no es el correcto según el código que le hemos asignado en el método anterior.
+                if (formato != "SIMULACION_V2")
+                    throw new InvalidDataException("Formato de archivo incorrecto.");
+
+                //.Parse() nos convierte en valor en el formato correspondiente. Así no tenemos que poner el convert correspondiente en cada caso.
+                double distancia = double.Parse(reader.ReadLine(),CultureInfo.InvariantCulture);
+
+                double duracion = double.Parse(reader.ReadLine(),CultureInfo.InvariantCulture);
+
+                int numeroAviones = int.Parse(reader.ReadLine());
+
+                if (numeroAviones < 1 || numeroAviones > 10 || distancia <= 0 || duracion <= 0)
+                {
+                    throw new InvalidDataException("Datos de simulación incorrectos.");
+                }
+
+                FlightPlanList nuevaLista = new FlightPlanList();
+
+                for (int i = 0; i < numeroAviones; i++)
+                {
+                    string linea = reader.ReadLine();
+
+                    if (linea == null)
+                        throw new InvalidDataException("Archivo incompleto.");
+
+                    string[] datos = linea.Split(';');
+
+                    if (datos.Length != 10)
+                        throw new InvalidDataException("Datos de vuelo incorrectos.");
+
+                    string airline = Uri.UnescapeDataString(datos[0]);
+                    int id = int.Parse(datos[1]);
+                    double xi = double.Parse(datos[2], CultureInfo.InvariantCulture);
+                    double yi = double.Parse(datos[3], CultureInfo.InvariantCulture);
+                    double xa = double.Parse(datos[4], CultureInfo.InvariantCulture);
+                    double ya = double.Parse(datos[5], CultureInfo.InvariantCulture);
+                    double xf = double.Parse(datos[6], CultureInfo.InvariantCulture);
+                    double yf = double.Parse(datos[7], CultureInfo.InvariantCulture);
+                    double velocidad = double.Parse(datos[8], CultureInfo.InvariantCulture);
+                    bool completado = bool.Parse(datos[9]);
+
+                    //Crear el avión con su origen y destino
+                    FlightPlan avion = new FlightPlan(
+                        airline, id, xi, yi, xf, yf, velocidad);
+
+                    //Restaurar
+                    avion.GetCurrentPosition().SetX(xa);
+                    avion.GetCurrentPosition().SetY(ya);
+                    avion.SetFlightCompleted(completado);
+                    nuevaLista.AddFlightPlan(avion);
+                }
+
+                securityDistance = distancia;
+                cycleDuration = duracion;
+
+                return nuevaLista;
+            }
+        }
+
+
+
+        //Versión 1:
         public int GetIndex()
         {
             return index;
@@ -22,9 +168,9 @@ namespace FlightLib
             {
                 return -1;
             }
-
             flightsPlans[index] = p;
             index++;
+            historial.Clear();
             return 0;
         }
         public FlightPlan GetFlightPlan(int i)
@@ -49,6 +195,7 @@ namespace FlightLib
         }
         public void Mover(double tiempo)
         {
+            GuardarEstado();
             for (int i = 0; i < index; i++)
             {
                 if (!flightsPlans[i].GetFlightCompleted())
@@ -211,7 +358,8 @@ namespace FlightLib
         }
         public void ResetAll()
         {
-            for(int i=0;i< index; i++)
+            historial.Clear();
+            for (int i=0;i< index; i++)
             {
                 this.GetFlightPlan(i).Restart(); //reiniciamos la posicion actual de todos los vuelos
             }//no necesitamos llamar a flightplans. (usamos this porque estamos dentro de la clase)

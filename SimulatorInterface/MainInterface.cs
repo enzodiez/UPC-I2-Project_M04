@@ -185,6 +185,7 @@ namespace SimulatorInterface
             }
             panel1.Invalidate();
             AlarmaConflictos();
+            Undo_last_step.Enabled = listaPlanes.PuedeDeshacer();
         }
 
         private Image RotateImage(Image img, float angle)
@@ -334,6 +335,9 @@ namespace SimulatorInterface
             csi.ShowDialog();
             if (csi.Instruction())
             {
+                relojAuto.Stop();
+                automoverBtn.Text = "Automatic simulation";
+                Undo_last_step.Enabled = false;
                 listaPlanes.ResetAll(); // Reiniciamos todos los vuelos para que vuelvan a su origen después de cambiar las velocidades
                 for (int i = 0; i < listaPlanes.GetIndex(); i++)
                 {
@@ -376,12 +380,17 @@ namespace SimulatorInterface
             conflictsBtn.Enabled = estado; // Conflicts
             changeSpeedBtn.Enabled = estado; // Change Speeds
             restartBtn.Enabled = estado; // Restart
+            Undo_last_step.Enabled = estado && listaPlanes.PuedeDeshacer();
+            saveBtn.Enabled = estado;
         }
 
         private void restartBtn_Click(object sender, EventArgs e)
         {
             listaPlanes.ResetAll();//reiniciamos todos los vuelos para que vuelvan a su origen PERO HAY QUE MOVER LOS PICTUREBOX!
-            for(int i = 0; i < listaPlanes.GetIndex(); i++)
+            relojAuto.Stop();
+            automoverBtn.Text = "Automatic simulation";
+            Undo_last_step.Enabled = false;
+            for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
                 double xinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetX();
                 double yinicial = listaPlanes.GetFlightPlan(i).GetOrigen().GetY();
@@ -437,6 +446,115 @@ namespace SimulatorInterface
                 else
                 {
                     MessageBox.Show("No se pueden añadir más aviones.");
+                }
+            }
+        }
+
+        private void Undo_last_step_Click(object sender, EventArgs e)
+        {
+            relojAuto.Stop();
+            automoverBtn.Text = "Automatic simulation";
+
+            if (listaPlanes.DeshacerUltimoPaso())
+            {
+                ActualizarPosicionAviones();
+            }
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            // Pausar temporalmente la simulación automática
+            bool estabaAutomatico = relojAuto.Enabled;
+            relojAuto.Stop();
+
+            try
+            {
+                using (SaveFileDialog dialog = new SaveFileDialog())
+                {
+                    //Mostramos solo txt, damos nombre al archivo
+                    dialog.Filter = "Text files (*.txt)|*.txt";
+                    dialog.FileName = "simulacion.txt";
+                    dialog.Title = "Save simulation";
+
+                    if (dialog.ShowDialog() == DialogResult.OK) //El usuario pulsa guardar.
+                    {
+                        listaPlanes.GuardarEnArchivo(dialog.FileName, securityDistance, cycleDuration);
+                        MessageBox.Show("Simulation saved successfully.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving simulation: " + ex.Message);
+            }
+            finally
+            {
+                // Reanudar si estaba en modo automático
+                if (estabaAutomatico)
+                    relojAuto.Start();
+            }
+        }
+
+        private void loadSimulationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool estabaAutomatico = relojAuto.Enabled;
+            relojAuto.Stop();
+
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "Text files (*.txt)|*.txt";
+                dialog.Title = "Load simulation";
+
+                if (dialog.ShowDialog() != DialogResult.OK)
+                {
+                    if (estabaAutomatico)
+                        relojAuto.Start();
+                    return;
+                }
+
+                try
+                {
+                    double distanciaCargada;
+                    double duracionCargada;
+
+                    // Leer el archivo y crear los vuelos
+                    FlightPlanList nuevaLista = FlightPlanList.CargarDesdeArchivo(dialog.FileName,out distanciaCargada, out duracionCargada);
+
+                    // Eliminar los iconos anteriores
+                    for (int i = 0; i < aircraftsPics.Length; i++)
+                    {
+                        if (aircraftsPics[i] != null)
+                        {
+                            panel1.Controls.Remove(aircraftsPics[i]);
+                            aircraftsPics[i].Dispose();
+                            aircraftsPics[i] = null;
+                        }
+                    }
+
+                    // Restaurar la simulación
+                    listaPlanes = nuevaLista;
+                    securityDistance = distanciaCargada;
+                    cycleDuration = duracionCargada;
+
+                    // Dibujar los aviones cargados
+                    for (int i = 0; i < listaPlanes.GetIndex(); i++)
+                    {
+                        CrearIconoAvion(i, listaPlanes.GetFlightPlan(i));
+                    }
+
+                    // Habilitar la simulación
+                    automoverBtn.Text = "Automatic simulation";
+                    HabilitarBotonesSimulacion(true);
+                    ActualizarPosicionAviones();
+
+                    MessageBox.Show("Simulation loaded successfully.");
+                }
+                catch (Exception ex)
+                {
+                    if (estabaAutomatico)
+                        relojAuto.Start();
+
+                    MessageBox.Show("Error loading simulation");
                 }
             }
         }

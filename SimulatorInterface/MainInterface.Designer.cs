@@ -44,6 +44,9 @@
             this.relojAuto = new System.Windows.Forms.Timer(this.components);
             this.panelBotones = new System.Windows.Forms.Panel();
             this.restartBtn = new System.Windows.Forms.Button();
+            this.Undo_last_step = new System.Windows.Forms.Button();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.loadSimulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +69,8 @@
             this.addANewFlightPlanToolStripMenuItem,
             this.addSecurityDistanceAndCycleDurationToolStripMenuItem,
             this.startSimulationToolStripMenuItem,
-            this.testerToolStripMenuItem});
+            this.testerToolStripMenuItem,
+            this.loadSimulationToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -104,7 +108,7 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(253, 40);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1444, 788);
             this.panel1.TabIndex = 1;
@@ -112,7 +116,7 @@
             // moverBtn
             // 
             this.moverBtn.Location = new System.Drawing.Point(67, 133);
-            this.moverBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.moverBtn.Margin = new System.Windows.Forms.Padding(4);
             this.moverBtn.Name = "moverBtn";
             this.moverBtn.Size = new System.Drawing.Size(100, 64);
             this.moverBtn.TabIndex = 2;
@@ -123,7 +127,7 @@
             // automoverBtn
             // 
             this.automoverBtn.Location = new System.Drawing.Point(67, 204);
-            this.automoverBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.automoverBtn.Margin = new System.Windows.Forms.Padding(4);
             this.automoverBtn.Name = "automoverBtn";
             this.automoverBtn.Size = new System.Drawing.Size(100, 63);
             this.automoverBtn.TabIndex = 3;
@@ -134,7 +138,7 @@
             // infoBtn
             // 
             this.infoBtn.Location = new System.Drawing.Point(67, 274);
-            this.infoBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.infoBtn.Margin = new System.Windows.Forms.Padding(4);
             this.infoBtn.Name = "infoBtn";
             this.infoBtn.Size = new System.Drawing.Size(100, 64);
             this.infoBtn.TabIndex = 4;
@@ -145,7 +149,7 @@
             // conflictsBtn
             // 
             this.conflictsBtn.Location = new System.Drawing.Point(67, 346);
-            this.conflictsBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.conflictsBtn.Margin = new System.Windows.Forms.Padding(4);
             this.conflictsBtn.Name = "conflictsBtn";
             this.conflictsBtn.Size = new System.Drawing.Size(100, 63);
             this.conflictsBtn.TabIndex = 5;
@@ -156,7 +160,7 @@
             // changeSpeedBtn
             // 
             this.changeSpeedBtn.Location = new System.Drawing.Point(67, 416);
-            this.changeSpeedBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.changeSpeedBtn.Margin = new System.Windows.Forms.Padding(4);
             this.changeSpeedBtn.Name = "changeSpeedBtn";
             this.changeSpeedBtn.Size = new System.Drawing.Size(100, 63);
             this.changeSpeedBtn.TabIndex = 6;
@@ -171,6 +175,8 @@
             // 
             // panelBotones
             // 
+            this.panelBotones.Controls.Add(this.saveBtn);
+            this.panelBotones.Controls.Add(this.Undo_last_step);
             this.panelBotones.Controls.Add(this.restartBtn);
             this.panelBotones.Controls.Add(this.moverBtn);
             this.panelBotones.Controls.Add(this.changeSpeedBtn);
@@ -179,7 +185,7 @@
             this.panelBotones.Controls.Add(this.infoBtn);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelBotones.Location = new System.Drawing.Point(13, 40);
-            this.panelBotones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelBotones.Margin = new System.Windows.Forms.Padding(4);
             this.panelBotones.Name = "panelBotones";
             this.panelBotones.Size = new System.Drawing.Size(240, 788);
             this.panelBotones.TabIndex = 7;
@@ -187,13 +193,42 @@
             // restartBtn
             // 
             this.restartBtn.Location = new System.Drawing.Point(67, 486);
-            this.restartBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.restartBtn.Margin = new System.Windows.Forms.Padding(4);
             this.restartBtn.Name = "restartBtn";
             this.restartBtn.Size = new System.Drawing.Size(100, 63);
             this.restartBtn.TabIndex = 7;
             this.restartBtn.Text = "Restart Simulation";
             this.restartBtn.UseVisualStyleBackColor = true;
             this.restartBtn.Click += new System.EventHandler(this.restartBtn_Click);
+            // 
+            // Undo_last_step
+            // 
+            this.Undo_last_step.Enabled = false;
+            this.Undo_last_step.Location = new System.Drawing.Point(67, 556);
+            this.Undo_last_step.Name = "Undo_last_step";
+            this.Undo_last_step.Size = new System.Drawing.Size(100, 63);
+            this.Undo_last_step.TabIndex = 8;
+            this.Undo_last_step.Text = "Undo last step";
+            this.Undo_last_step.UseVisualStyleBackColor = true;
+            this.Undo_last_step.Click += new System.EventHandler(this.Undo_last_step_Click);
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.Enabled = false;
+            this.saveBtn.Location = new System.Drawing.Point(67, 625);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(100, 63);
+            this.saveBtn.TabIndex = 9;
+            this.saveBtn.Text = "Save Simulation";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // loadSimulationToolStripMenuItem
+            // 
+            this.loadSimulationToolStripMenuItem.Name = "loadSimulationToolStripMenuItem";
+            this.loadSimulationToolStripMenuItem.Size = new System.Drawing.Size(359, 26);
+            this.loadSimulationToolStripMenuItem.Text = "Load Simulation";
+            this.loadSimulationToolStripMenuItem.Click += new System.EventHandler(this.loadSimulationToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -234,5 +269,8 @@
         private System.Windows.Forms.Panel panelBotones;
         private System.Windows.Forms.Button restartBtn;
         private System.Windows.Forms.ToolStripMenuItem testerToolStripMenuItem;
+        private System.Windows.Forms.Button Undo_last_step;
+        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.ToolStripMenuItem loadSimulationToolStripMenuItem;
     }
 }
