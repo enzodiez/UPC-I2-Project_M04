@@ -11,7 +11,7 @@ namespace FlightLib
     public class FlightPlanList
     {
         List<FlightPlan> flightsPlans = new List<FlightPlan>();
-        List<List<FlightPlan>> historial = new List<List<FlightPlan>>();
+        Stack<List<FlightPlan>> historial = new Stack<List<FlightPlan>>();
 
         //Método para guardar estado:
 
@@ -28,7 +28,7 @@ namespace FlightLib
                 copia.SetFlightCompleted(avion.GetFlightCompleted());
                 estado.Add(copia);
             }
-            historial.Add(estado);
+            historial.Push(estado);
         }
 
         //Método para deshacer:
@@ -36,15 +36,15 @@ namespace FlightLib
         {
             return historial.Count > 0;
         }
+
         public bool DeshacerUltimoPaso()
         {
             if (!PuedeDeshacer())
                 return false;
-            int ultimo = historial.Count - 1;
-            flightsPlans = historial[ultimo];
-            historial.RemoveAt(ultimo);
+            flightsPlans = historial.Pop();
             return true;
         }
+
 
         //Guardar en fichero:
 

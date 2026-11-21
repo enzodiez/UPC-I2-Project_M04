@@ -130,3 +130,5 @@ C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\SimulatorCon
 C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\SimulatorConsole\obj\Debug\SimulatorConsole.pdb
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\System.Data.SQLite.dll
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\System.Data.SQLite.xml
+C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\System.Data.SQLite.dll
+C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\SimulatorConsole\bin\Debug\System.Data.SQLite.xml

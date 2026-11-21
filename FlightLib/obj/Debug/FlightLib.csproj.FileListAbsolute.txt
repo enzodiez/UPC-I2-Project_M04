@@ -79,3 +79,5 @@ C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\FlightLib\ob
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\bin\Debug\System.Data.SQLite.dll
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\bin\Debug\System.Data.SQLite.xml
 C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.Up2Date
+C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\FlightLib\bin\Debug\System.Data.SQLite.xml
+C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\FlightLib\obj\Debug\FlightLib.csproj.Up2Date
