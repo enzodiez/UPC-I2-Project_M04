@@ -16,15 +16,7 @@ namespace SimulatorInterface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // Primero mostramos el login
-            LoginForm login = new LoginForm();
-            Application.Run(login);
-
-            // Solo abrimos el simulador si el login ha sido correcto
-            if (login.IsLoginCorrect())
-            {
-                Application.Run(new MainInterface());
-            }
+            Application.Run(new MainInterface());
         }
     }
 }
