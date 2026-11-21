@@ -40,10 +40,6 @@ namespace SimulatorInterface
             return loginCorrect;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             string user = textBoxUser.Text.Trim();
@@ -56,10 +52,10 @@ namespace SimulatorInterface
                 return;
             }
 
-            // Rechazamos comillas simples para no romper la consulta SQL
-            if (user.Contains("'") || pass.Contains("'"))
+            // Rechazamos comillas simples y dobles para no romper la consulta SQL
+            if (user.Contains("'") || pass.Contains("'") || user.Contains('"') || pass.Contains('"'))
             {
-                MessageBox.Show("No se permiten comillas simples (').");
+                MessageBox.Show("No se permiten comillas simples (') ni dobles (\").");
                 return;
             }
 
