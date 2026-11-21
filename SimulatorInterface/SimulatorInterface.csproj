@@ -58,7 +58,7 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\..\..\..\..\proyectos\practicaDB\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\..\practicaDB\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -121,7 +121,6 @@
     <Compile Include="SecurityCiclesInterface.Designer.cs">
       <DependentUpon>SecurityCiclesInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserDatabase.cs" />
     <EmbeddedResource Include="ChangeSpeedsInterface.resx">
       <DependentUpon>ChangeSpeedsInterface.cs</DependentUpon>
     </EmbeddedResource>

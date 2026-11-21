@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SQLite;
 
-namespace SimulatorInterface
+namespace FlightLib
 {
-    class UserDatabase
+    public class UserDatabase
     {
         private SQLiteConnection cnx;
         private string dataSource;

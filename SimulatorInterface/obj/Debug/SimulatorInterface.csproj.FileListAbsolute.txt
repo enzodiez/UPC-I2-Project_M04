@@ -247,3 +247,7 @@ C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\SimulatorInt
 C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\Simulato.39EC8789.Up2Date
 C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.exe
 C:\Users\dpena\Desktop\INFO 2\CORREGIDO PROYECTO\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.pdb
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.LoginForm.resources
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\obj\Debug\SimulatorInterface.RegisterForm.resources
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\System.Data.SQLite.dll
+C:\Users\enzod\Documents\EETAC AeroTeleco\Asignaturas 3rQuat\Informática 2\UPC-I2-Project_M04\SimulatorInterface\bin\Debug\System.Data.SQLite.xml
