@@ -49,6 +49,11 @@ namespace SimulatorInterface
 
             try
             {
+                if (!db.ExisteArchivo())
+                {
+                    MessageBox.Show("Error: No se encuentra el archivo de la base de datos 'usuarios.db'.");
+                    return;
+                }
                 db.Open();
                 bool saved = db.Register(user, pass);
                 db.Close();

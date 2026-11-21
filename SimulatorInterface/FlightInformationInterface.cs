@@ -14,16 +14,11 @@ namespace SimulatorInterface
     public partial class FlightInformationInterface : Form
     {
         FlightPlanList listaPlanes;
-        int f1 = -1, f2 = -1;
         public FlightInformationInterface(FlightPlanList listaPlanes)
         {
             InitializeComponent();
             this.listaPlanes = listaPlanes;
         }
-        public int GetSelectedRow1()
-        { return f1; }
-        public int GetSelectedRow2()
-        { return f2; }
         private void FlightInformationInterface_Load(object sender, EventArgs e)
         {
             flightsGrid.ReadOnly = true;
@@ -57,24 +52,32 @@ namespace SimulatorInterface
                 flightsGrid[8, i].Value = plan.GetDestino().GetY();
             }
         }
+
+        // Muestra las distancias entre el vuelo de la fila pulsada y todos los demás
         private void flightsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (f1 == -1)
+            if (e.RowIndex >= 0)
             {
-                f1 = e.RowIndex;
-                if (f1 != -1)
+                if (listaPlanes.GetIndex() < 2)
                 {
-                    MessageBox.Show("Flight 1 selected.");
+                    MessageBox.Show("No hay otros vuelos en el espacio aéreo para calcular distancias.");
+                    return;
                 }
-            }
-            else if (f2 == -1)
-            {
-                f2 = e.RowIndex;
-                if (f2 != -1)
+
+                FlightPlan seleccionado = listaPlanes.GetFlightPlan(e.RowIndex);
+                string texto = $"Distancias desde {seleccionado.GetCompany()} {seleccionado.GetId()}:\n\n";
+
+                for (int i = 0; i < listaPlanes.GetIndex(); i++)
                 {
-                    MessageBox.Show("Flight 2 selected.");
-                    Close();
+                    if (i != e.RowIndex)
+                    {
+                        FlightPlan otro = listaPlanes.GetFlightPlan(i);
+                        double dist = Math.Round(seleccionado.Distance(otro), 2);
+                        texto += $"- {otro.GetCompany()} {otro.GetId()}: {dist}\n";
+                    }
                 }
+
+                MessageBox.Show(texto, "Distancias con el resto de vuelos");
             }
         }
     }

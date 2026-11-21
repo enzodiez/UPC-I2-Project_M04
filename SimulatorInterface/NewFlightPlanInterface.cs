@@ -59,7 +59,7 @@ namespace SimulatorInterface
                 // Leer los aviones
                 for (int i=1; i<lineas.Length; i++)
                 {
-                    if (Convert.ToString(lineas[i])==null || Convert.ToString(lineas[i])==" ")
+                    if (string.IsNullOrWhiteSpace(lineas[i]))
                         continue;
 
                     string[] datos = lineas[i].Split(';');
@@ -105,7 +105,7 @@ namespace SimulatorInterface
                 MessageBox.Show("Simulation loaded successfully.");
                 Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error loading simulation.");
             }
@@ -140,6 +140,7 @@ namespace SimulatorInterface
                     FX.Clear();
                     FY.Clear();
                     Speed.Clear();
+                    altitude.Clear();
                 }
             }
             catch (FormatException)
@@ -168,6 +169,7 @@ namespace SimulatorInterface
                 progressBarLoad.Minimum = 0;
                 progressBarLoad.Value = 0;
                 contadorfile = 0;
+                int errores = 0;
 
                 foreach (string linea in lineas)
                 {
@@ -192,7 +194,7 @@ namespace SimulatorInterface
 
                             if (Xi < 0 || Yi < 0 || Xf < 0 || Yf < 0 || vel <= 0 || id == "" || company == "" || listaPlanes.ExisteVuelo(id, company))
                             {
-                                continue;
+                                errores++;
                             }
 
                             listaPlanes.AddFlightPlan(new FlightPlan(id, company, Xi, Yi, Xf, Yf, vel));
@@ -201,11 +203,15 @@ namespace SimulatorInterface
                         catch (FormatException)
                         {
                             // Si una línea tiene texto inválido en un número, la saltamos y seguimos con la siguiente
-                            continue;
+                            errores++;
                         }
                     }
                 }
                 progressBarLoad.Visible = false;
+                if (errores > 0)
+                {
+                    MessageBox.Show($"Se han omitido {errores} líneas por tener errores de formato, datos inválidos o vuelos duplicados.");
+                }
                 MessageBox.Show($"You successfully loaded {contadorfile} flights from the file you selected! You now have: {listaPlanes.GetIndex()} flights in total");
             }
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SQLite;
+using System.IO;
 
 namespace FlightLib
 {
@@ -12,12 +13,20 @@ namespace FlightLib
     {
         private SQLiteConnection cnx;
         private string dataSource;
+        private string fileName;
 
         // Constructor, guarda el nombre del archivo de la base de datos
         public UserDatabase(string fileName)
         {
+            this.fileName = fileName;
             dataSource = "Data Source=" + fileName + ";Version=3;";
             cnx = null;
+        }
+
+        // Comprueba si el fichero de la base de datos existe
+        public bool ExisteArchivo()
+        {
+            return File.Exists(fileName);
         }
 
         // Abre la conexion, si el archivo no existe, SQLite lo crea

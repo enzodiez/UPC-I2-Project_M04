@@ -1,87 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|c:\\users\\dpena\\desktop\\info 2\\corregido proyecto\\upc-i2-project_m04\\flightlib\\userdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\userdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|c:\\users\\dpena\\desktop\\info 2\\corregido proyecto\\upc-i2-project_m04\\flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2AFDC032-0F6C-41F7-B487-A6A53A8B1C1C}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\dpena\\desktop\\info 2\\corregido proyecto\\upc-i2-project_m04\\simulatorinterface\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|c:\\users\\dpena\\desktop\\info 2\\corregido proyecto\\upc-i2-project_m04\\simulatorinterface\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96BD802E-CED6-474A-8E07-3E29D0EC84B0}|SimulatorInterface\\SimulatorInterface.csproj|solutionrelative:simulatorinterface\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\enzod\\Documents\\EETAC AeroTeleco\\Asignaturas 3rQuat\\Inform\u00E1tica 2\\UPC-I2-Project_M04\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FlightPlanList.cs",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\FlightLib\\FlightPlanList.cs",
-              "RelativeDocumentMoniker": "FlightLib\\FlightPlanList.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\FlightLib\\FlightPlanList.cs",
-              "RelativeToolTip": "FlightLib\\FlightPlanList.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAkwCoAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T17:14:16.41Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RegisterForm.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\SimulatorInterface\\RegisterForm.cs",
-              "RelativeDocumentMoniker": "SimulatorInterface\\RegisterForm.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\SimulatorInterface\\RegisterForm.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimulatorInterface\\RegisterForm.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T17:13:58.027Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserDatabase.cs",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\FlightLib\\UserDatabase.cs",
-              "RelativeDocumentMoniker": "FlightLib\\UserDatabase.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\FlightLib\\UserDatabase.cs",
-              "RelativeToolTip": "FlightLib\\UserDatabase.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T17:13:48.8Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginForm.cs",
-              "DocumentMoniker": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\SimulatorInterface\\LoginForm.cs",
-              "RelativeDocumentMoniker": "SimulatorInterface\\LoginForm.cs",
-              "ToolTip": "C:\\Users\\dpena\\Desktop\\INFO 2\\CORREGIDO PROYECTO\\UPC-I2-Project_M04\\SimulatorInterface\\LoginForm.cs",
-              "RelativeToolTip": "SimulatorInterface\\LoginForm.cs",
-              "ViewState": "AgIAAB0AAAAANBr5vKLqvycAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T16:38:43.82Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

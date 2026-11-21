@@ -148,6 +148,7 @@ namespace FlightLib
             return distanciaMinima < 2 * distanciaSeguridad;
         }
 
+        // Avanza el avión durante el tiempo indicado
         public void Mover(double tiempo)
         {
             if (EnDestino())

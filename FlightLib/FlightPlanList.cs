@@ -242,6 +242,7 @@ namespace FlightLib
             for(int i=0;i< flightsPlans.Count; i++)
             {
                 this.GetFlightPlan(i).Restart(); //reiniciamos la posicion actual de todos los vuelos
+                historial.Clear(); // Elimina los pasos guardados en el Stack de posiciones.
             }//no necesitamos llamar a flightplans. (usamos this porque estamos dentro de la clase)
         }
 

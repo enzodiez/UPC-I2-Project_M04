@@ -36,16 +36,19 @@
             // fpView
             // 
             this.fpView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fpView.Location = new System.Drawing.Point(100, 12);
+            this.fpView.Location = new System.Drawing.Point(28, 25);
+            this.fpView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fpView.Name = "fpView";
-            this.fpView.Size = new System.Drawing.Size(286, 278);
+            this.fpView.RowHeadersWidth = 62;
+            this.fpView.Size = new System.Drawing.Size(720, 221);
             this.fpView.TabIndex = 0;
             // 
             // returnBut
             // 
-            this.returnBut.Location = new System.Drawing.Point(137, 296);
+            this.returnBut.Location = new System.Drawing.Point(245, 312);
+            this.returnBut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.returnBut.Name = "returnBut";
-            this.returnBut.Size = new System.Drawing.Size(186, 23);
+            this.returnBut.Size = new System.Drawing.Size(279, 35);
             this.returnBut.TabIndex = 1;
             this.returnBut.Text = "Return To Main Interface";
             this.returnBut.UseVisualStyleBackColor = true;
@@ -53,11 +56,12 @@
             // 
             // ClickedData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 398);
+            this.ClientSize = new System.Drawing.Size(780, 397);
             this.Controls.Add(this.returnBut);
             this.Controls.Add(this.fpView);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ClickedData";
             this.Text = "Flight Plan Data";
             this.Load += new System.EventHandler(this.ClickedData_Load);

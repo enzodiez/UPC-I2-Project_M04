@@ -24,6 +24,10 @@ namespace SimulatorInterface
             // Creamos la tabla de usuarios si todavia no existe
             try
             {
+                if (!db.ExisteArchivo())
+                {
+                    MessageBox.Show("Aviso: No se encontró el archivo de base de datos 'usuarios.db'. Se creará uno nuevo.");
+                }
                 db.Open();
                 db.CreateTable();
                 db.Close();
@@ -61,6 +65,11 @@ namespace SimulatorInterface
 
             try
             {
+                if (!db.ExisteArchivo())
+                {
+                    MessageBox.Show("Error: No se encuentra el archivo de la base de datos 'usuarios.db'.");
+                    return;
+                }
                 db.Open();
                 bool correct = db.Login(user, pass);
                 db.Close();

@@ -47,7 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.altitude = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.fileselectorBtn = new System.Windows.Forms.Button();
@@ -170,7 +170,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(58, 31);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(361, 25);
+            this.label3.Size = new System.Drawing.Size(540, 37);
             this.label3.TabIndex = 13;
             this.label3.Text = "FLIGHT PLAN CREATION PANEL";
             // 
@@ -217,12 +217,12 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "Altitude (FL)";
             // 
-            // textBox2
+            // altitude
             // 
-            this.textBox2.Location = new System.Drawing.Point(174, 555);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(130, 26);
-            this.textBox2.TabIndex = 19;
+            this.altitude.Location = new System.Drawing.Point(174, 555);
+            this.altitude.Name = "altitude";
+            this.altitude.Size = new System.Drawing.Size(130, 26);
+            this.altitude.TabIndex = 19;
             // 
             // label8
             // 
@@ -230,7 +230,7 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(27, 98);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(133, 16);
+            this.label8.Size = new System.Drawing.Size(197, 25);
             this.label8.TabIndex = 20;
             this.label8.Text = "Enter Flight Plan data";
             // 
@@ -238,15 +238,15 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(30, 628);
+            this.label9.Location = new System.Drawing.Point(575, 298);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(117, 16);
+            this.label9.Size = new System.Drawing.Size(171, 25);
             this.label9.TabIndex = 21;
             this.label9.Text = "Load data from file";
             // 
             // fileselectorBtn
             // 
-            this.fileselectorBtn.Location = new System.Drawing.Point(34, 680);
+            this.fileselectorBtn.Location = new System.Drawing.Point(579, 350);
             this.fileselectorBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fileselectorBtn.Name = "fileselectorBtn";
             this.fileselectorBtn.Size = new System.Drawing.Size(147, 152);
@@ -257,7 +257,7 @@
             // 
             // routeBox
             // 
-            this.routeBox.Location = new System.Drawing.Point(234, 705);
+            this.routeBox.Location = new System.Drawing.Point(779, 375);
             this.routeBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.routeBox.Name = "routeBox";
             this.routeBox.Size = new System.Drawing.Size(346, 26);
@@ -266,7 +266,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(230, 680);
+            this.label10.Location = new System.Drawing.Point(775, 350);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(163, 20);
             this.label10.TabIndex = 24;
@@ -275,7 +275,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(230, 755);
+            this.label11.Location = new System.Drawing.Point(775, 425);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(120, 20);
             this.label11.TabIndex = 25;
@@ -283,7 +283,7 @@
             // 
             // progressBarLoad
             // 
-            this.progressBarLoad.Location = new System.Drawing.Point(234, 797);
+            this.progressBarLoad.Location = new System.Drawing.Point(779, 467);
             this.progressBarLoad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.progressBarLoad.Name = "progressBarLoad";
             this.progressBarLoad.Size = new System.Drawing.Size(348, 35);
@@ -292,7 +292,7 @@
             // 
             // CloseBtn
             // 
-            this.CloseBtn.Location = new System.Drawing.Point(234, 872);
+            this.CloseBtn.Location = new System.Drawing.Point(779, 542);
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(130, 41);
             this.CloseBtn.TabIndex = 27;
@@ -304,7 +304,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 948);
+            this.ClientSize = new System.Drawing.Size(1216, 653);
             this.Controls.Add(this.CloseBtn);
             this.Controls.Add(this.progressBarLoad);
             this.Controls.Add(this.label11);
@@ -313,7 +313,7 @@
             this.Controls.Add(this.fileselectorBtn);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.altitude);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -361,7 +361,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox altitude;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button fileselectorBtn;
