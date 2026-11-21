@@ -64,22 +64,57 @@ namespace SimulatorInterface
 
         private void addANewFlightPlanToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool estabaAutomatico = relojAuto.Enabled;
+            relojAuto.Stop();
+
             int vuelosAntes = listaPlanes.GetIndex();
 
             NewFlightPlanInterface form = new NewFlightPlanInterface(listaPlanes);
             form.ShowDialog();
 
-            int vuelosDespues = listaPlanes.GetIndex();
-
-            if (vuelosDespues > vuelosAntes)
+            if (form.EsSimulacionCargada())
             {
-                for (int i = vuelosAntes; i < vuelosDespues; i++)
+                securityDistance = form.DameDistanciaCargada();
+                cycleDuration = form.DameCicloCargado();
+
+                for (int i=0; i<aircraftsPics.Count; i++)
+                {
+                    panel1.Controls.Remove(aircraftsPics[i]);
+                    aircraftsPics[i].Dispose();
+                }
+
+                aircraftsPics.Clear();
+
+                // Crear los iconos de los vuelos cargados
+                for (int i = 0; i < listaPlanes.GetIndex(); i++)
                 {
                     CrearIconoAvion(i, listaPlanes.GetFlightPlan(i));
                 }
 
-                panel1.Invalidate();
-                VerificarConflictosFuturos();
+                automoverBtn.Text = "Automatic simulation";
+                HabilitarBotonesSimulacion(true);
+                ActualizarPosicionAviones();
+            }
+
+            else
+            {
+                // Funcionamiento original: añadir nuevos aviones
+                int vuelosDespues = listaPlanes.GetIndex();
+
+                if (vuelosDespues>vuelosAntes)
+                {
+                    for (int i=vuelosAntes; i<vuelosDespues; i++)
+                    {
+                        CrearIconoAvion(i,listaPlanes.GetFlightPlan(i));
+                    }
+                    panel1.Invalidate();
+                    VerificarConflictosFuturos();
+                }
+
+                if (estabaAutomatico && listaPlanes.HayVuelosEnCurso())
+                {
+                    relojAuto.Start();
+                }
             }
         }
 
@@ -179,6 +214,7 @@ namespace SimulatorInterface
             }
             panel1.Invalidate();
             AlarmaConflictos();
+            undoBtn.Enabled = listaPlanes.PuedeDeshacer();
         }
 
         private Image RotateImage(Image img, float angle)
@@ -363,6 +399,8 @@ namespace SimulatorInterface
             conflictsBtn.Enabled = estado; // Conflicts
             changeSpeedBtn.Enabled = estado; // Change Speeds
             restartBtn.Enabled = estado; // Restart
+            saveSimBtn.Enabled = estado;
+            undoBtn.Enabled = estado && listaPlanes.PuedeDeshacer();
         }
 
         private void restartBtn_Click(object sender, EventArgs e)
@@ -403,6 +441,42 @@ namespace SimulatorInterface
 
             listaPlanes.ResetAll();
             ActualizarPosicionAviones();
+        }
+
+           private void undoBtn_Click(object sender, EventArgs e)
+        {
+            relojAuto.Stop();
+            automoverBtn.Text = "Automatic simulation";
+            if (listaPlanes.DeshacerUltimoPaso())
+            {
+                ActualizarPosicionAviones();
+            }
+        }
+
+        private void saveSimBtn_Click(object sender, EventArgs e)
+        {
+            bool estabaAutomatico = relojAuto.Enabled;
+            relojAuto.Stop();
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Text files (*.txt)|*.txt";
+            dialog.FileName = "simulacion.txt";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    listaPlanes.GuardarEnArchivo(dialog.FileName, securityDistance, cycleDuration);
+                    MessageBox.Show("Simulation saved successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving simulation: " + ex.Message);
+                }
+            }
+            dialog.Dispose();
+            if (estabaAutomatico && listaPlanes.HayVuelosEnCurso())
+            {
+                relojAuto.Start();
+            }
         }
     }
 }

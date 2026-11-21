@@ -16,11 +16,99 @@ namespace SimulatorInterface
     {
         int contadorfile = 0;
         FlightPlanList listaPlanes;
+        bool simulacionCargada = false;
+        double distanciaCargada;
+        double cicloCargado;
 
+        public bool EsSimulacionCargada()
+        {
+            return simulacionCargada;
+        }
+        public double DameDistanciaCargada()
+        {
+            return distanciaCargada;
+        }
+        public double DameCicloCargado()
+        {
+            return cicloCargado;
+        }
         public NewFlightPlanInterface(FlightPlanList listaPlanes)
         {
             InitializeComponent();
             this.listaPlanes = listaPlanes;
+        }
+        //Método para cargar simulaciones:
+        private void CargarSimulacion(string[] lineas)
+        {
+            try
+            {
+                // Leer los datos generales
+                string[] config = lineas[0].Split(';');
+
+                if (config.Length != 3 || config[0] != "SIMULACION")
+                    throw new FormatException("Formato incorrecto.");
+
+                double distancia = Convert.ToDouble(config[1]);
+                double duracion = Convert.ToDouble(config[2]);
+
+                if (distancia <= 0 || duracion <= 0)
+                    throw new FormatException("Parámetros incorrectos.");
+
+                FlightPlanList nuevos = new FlightPlanList();
+
+                // Leer los aviones
+                for (int i=1; i<lineas.Length; i++)
+                {
+                    if (Convert.ToString(lineas[i])==null || Convert.ToString(lineas[i])==" ")
+                        continue;
+
+                    string[] datos = lineas[i].Split(';');
+
+                    if (datos.Length != 10)
+                        throw new FormatException("Datos de vuelo incorrectos.");
+
+                    string id = datos[0].Trim();
+                    string company = datos[1].Trim();
+
+                    double xi = Convert.ToDouble(datos[2]);
+                    double yi = Convert.ToDouble(datos[3]);
+                    double xf = Convert.ToDouble(datos[4]);
+                    double yf = Convert.ToDouble(datos[5]);
+                    double velocidad = Convert.ToDouble(datos[6]);
+
+                    double xa = Convert.ToDouble(datos[7]);
+                    double ya = Convert.ToDouble(datos[8]);
+
+                    bool completado = Convert.ToBoolean(datos[9]);
+
+                    if (id == "" || company == "" || velocidad <= 0 ||
+                        nuevos.ExisteVuelo(id, company))
+                        throw new FormatException("Datos de vuelo no válidos.");
+
+                    FlightPlan avion = new FlightPlan(id, company, xi, yi, xf, yf, velocidad);
+                    avion.GetCurrentPosition().SetX(xa);
+                    avion.GetCurrentPosition().SetY(ya);
+                    avion.SetFlightCompleted(completado);
+                    nuevos.AddFlightPlan(avion);
+                }
+
+                if (nuevos.GetIndex() == 0)
+                    throw new FormatException("No hay vuelos guardados.");
+
+                // Sustituir la simulación anterior
+                listaPlanes.SustituirPlanes(nuevos);
+
+                distanciaCargada = distancia;
+                cicloCargado = duracion;
+                simulacionCargada = true;
+
+                MessageBox.Show("Simulation loaded successfully.");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading simulation.");
+            }
         }
         private void Guardar_Click(object sender, EventArgs e)
         {
@@ -70,6 +158,11 @@ namespace SimulatorInterface
             {
                 routeBox.Text = openfile.FileName;
                 string[] lineas = File.ReadAllLines(openfile.FileName);
+                if (lineas.Length > 0 && lineas[0].StartsWith("SIMULACION"))
+                {
+                    CargarSimulacion(lineas);
+                    return;
+                }
                 progressBarLoad.Visible = true;
                 progressBarLoad.Maximum = lineas.Length;
                 progressBarLoad.Minimum = 0;

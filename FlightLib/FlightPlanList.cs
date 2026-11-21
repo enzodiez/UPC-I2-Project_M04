@@ -4,12 +4,78 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace FlightLib
 {
     public class FlightPlanList
     {
         List<FlightPlan> flightsPlans = new List<FlightPlan>();
+        List<List<FlightPlan>> historial = new List<List<FlightPlan>>();
+
+        //Método para guardar estado:
+
+        private void GuardarEstado()
+        {
+            List<FlightPlan> estado = new List<FlightPlan>();
+            for (int i = 0; i < flightsPlans.Count; i++)
+            {
+                FlightPlan avion = flightsPlans[i];
+                FlightPlan copia = new FlightPlan(avion.GetId(),avion.GetCompany(),avion.GetOrigen().GetX(),avion.GetOrigen().GetY(),avion.GetDestino().GetX(),avion.GetDestino().GetY(),avion.GetVelocidad());
+
+                copia.GetCurrentPosition().SetX(avion.GetCurrentPosition().GetX());
+                copia.GetCurrentPosition().SetY(avion.GetCurrentPosition().GetY());
+                copia.SetFlightCompleted(avion.GetFlightCompleted());
+                estado.Add(copia);
+            }
+            historial.Add(estado);
+        }
+
+        //Método para deshacer:
+        public bool PuedeDeshacer() //Comprobar.
+        {
+            return historial.Count > 0;
+        }
+        public bool DeshacerUltimoPaso()
+        {
+            if (!PuedeDeshacer())
+                return false;
+            int ultimo = historial.Count - 1;
+            flightsPlans = historial[ultimo];
+            historial.RemoveAt(ultimo);
+            return true;
+        }
+
+        //Guardar en fichero:
+
+        public void GuardarEnArchivo(string ruta, double securityDistance, double cycleDuration)
+        {
+            StreamWriter writer = new StreamWriter(ruta);
+            // Datos generales
+            writer.WriteLine("SIMULACION;" + securityDistance + ";" + cycleDuration);
+
+            // Guardamos todos
+            for (int i = 0; i < flightsPlans.Count; i++)
+            {
+                FlightPlan avion = flightsPlans[i];
+                writer.WriteLine(avion.GetId() + ";" +avion.GetCompany() + ";" +avion.GetOrigen().GetX() + ";" +avion.GetOrigen().GetY() + ";" +avion.GetDestino().GetX() + ";" +avion.GetDestino().GetY() + ";" +avion.GetVelocidad() + ";" +avion.GetCurrentPosition().GetX() + ";" +avion.GetCurrentPosition().GetY() + ";" +avion.GetFlightCompleted());
+            }
+            writer.Close();
+        }
+        //Al cargar simulaciones guardadas, necesitamos un método que sustituya los aviones.
+
+        public void SustituirPlanes(FlightPlanList nuevaLista)
+        {
+            flightsPlans.Clear();
+            for (int i = 0; i < nuevaLista.GetIndex(); i++)
+            {
+                flightsPlans.Add(nuevaLista.GetFlightPlan(i));
+            }
+            historial.Clear();
+        }
+
+
+        //Versión 1:
         public int GetIndex()
         {
             return flightsPlans.Count;
@@ -40,6 +106,9 @@ namespace FlightLib
         }
         public void Mover(double tiempo)
         {
+            if (!HayVuelosEnCurso())
+                return;
+            GuardarEstado();
             for (int i = 0; i < flightsPlans.Count; i++)
             {
                 if (!flightsPlans[i].GetFlightCompleted())
