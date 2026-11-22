@@ -215,6 +215,7 @@ namespace SimulatorInterface
                             if (Xi < 0 || Yi < 0 || Xf < 0 || Yf < 0 || vel <= 0 || id == "" || company == "" || listaPlanes.ExisteVuelo(id, company))
                             {
                                 errores++;
+                                continue;
                             }
 
                             listaPlanes.AddFlightPlan(new FlightPlan(id, company, Xi, Yi, Xf, Yf, vel));
@@ -232,7 +233,10 @@ namespace SimulatorInterface
                 {
                     MessageBox.Show($"Se han omitido {errores} líneas por tener errores de formato, datos inválidos o vuelos duplicados.");
                 }
-                MessageBox.Show($"You successfully loaded {contadorfile} flights from the file you selected! You now have: {listaPlanes.GetIndex()} flights in total");
+                if (contadorfile != 0)
+                {
+                    MessageBox.Show($"You successfully loaded {contadorfile} flights from the file you selected! You now have: {listaPlanes.GetIndex()} flights in total");
+                }
             }
         }
 
