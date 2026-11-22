@@ -47,23 +47,43 @@ namespace FlightLib
 
 
         //Guardar en fichero:
-
         public void GuardarEnArchivo(string ruta, double securityDistance, double cycleDuration)
         {
             StreamWriter writer = new StreamWriter(ruta);
             // Datos generales
             writer.WriteLine("SIMULACION;" + securityDistance + ";" + cycleDuration);
 
-            // Guardamos todos
+            // Guardamos todos los aviones
             for (int i = 0; i < flightsPlans.Count; i++)
             {
                 FlightPlan avion = flightsPlans[i];
                 writer.WriteLine(avion.GetId() + ";" +avion.GetCompany() + ";" +avion.GetOrigen().GetX() + ";" +avion.GetOrigen().GetY() + ";" +avion.GetDestino().GetX() + ";" +avion.GetDestino().GetY() + ";" +avion.GetVelocidad() + ";" +avion.GetCurrentPosition().GetX() + ";" +avion.GetCurrentPosition().GetY() + ";" +avion.GetFlightCompleted());
             }
+
+            // Guardamos cada estado de la pila separado por una cabecera ESTADO
+            foreach (List<FlightPlan> estado in historial)
+            {
+                writer.WriteLine("ESTADO");
+                for (int i = 0; i < estado.Count; i++)
+                {
+                    FlightPlan avion = estado[i];
+                    writer.WriteLine(avion.GetId() + ";" + avion.GetCompany() + ";" + avion.GetOrigen().GetX() + ";" + avion.GetOrigen().GetY() + ";" + avion.GetDestino().GetX() + ";" + avion.GetDestino().GetY() + ";" + avion.GetVelocidad() + ";" + avion.GetCurrentPosition().GetX() + ";" + avion.GetCurrentPosition().GetY() + ";" + avion.GetFlightCompleted());
+                }
+            }
             writer.Close();
         }
-        //Al cargar simulaciones guardadas, necesitamos un método que sustituya los aviones.
 
+        // Restaura la pila de historial volcando una pila auxiliar leída del fichero
+        public void RestaurarHistorial(Stack<List<FlightPlan>> pilaLeida)
+        {
+            historial.Clear();
+            while (pilaLeida.Count > 0)
+            {
+                historial.Push(pilaLeida.Pop());
+            }
+        }
+
+        //Al cargar simulaciones guardadas, necesitamos un método que sustituya los aviones.
         public void SustituirPlanes(FlightPlanList nuevaLista)
         {
             flightsPlans.Clear();

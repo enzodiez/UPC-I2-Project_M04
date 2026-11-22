@@ -37,7 +37,8 @@ namespace SimulatorInterface
             InitializeComponent();
             this.listaPlanes = listaPlanes;
         }
-        //Método para cargar simulaciones:
+
+        // Carga una simulación completa y su historial
         private void CargarSimulacion(string[] lineas)
         {
             try
@@ -55,12 +56,21 @@ namespace SimulatorInterface
                     throw new FormatException("Parámetros incorrectos.");
 
                 FlightPlanList nuevos = new FlightPlanList();
+                Stack<List<FlightPlan>> pilaTemporal = new Stack<List<FlightPlan>>();
+                List<FlightPlan> estadoActual = null;
 
                 // Leer los aviones
                 for (int i=1; i<lineas.Length; i++)
                 {
                     if (string.IsNullOrWhiteSpace(lineas[i]))
                         continue;
+
+                    if (lineas[i].Trim() == "ESTADO")
+                    {
+                        estadoActual = new List<FlightPlan>();
+                        pilaTemporal.Push(estadoActual);
+                        continue;
+                    }
 
                     string[] datos = lineas[i].Split(';');
 
@@ -81,15 +91,24 @@ namespace SimulatorInterface
 
                     bool completado = Convert.ToBoolean(datos[9]);
 
-                    if (id == "" || company == "" || velocidad <= 0 ||
-                        nuevos.ExisteVuelo(id, company))
+                    if (id == "" || company == "" || velocidad <= 0)
                         throw new FormatException("Datos de vuelo no válidos.");
 
                     FlightPlan avion = new FlightPlan(id, company, xi, yi, xf, yf, velocidad);
                     avion.GetCurrentPosition().SetX(xa);
                     avion.GetCurrentPosition().SetY(ya);
                     avion.SetFlightCompleted(completado);
-                    nuevos.AddFlightPlan(avion);
+
+                    if (estadoActual == null)
+                    {
+                        if (nuevos.ExisteVuelo(id, company))
+                            throw new FormatException("Datos de vuelo duplicados.");
+                        nuevos.AddFlightPlan(avion);
+                    }
+                    else
+                    {
+                        estadoActual.Add(avion);
+                    }
                 }
 
                 if (nuevos.GetIndex() == 0)
@@ -97,6 +116,7 @@ namespace SimulatorInterface
 
                 // Sustituir la simulación anterior
                 listaPlanes.SustituirPlanes(nuevos);
+                listaPlanes.RestaurarHistorial(pilaTemporal);
 
                 distanciaCargada = distancia;
                 cicloCargado = duracion;
