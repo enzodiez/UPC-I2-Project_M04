@@ -13,12 +13,12 @@ namespace SimulatorInterface
 {
     public partial class LoginForm : Form
     {
-        private UserDatabase db;
+        private Database db;
         private bool loginCorrect;   // true si el usuario ha entrado bien
         public LoginForm()
         {
             InitializeComponent();
-            db = new UserDatabase("usuarios.db");
+            db = new Database("usuarios.db");
             loginCorrect = false;
 
             // Creamos la tabla de usuarios si todavia no existe

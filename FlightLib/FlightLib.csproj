@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserDatabase.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="FlightPlan.cs" />
     <Compile Include="FlightPlanList.cs" />
     <Compile Include="Position.cs" />

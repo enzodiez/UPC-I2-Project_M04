@@ -14,42 +14,49 @@ namespace SimulatorInterface
     public partial class FlightInformationInterface : Form
     {
         FlightPlanList listaPlanes;
+        Database db;
         public FlightInformationInterface(FlightPlanList listaPlanes)
         {
             InitializeComponent();
             this.listaPlanes = listaPlanes;
+            db = new Database("usuarios.db");
         }
         private void FlightInformationInterface_Load(object sender, EventArgs e)
         {
             flightsGrid.ReadOnly = true;
             flightsGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            flightsGrid.ColumnCount = 9;
+            flightsGrid.ColumnCount = 11;
             flightsGrid.RowCount = this.listaPlanes.GetIndex();
             flightsGrid.Columns[0].HeaderText = "Aircraft Airline";
-            flightsGrid.Columns[1].HeaderText = "Flight Plan ID";
-            flightsGrid.Columns[2].HeaderText = "Speed";
-            flightsGrid.Columns[3].HeaderText = "Initial position X";
-            flightsGrid.Columns[4].HeaderText = "Initial position Y";
-            flightsGrid.Columns[5].HeaderText = "Current position X";
-            flightsGrid.Columns[6].HeaderText = "Current position Y";
-            flightsGrid.Columns[7].HeaderText = "Final position X";
-            flightsGrid.Columns[8].HeaderText = "Final position Y";
+            flightsGrid.Columns[1].HeaderText = "Airline Telefone";
+            flightsGrid.Columns[2].HeaderText = "Airline email";
+            flightsGrid.Columns[3].HeaderText = "Flight Plan ID";
+            flightsGrid.Columns[4].HeaderText = "Speed";
+            flightsGrid.Columns[5].HeaderText = "Initial position X";
+            flightsGrid.Columns[6].HeaderText = "Initial position Y";
+            flightsGrid.Columns[7].HeaderText = "Current position X";
+            flightsGrid.Columns[8].HeaderText = "Current position Y";
+            flightsGrid.Columns[9].HeaderText = "Final position X";
+            flightsGrid.Columns[10].HeaderText = "Final position Y";
             flightsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             for (int i = 0; i < listaPlanes.GetIndex(); i++)
             {
                 FlightPlan plan = listaPlanes.GetFlightPlan(i);
+                (string telefono, string email) = db.AirlineTelEmail(plan.GetCompany());
                 flightsGrid.Rows[i].HeaderCell.Value = $"Flight Plan {i}";
                 flightsGrid[0, i].Value = plan.GetCompany();
-                flightsGrid[1, i].Value = plan.GetId();
-                flightsGrid[2, i].Value = Math.Round(plan.GetVelocidad(), 2);
-                flightsGrid[3, i].Value = plan.GetOrigen().GetX();
-                flightsGrid[4, i].Value = plan.GetOrigen().GetY();
-                flightsGrid[5, i].Value = Math.Round(plan.GetCurrentPosition().GetX(), 2);
-                flightsGrid[6, i].Value = Math.Round(plan.GetCurrentPosition().GetY(), 2);
-                flightsGrid[7, i].Value = plan.GetDestino().GetX();
-                flightsGrid[8, i].Value = plan.GetDestino().GetY();
+                flightsGrid[1, i].Value = telefono;
+                flightsGrid[2, i].Value = email;
+                flightsGrid[3, i].Value = plan.GetId();
+                flightsGrid[4, i].Value = Math.Round(plan.GetVelocidad(), 2);
+                flightsGrid[5, i].Value = plan.GetOrigen().GetX();
+                flightsGrid[6, i].Value = plan.GetOrigen().GetY();
+                flightsGrid[7, i].Value = Math.Round(plan.GetCurrentPosition().GetX(), 2);
+                flightsGrid[8, i].Value = Math.Round(plan.GetCurrentPosition().GetY(), 2);
+                flightsGrid[9, i].Value = plan.GetDestino().GetX();
+                flightsGrid[10, i].Value = plan.GetDestino().GetY();
             }
         }
 

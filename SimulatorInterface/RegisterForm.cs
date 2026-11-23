@@ -13,11 +13,11 @@ namespace SimulatorInterface
 {
     public partial class RegisterForm : Form
     {
-        private UserDatabase db;
+        private Database db;
         public RegisterForm()
         {
             InitializeComponent();
-            db = new UserDatabase("usuarios.db");
+            db = new Database("usuarios.db");
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)

@@ -40,12 +40,12 @@
             this.fpView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fpView.Name = "fpView";
             this.fpView.RowHeadersWidth = 62;
-            this.fpView.Size = new System.Drawing.Size(720, 221);
+            this.fpView.Size = new System.Drawing.Size(1168, 221);
             this.fpView.TabIndex = 0;
             // 
             // returnBut
             // 
-            this.returnBut.Location = new System.Drawing.Point(245, 312);
+            this.returnBut.Location = new System.Drawing.Point(475, 312);
             this.returnBut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.returnBut.Name = "returnBut";
             this.returnBut.Size = new System.Drawing.Size(279, 35);
@@ -58,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 397);
+            this.ClientSize = new System.Drawing.Size(1221, 397);
             this.Controls.Add(this.returnBut);
             this.Controls.Add(this.fpView);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

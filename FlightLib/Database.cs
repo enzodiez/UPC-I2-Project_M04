@@ -9,14 +9,14 @@ using System.IO;
 
 namespace FlightLib
 {
-    public class UserDatabase
+    public class Database
     {
         private SQLiteConnection cnx;
         private string dataSource;
         private string fileName;
 
         // Constructor, guarda el nombre del archivo de la base de datos
-        public UserDatabase(string fileName)
+        public Database(string fileName)
         {
             this.fileName = fileName;
             dataSource = "Data Source=" + fileName + ";Version=3;";
@@ -52,6 +52,63 @@ namespace FlightLib
                            "(username TEXT PRIMARY KEY, password TEXT NOT NULL)";
             SQLiteCommand command = new SQLiteCommand(query, cnx);
             command.ExecuteNonQuery();
+        }
+
+        // Crea la tabla de the compañías si todavía no existe
+        public void CreateTable2()
+        {
+            string query = "CREATE TABLE IF NOT EXISTS companies " +
+                "(name TEXT PRIMARY KEY, telefone TEXT NOT NULL, email TEXT NOT NULL)";
+            SQLiteCommand command = new SQLiteCommand(query, cnx);
+            command.ExecuteNonQuery();
+        }
+
+        // Devuelve el teléfono y email de la aerolínea dada si existe
+        // Si no existe devuelve null
+        public (string, string) AirlineTelEmail(string airline)
+        {
+            string query = $"SELECT telefone, email FROM companies WHERE name ='{airline.ToUpper()}'";
+
+            using (SQLiteCommand command = new SQLiteCommand(query, cnx))
+            {
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    // Si la compañía dada está se habrá podido leer la información
+                    if (reader.Read())
+                    {
+                        string telefone = reader["telefone"].ToString();
+                        string email = reader["email"].ToString();
+                        return (telefone, email);
+                    }
+                }
+            }
+            return (null, null);
+        }
+
+        // Insertar una nueva compañía en la base de datos
+        // Devuelve true si se añadió, o false si ya existía una con ese nombre
+        public bool InsertCompany(string name, string telefone, string email)
+        {
+            string query = $"INSERT OR IGNORE INTO companies (name, telefone, email) VALUES ('{name.ToUpper()}','{telefone}','{email}')";
+
+            using (SQLiteCommand command = new SQLiteCommand(query, cnx))
+            {
+                int filasAfectadas = command.ExecuteNonQuery();
+                return filasAfectadas > 0;
+            }
+        }
+
+        // Eliminar una compañía de la base de datos
+        // Devuelve true si se eliminó, o false si no existía
+        public bool DeleteCompany(string name)
+        {
+            string query = $"DELETE FROM companies WHERE UPPER(name) = '{name.ToUpper()}'";
+
+            using (SQLiteCommand command = new SQLiteCommand(query, cnx))
+            {
+                int filasAfectadas = command.ExecuteNonQuery();
+                return filasAfectadas > 0;
+            }
         }
 
         // Devuelve true si el usuario ya existe
